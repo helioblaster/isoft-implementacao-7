@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include <errno.h>
 #include <limits.h>
+#include <pthread.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -30,6 +31,7 @@ typedef struct {
     uint8_t page;
     int frame;
     int valid;
+    uint64_t last_used;
 } TlbEntry;
 
 typedef struct {
@@ -43,7 +45,15 @@ typedef struct {
     TlbEntry tlb[TLB_SIZE];
     size_t next_fifo_tlb;
     size_t tlb_hits;
+    uint64_t page_last_used[PAGE_COUNT];
+    uint64_t clock;
 } Machine;
+
+typedef struct {
+    const TlbEntry *entry;
+    uint8_t page;
+    int matched;
+} TlbSearchTask;
 
 static void print_usage(const char *program)
 {
@@ -201,20 +211,35 @@ static void invalidate_tlb_page(Machine *machine, int page)
     }
 }
 
-static int resolve_frame(Machine *machine, uint8_t page, Policy page_policy)
+static int resolve_frame(Machine *machine,
+                         uint8_t page,
+                         Policy page_policy,
+                         uint64_t access_time)
 {
     int frame = machine->page_table[page];
     if (frame >= 0) {
+        machine->page_last_used[page] = access_time;
         return frame;
     }
 
     if (machine->next_free_frame < FRAME_COUNT) {
         frame = (int)machine->next_free_frame++;
-    } else {
-        (void)page_policy;
+    } else if (page_policy == POLICY_FIFO) {
         frame = (int)machine->next_fifo_frame;
         machine->next_fifo_frame = (machine->next_fifo_frame + 1) % FRAME_COUNT;
         int evicted_page = machine->frame_to_page[frame];
+        invalidate_tlb_page(machine, evicted_page);
+        machine->page_table[evicted_page] = -1;
+    } else {
+        int evicted_page = machine->frame_to_page[0];
+        for (size_t candidate = 1; candidate < FRAME_COUNT; candidate++) {
+            int candidate_page = machine->frame_to_page[candidate];
+            if (machine->page_last_used[candidate_page] <
+                machine->page_last_used[evicted_page]) {
+                evicted_page = candidate_page;
+            }
+        }
+        frame = machine->page_table[evicted_page];
         invalidate_tlb_page(machine, evicted_page);
         machine->page_table[evicted_page] = -1;
     }
@@ -224,14 +249,51 @@ static int resolve_frame(Machine *machine, uint8_t page, Policy page_policy)
            PAGE_SIZE);
     machine->page_table[page] = frame;
     machine->frame_to_page[frame] = page;
+    machine->page_last_used[page] = access_time;
     machine->page_faults++;
     return frame;
 }
 
+static void *search_tlb_entry(void *argument)
+{
+    TlbSearchTask *task = argument;
+    task->matched = task->entry->valid && task->entry->page == task->page;
+    return NULL;
+}
+
 static int search_tlb(const Machine *machine, uint8_t page, int *frame)
 {
+    pthread_t threads[TLB_SIZE];
+    TlbSearchTask tasks[TLB_SIZE];
+    size_t created = 0;
+
     for (size_t slot = 0; slot < TLB_SIZE; slot++) {
-        if (machine->tlb[slot].valid && machine->tlb[slot].page == page) {
+        tasks[slot].entry = &machine->tlb[slot];
+        tasks[slot].page = page;
+        tasks[slot].matched = 0;
+        int error = pthread_create(&threads[slot], NULL, search_tlb_entry, &tasks[slot]);
+        if (error != 0) {
+            fprintf(stderr, "Error: unable to create TLB search thread: %s\n",
+                    strerror(error));
+            break;
+        }
+        created++;
+    }
+
+    for (size_t slot = 0; slot < created; slot++) {
+        int error = pthread_join(threads[slot], NULL);
+        if (error != 0) {
+            fprintf(stderr, "Error: unable to join TLB search thread: %s\n",
+                    strerror(error));
+            return -2;
+        }
+    }
+    if (created != TLB_SIZE) {
+        return -2;
+    }
+
+    for (size_t slot = 0; slot < TLB_SIZE; slot++) {
+        if (tasks[slot].matched) {
             *frame = machine->tlb[slot].frame;
             return (int)slot;
         }
@@ -239,14 +301,33 @@ static int search_tlb(const Machine *machine, uint8_t page, int *frame)
     return -1;
 }
 
-static int insert_tlb(Machine *machine, uint8_t page, int frame, Policy tlb_policy)
+static int insert_tlb(Machine *machine,
+                      uint8_t page,
+                      int frame,
+                      Policy tlb_policy,
+                      uint64_t access_time)
 {
-    (void)tlb_policy;
-    size_t slot = machine->next_fifo_tlb;
-    machine->next_fifo_tlb = (machine->next_fifo_tlb + 1) % TLB_SIZE;
+    size_t slot = 0;
+    if (tlb_policy == POLICY_FIFO) {
+        slot = machine->next_fifo_tlb;
+        machine->next_fifo_tlb = (machine->next_fifo_tlb + 1) % TLB_SIZE;
+    } else {
+        while (slot < TLB_SIZE && machine->tlb[slot].valid) {
+            slot++;
+        }
+        if (slot == TLB_SIZE) {
+            slot = 0;
+            for (size_t candidate = 1; candidate < TLB_SIZE; candidate++) {
+                if (machine->tlb[candidate].last_used < machine->tlb[slot].last_used) {
+                    slot = candidate;
+                }
+            }
+        }
+    }
     machine->tlb[slot].page = page;
     machine->tlb[slot].frame = frame;
     machine->tlb[slot].valid = 1;
+    machine->tlb[slot].last_used = access_time;
     return (int)slot;
 }
 
@@ -265,13 +346,19 @@ static int run_simulation(Machine *machine,
         uint16_t logical = addresses->items[index];
         uint8_t page = (uint8_t)(logical >> 8);
         uint8_t offset = (uint8_t)(logical & 0xffu);
+        uint64_t access_time = ++machine->clock;
         int frame = -1;
         int tlb_slot = search_tlb(machine, page, &frame);
+        if (tlb_slot == -2) {
+            fclose(output);
+            return -1;
+        }
         if (tlb_slot >= 0) {
             machine->tlb_hits++;
+            machine->tlb[tlb_slot].last_used = access_time;
         } else {
-            frame = resolve_frame(machine, page, page_policy);
-            tlb_slot = insert_tlb(machine, page, frame, tlb_policy);
+            frame = resolve_frame(machine, page, page_policy, access_time);
+            tlb_slot = insert_tlb(machine, page, frame, tlb_policy, access_time);
         }
         size_t physical = (size_t)frame * PAGE_SIZE + offset;
         int value = machine->physical_memory[physical];

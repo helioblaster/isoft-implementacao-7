@@ -12,6 +12,7 @@
 #define PAGE_SIZE 256
 #define PAGE_COUNT 256
 #define FRAME_COUNT 128
+#define TLB_SIZE 16
 #define BACKING_STORE_FILE "BACKING_STORE.bin"
 #define OUTPUT_FILE "correct.txt"
 
@@ -26,6 +27,12 @@ typedef struct {
 } AddressList;
 
 typedef struct {
+    uint8_t page;
+    int frame;
+    int valid;
+} TlbEntry;
+
+typedef struct {
     int page_table[PAGE_COUNT];
     int frame_to_page[FRAME_COUNT];
     int8_t backing_store[PAGE_COUNT * PAGE_SIZE];
@@ -33,6 +40,9 @@ typedef struct {
     size_t next_free_frame;
     size_t next_fifo_frame;
     size_t page_faults;
+    TlbEntry tlb[TLB_SIZE];
+    size_t next_fifo_tlb;
+    size_t tlb_hits;
 } Machine;
 
 static void print_usage(const char *program)
@@ -208,9 +218,32 @@ static int resolve_frame(Machine *machine, uint8_t page, Policy page_policy)
     return frame;
 }
 
+static int search_tlb(const Machine *machine, uint8_t page, int *frame)
+{
+    for (size_t slot = 0; slot < TLB_SIZE; slot++) {
+        if (machine->tlb[slot].valid && machine->tlb[slot].page == page) {
+            *frame = machine->tlb[slot].frame;
+            return (int)slot;
+        }
+    }
+    return -1;
+}
+
+static int insert_tlb(Machine *machine, uint8_t page, int frame, Policy tlb_policy)
+{
+    (void)tlb_policy;
+    size_t slot = machine->next_fifo_tlb;
+    machine->next_fifo_tlb = (machine->next_fifo_tlb + 1) % TLB_SIZE;
+    machine->tlb[slot].page = page;
+    machine->tlb[slot].frame = frame;
+    machine->tlb[slot].valid = 1;
+    return (int)slot;
+}
+
 static int run_simulation(Machine *machine,
                           const AddressList *addresses,
-                          Policy page_policy)
+                          Policy page_policy,
+                          Policy tlb_policy)
 {
     FILE *output = fopen(OUTPUT_FILE, "w");
     if (output == NULL) {
@@ -222,21 +255,29 @@ static int run_simulation(Machine *machine,
         uint16_t logical = addresses->items[index];
         uint8_t page = (uint8_t)(logical >> 8);
         uint8_t offset = (uint8_t)(logical & 0xffu);
-        int frame = resolve_frame(machine, page, page_policy);
+        int frame = -1;
+        int tlb_slot = search_tlb(machine, page, &frame);
+        if (tlb_slot >= 0) {
+            machine->tlb_hits++;
+        } else {
+            frame = resolve_frame(machine, page, page_policy);
+            tlb_slot = insert_tlb(machine, page, frame, tlb_policy);
+        }
         size_t physical = (size_t)frame * PAGE_SIZE + offset;
         int value = machine->physical_memory[physical];
 
         fprintf(output,
-                "Virtual address: %u TLB: -1 Physical address: %zu Value: %d\n",
-                (unsigned)logical, physical, value);
+                "Virtual address: %u TLB: %d Physical address: %zu Value: %d\n",
+                (unsigned)logical, tlb_slot, physical, value);
     }
 
     double page_fault_rate = (double)machine->page_faults / (double)addresses->count;
     fprintf(output, "Number of Translated Addresses = %zu\n", addresses->count);
     fprintf(output, "Page Faults = %zu\n", machine->page_faults);
     fprintf(output, "Page Fault Rate = %.3f\n", page_fault_rate);
-    fprintf(output, "TLB Hits = 0\n");
-    fprintf(output, "TLB Hit Rate = 0.000\n");
+    double tlb_hit_rate = (double)machine->tlb_hits / (double)addresses->count;
+    fprintf(output, "TLB Hits = %zu\n", machine->tlb_hits);
+    fprintf(output, "TLB Hit Rate = %.3f\n", tlb_hit_rate);
 
     if (fclose(output) != 0) {
         fprintf(stderr, "Error: unable to finish writing %s\n", OUTPUT_FILE);
@@ -272,8 +313,7 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
-    (void)tlb_policy;
-    if (run_simulation(&machine, &addresses, page_policy) != 0) {
+    if (run_simulation(&machine, &addresses, page_policy, tlb_policy) != 0) {
         free(addresses.items);
         return EXIT_FAILURE;
     }

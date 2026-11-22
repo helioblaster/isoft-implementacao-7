@@ -192,6 +192,15 @@ static void initialize_machine(Machine *machine)
     }
 }
 
+static void invalidate_tlb_page(Machine *machine, int page)
+{
+    for (size_t slot = 0; slot < TLB_SIZE; slot++) {
+        if (machine->tlb[slot].valid && machine->tlb[slot].page == page) {
+            machine->tlb[slot].valid = 0;
+        }
+    }
+}
+
 static int resolve_frame(Machine *machine, uint8_t page, Policy page_policy)
 {
     int frame = machine->page_table[page];
@@ -206,6 +215,7 @@ static int resolve_frame(Machine *machine, uint8_t page, Policy page_policy)
         frame = (int)machine->next_fifo_frame;
         machine->next_fifo_frame = (machine->next_fifo_frame + 1) % FRAME_COUNT;
         int evicted_page = machine->frame_to_page[frame];
+        invalidate_tlb_page(machine, evicted_page);
         machine->page_table[evicted_page] = -1;
     }
 

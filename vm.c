@@ -9,6 +9,11 @@
 #include <string.h>
 
 #define LOGICAL_ADDRESS_MAX 65535L
+#define PAGE_SIZE 256
+#define PAGE_COUNT 256
+#define FRAME_COUNT 256
+#define BACKING_STORE_FILE "BACKING_STORE.bin"
+#define OUTPUT_FILE "correct.txt"
 
 typedef enum {
     POLICY_FIFO,
@@ -19,6 +24,14 @@ typedef struct {
     uint16_t *items;
     size_t count;
 } AddressList;
+
+typedef struct {
+    int page_table[PAGE_COUNT];
+    int8_t backing_store[PAGE_COUNT * PAGE_SIZE];
+    int8_t physical_memory[FRAME_COUNT * PAGE_SIZE];
+    size_t next_free_frame;
+    size_t page_faults;
+} Machine;
 
 static void print_usage(const char *program)
 {
@@ -135,6 +148,86 @@ static int load_addresses(const char *path, AddressList *list)
     return status;
 }
 
+static int load_backing_store(Machine *machine)
+{
+    FILE *file = fopen(BACKING_STORE_FILE, "rb");
+    if (file == NULL) {
+        fprintf(stderr, "Error: unable to open %s\n", BACKING_STORE_FILE);
+        return -1;
+    }
+
+    size_t expected = sizeof(machine->backing_store);
+    size_t bytes_read = fread(machine->backing_store, 1, expected, file);
+    int extra = fgetc(file);
+    if (bytes_read != expected || extra != EOF || ferror(file)) {
+        fprintf(stderr, "Error: %s must contain exactly %zu bytes\n",
+                BACKING_STORE_FILE, expected);
+        fclose(file);
+        return -1;
+    }
+    fclose(file);
+    return 0;
+}
+
+static void initialize_machine(Machine *machine)
+{
+    memset(machine, 0, sizeof(*machine));
+    for (size_t page = 0; page < PAGE_COUNT; page++) {
+        machine->page_table[page] = -1;
+    }
+}
+
+static int resolve_frame(Machine *machine, uint8_t page)
+{
+    int frame = machine->page_table[page];
+    if (frame >= 0) {
+        return frame;
+    }
+
+    frame = (int)machine->next_free_frame++;
+    memcpy(&machine->physical_memory[(size_t)frame * PAGE_SIZE],
+           &machine->backing_store[(size_t)page * PAGE_SIZE],
+           PAGE_SIZE);
+    machine->page_table[page] = frame;
+    machine->page_faults++;
+    return frame;
+}
+
+static int run_simulation(Machine *machine, const AddressList *addresses)
+{
+    FILE *output = fopen(OUTPUT_FILE, "w");
+    if (output == NULL) {
+        fprintf(stderr, "Error: unable to create %s\n", OUTPUT_FILE);
+        return -1;
+    }
+
+    for (size_t index = 0; index < addresses->count; index++) {
+        uint16_t logical = addresses->items[index];
+        uint8_t page = (uint8_t)(logical >> 8);
+        uint8_t offset = (uint8_t)(logical & 0xffu);
+        int frame = resolve_frame(machine, page);
+        size_t physical = (size_t)frame * PAGE_SIZE + offset;
+        int value = machine->physical_memory[physical];
+
+        fprintf(output,
+                "Virtual address: %u TLB: -1 Physical address: %zu Value: %d\n",
+                (unsigned)logical, physical, value);
+    }
+
+    double page_fault_rate = (double)machine->page_faults / (double)addresses->count;
+    fprintf(output, "Number of Translated Addresses = %zu\n", addresses->count);
+    fprintf(output, "Page Faults = %zu\n", machine->page_faults);
+    fprintf(output, "Page Fault Rate = %.3f\n", page_fault_rate);
+    fprintf(output, "TLB Hits = 0\n");
+    fprintf(output, "TLB Hit Rate = 0.000\n");
+
+    if (fclose(output) != 0) {
+        fprintf(stderr, "Error: unable to finish writing %s\n", OUTPUT_FILE);
+        return -1;
+    }
+    return 0;
+}
+
 int main(int argc, char **argv)
 {
     if (argc != 4) {
@@ -155,10 +248,20 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
-    printf("Validated %zu logical addresses (page=%s, tlb=%s)\n",
-           addresses.count,
-           page_policy == POLICY_FIFO ? "fifo" : "lru",
-           tlb_policy == POLICY_FIFO ? "fifo" : "lru");
+    Machine machine;
+    initialize_machine(&machine);
+    if (load_backing_store(&machine) != 0) {
+        free(addresses.items);
+        return EXIT_FAILURE;
+    }
+
+    (void)page_policy;
+    (void)tlb_policy;
+    if (run_simulation(&machine, &addresses) != 0) {
+        free(addresses.items);
+        return EXIT_FAILURE;
+    }
+
     free(addresses.items);
     return EXIT_SUCCESS;
 }

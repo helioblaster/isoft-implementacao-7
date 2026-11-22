@@ -253,3 +253,418 @@ Error: invalid logical address on line 2
 PASS commit 1
 + 2026-11-21T21:55:22-03:00 make clean
 rm -f vm correct.txt
+2026-11-22T00:14:14-03:00
+helioblaster
+/mnt/c/Users/PICHAU/Desktop/concluido
++ 2026-11-22T00:14:14-03:00 sha256sum vm.c Makefile
+e2216ace74d487b3210ba657b3ca90c5025c4593dcfe9cc3625de0d14bd57672  vm.c
+bc1d6e32101d34d193868a940cbb4764c325dc3c995249d1627a351b2282ae1c  Makefile
+++ 2026-11-22T00:14:14-03:00 seq 1 10
++ 2026-11-22T00:14:14-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T00:14:14-03:00 printf 'COMMIT=2 BATCH=%d REPETITION=%d\n' 0 1
+COMMIT=2 BATCH=0 REPETITION=1
++ 2026-11-22T00:14:14-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364"\n                run_dir="/tmp/vm-commit2-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                head -n 100 /mnt/c/Users/PICHAU/Downloads/correct.txt | sed -E "s/TLB: [0-9]+/TLB: -1/" >/tmp/vm-commit2-reference-100.txt\n                head -n 100 correct.txt >/tmp/vm-commit2-actual-100.txt\n                diff -u /tmp/vm-commit2-reference-100.txt /tmp/vm-commit2-actual-100.txt\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit2-invalid.txt\n                if ./vm /tmp/vm-commit2-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 2\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+Number of Translated Addresses = 1000
+Page Faults = 244
+Page Fault Rate = 0.244
+TLB Hits = 0
+TLB Hit Rate = 0.000
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 2
++ 2026-11-22T00:14:15-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T00:14:15-03:00 printf 'COMMIT=2 BATCH=%d REPETITION=%d\n' 0 2
+COMMIT=2 BATCH=0 REPETITION=2
++ 2026-11-22T00:14:15-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364"\n                run_dir="/tmp/vm-commit2-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                head -n 100 /mnt/c/Users/PICHAU/Downloads/correct.txt | sed -E "s/TLB: [0-9]+/TLB: -1/" >/tmp/vm-commit2-reference-100.txt\n                head -n 100 correct.txt >/tmp/vm-commit2-actual-100.txt\n                diff -u /tmp/vm-commit2-reference-100.txt /tmp/vm-commit2-actual-100.txt\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit2-invalid.txt\n                if ./vm /tmp/vm-commit2-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 2\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+Number of Translated Addresses = 1000
+Page Faults = 244
+Page Fault Rate = 0.244
+TLB Hits = 0
+TLB Hit Rate = 0.000
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 2
++ 2026-11-22T00:14:15-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T00:14:15-03:00 printf 'COMMIT=2 BATCH=%d REPETITION=%d\n' 0 3
+COMMIT=2 BATCH=0 REPETITION=3
++ 2026-11-22T00:14:15-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364"\n                run_dir="/tmp/vm-commit2-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                head -n 100 /mnt/c/Users/PICHAU/Downloads/correct.txt | sed -E "s/TLB: [0-9]+/TLB: -1/" >/tmp/vm-commit2-reference-100.txt\n                head -n 100 correct.txt >/tmp/vm-commit2-actual-100.txt\n                diff -u /tmp/vm-commit2-reference-100.txt /tmp/vm-commit2-actual-100.txt\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit2-invalid.txt\n                if ./vm /tmp/vm-commit2-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 2\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+Number of Translated Addresses = 1000
+Page Faults = 244
+Page Fault Rate = 0.244
+TLB Hits = 0
+TLB Hit Rate = 0.000
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 2
++ 2026-11-22T00:14:16-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T00:14:16-03:00 printf 'COMMIT=2 BATCH=%d REPETITION=%d\n' 0 4
+COMMIT=2 BATCH=0 REPETITION=4
++ 2026-11-22T00:14:16-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364"\n                run_dir="/tmp/vm-commit2-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                head -n 100 /mnt/c/Users/PICHAU/Downloads/correct.txt | sed -E "s/TLB: [0-9]+/TLB: -1/" >/tmp/vm-commit2-reference-100.txt\n                head -n 100 correct.txt >/tmp/vm-commit2-actual-100.txt\n                diff -u /tmp/vm-commit2-reference-100.txt /tmp/vm-commit2-actual-100.txt\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit2-invalid.txt\n                if ./vm /tmp/vm-commit2-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 2\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+Number of Translated Addresses = 1000
+Page Faults = 244
+Page Fault Rate = 0.244
+TLB Hits = 0
+TLB Hit Rate = 0.000
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 2
++ 2026-11-22T00:14:16-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T00:14:16-03:00 printf 'COMMIT=2 BATCH=%d REPETITION=%d\n' 0 5
+COMMIT=2 BATCH=0 REPETITION=5
++ 2026-11-22T00:14:16-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364"\n                run_dir="/tmp/vm-commit2-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                head -n 100 /mnt/c/Users/PICHAU/Downloads/correct.txt | sed -E "s/TLB: [0-9]+/TLB: -1/" >/tmp/vm-commit2-reference-100.txt\n                head -n 100 correct.txt >/tmp/vm-commit2-actual-100.txt\n                diff -u /tmp/vm-commit2-reference-100.txt /tmp/vm-commit2-actual-100.txt\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit2-invalid.txt\n                if ./vm /tmp/vm-commit2-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 2\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+Number of Translated Addresses = 1000
+Page Faults = 244
+Page Fault Rate = 0.244
+TLB Hits = 0
+TLB Hit Rate = 0.000
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 2
++ 2026-11-22T00:14:17-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T00:14:17-03:00 printf 'COMMIT=2 BATCH=%d REPETITION=%d\n' 0 6
+COMMIT=2 BATCH=0 REPETITION=6
++ 2026-11-22T00:14:17-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364"\n                run_dir="/tmp/vm-commit2-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                head -n 100 /mnt/c/Users/PICHAU/Downloads/correct.txt | sed -E "s/TLB: [0-9]+/TLB: -1/" >/tmp/vm-commit2-reference-100.txt\n                head -n 100 correct.txt >/tmp/vm-commit2-actual-100.txt\n                diff -u /tmp/vm-commit2-reference-100.txt /tmp/vm-commit2-actual-100.txt\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit2-invalid.txt\n                if ./vm /tmp/vm-commit2-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 2\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+Number of Translated Addresses = 1000
+Page Faults = 244
+Page Fault Rate = 0.244
+TLB Hits = 0
+TLB Hit Rate = 0.000
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 2
++ 2026-11-22T00:14:17-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T00:14:17-03:00 printf 'COMMIT=2 BATCH=%d REPETITION=%d\n' 0 7
+COMMIT=2 BATCH=0 REPETITION=7
++ 2026-11-22T00:14:17-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364"\n                run_dir="/tmp/vm-commit2-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                head -n 100 /mnt/c/Users/PICHAU/Downloads/correct.txt | sed -E "s/TLB: [0-9]+/TLB: -1/" >/tmp/vm-commit2-reference-100.txt\n                head -n 100 correct.txt >/tmp/vm-commit2-actual-100.txt\n                diff -u /tmp/vm-commit2-reference-100.txt /tmp/vm-commit2-actual-100.txt\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit2-invalid.txt\n                if ./vm /tmp/vm-commit2-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 2\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+Number of Translated Addresses = 1000
+Page Faults = 244
+Page Fault Rate = 0.244
+TLB Hits = 0
+TLB Hit Rate = 0.000
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 2
++ 2026-11-22T00:14:18-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T00:14:18-03:00 printf 'COMMIT=2 BATCH=%d REPETITION=%d\n' 0 8
+COMMIT=2 BATCH=0 REPETITION=8
++ 2026-11-22T00:14:18-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364"\n                run_dir="/tmp/vm-commit2-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                head -n 100 /mnt/c/Users/PICHAU/Downloads/correct.txt | sed -E "s/TLB: [0-9]+/TLB: -1/" >/tmp/vm-commit2-reference-100.txt\n                head -n 100 correct.txt >/tmp/vm-commit2-actual-100.txt\n                diff -u /tmp/vm-commit2-reference-100.txt /tmp/vm-commit2-actual-100.txt\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit2-invalid.txt\n                if ./vm /tmp/vm-commit2-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 2\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+Number of Translated Addresses = 1000
+Page Faults = 244
+Page Fault Rate = 0.244
+TLB Hits = 0
+TLB Hit Rate = 0.000
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 2
++ 2026-11-22T00:14:18-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T00:14:18-03:00 printf 'COMMIT=2 BATCH=%d REPETITION=%d\n' 0 9
+COMMIT=2 BATCH=0 REPETITION=9
++ 2026-11-22T00:14:18-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364"\n                run_dir="/tmp/vm-commit2-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                head -n 100 /mnt/c/Users/PICHAU/Downloads/correct.txt | sed -E "s/TLB: [0-9]+/TLB: -1/" >/tmp/vm-commit2-reference-100.txt\n                head -n 100 correct.txt >/tmp/vm-commit2-actual-100.txt\n                diff -u /tmp/vm-commit2-reference-100.txt /tmp/vm-commit2-actual-100.txt\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit2-invalid.txt\n                if ./vm /tmp/vm-commit2-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 2\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+Number of Translated Addresses = 1000
+Page Faults = 244
+Page Fault Rate = 0.244
+TLB Hits = 0
+TLB Hit Rate = 0.000
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 2
++ 2026-11-22T00:14:18-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T00:14:18-03:00 printf 'COMMIT=2 BATCH=%d REPETITION=%d\n' 0 10
+COMMIT=2 BATCH=0 REPETITION=10
++ 2026-11-22T00:14:18-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364"\n                run_dir="/tmp/vm-commit2-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                head -n 100 /mnt/c/Users/PICHAU/Downloads/correct.txt | sed -E "s/TLB: [0-9]+/TLB: -1/" >/tmp/vm-commit2-reference-100.txt\n                head -n 100 correct.txt >/tmp/vm-commit2-actual-100.txt\n                diff -u /tmp/vm-commit2-reference-100.txt /tmp/vm-commit2-actual-100.txt\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit2-invalid.txt\n                if ./vm /tmp/vm-commit2-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 2\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+Number of Translated Addresses = 1000
+Page Faults = 244
+Page Fault Rate = 0.244
+TLB Hits = 0
+TLB Hit Rate = 0.000
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 2
++ 2026-11-22T00:14:19-03:00 make clean
+rm -f vm correct.txt
++ 2026-11-22T00:19:19-03:00 sha256sum vm.c Makefile
+e2216ace74d487b3210ba657b3ca90c5025c4593dcfe9cc3625de0d14bd57672  vm.c
+bc1d6e32101d34d193868a940cbb4764c325dc3c995249d1627a351b2282ae1c  Makefile
+++ 2026-11-22T00:19:19-03:00 seq 1 10
++ 2026-11-22T00:19:19-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T00:19:19-03:00 printf 'COMMIT=2 BATCH=%d REPETITION=%d\n' 1 1
+COMMIT=2 BATCH=1 REPETITION=1
++ 2026-11-22T00:19:19-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364"\n                run_dir="/tmp/vm-commit2-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                head -n 100 /mnt/c/Users/PICHAU/Downloads/correct.txt | sed -E "s/TLB: [0-9]+/TLB: -1/" >/tmp/vm-commit2-reference-100.txt\n                head -n 100 correct.txt >/tmp/vm-commit2-actual-100.txt\n                diff -u /tmp/vm-commit2-reference-100.txt /tmp/vm-commit2-actual-100.txt\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit2-invalid.txt\n                if ./vm /tmp/vm-commit2-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 2\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+Number of Translated Addresses = 1000
+Page Faults = 244
+Page Fault Rate = 0.244
+TLB Hits = 0
+TLB Hit Rate = 0.000
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 2
++ 2026-11-22T00:19:19-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T00:19:19-03:00 printf 'COMMIT=2 BATCH=%d REPETITION=%d\n' 1 2
+COMMIT=2 BATCH=1 REPETITION=2
++ 2026-11-22T00:19:19-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364"\n                run_dir="/tmp/vm-commit2-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                head -n 100 /mnt/c/Users/PICHAU/Downloads/correct.txt | sed -E "s/TLB: [0-9]+/TLB: -1/" >/tmp/vm-commit2-reference-100.txt\n                head -n 100 correct.txt >/tmp/vm-commit2-actual-100.txt\n                diff -u /tmp/vm-commit2-reference-100.txt /tmp/vm-commit2-actual-100.txt\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit2-invalid.txt\n                if ./vm /tmp/vm-commit2-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 2\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+Number of Translated Addresses = 1000
+Page Faults = 244
+Page Fault Rate = 0.244
+TLB Hits = 0
+TLB Hit Rate = 0.000
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 2
++ 2026-11-22T00:19:20-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T00:19:20-03:00 printf 'COMMIT=2 BATCH=%d REPETITION=%d\n' 1 3
+COMMIT=2 BATCH=1 REPETITION=3
++ 2026-11-22T00:19:20-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364"\n                run_dir="/tmp/vm-commit2-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                head -n 100 /mnt/c/Users/PICHAU/Downloads/correct.txt | sed -E "s/TLB: [0-9]+/TLB: -1/" >/tmp/vm-commit2-reference-100.txt\n                head -n 100 correct.txt >/tmp/vm-commit2-actual-100.txt\n                diff -u /tmp/vm-commit2-reference-100.txt /tmp/vm-commit2-actual-100.txt\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit2-invalid.txt\n                if ./vm /tmp/vm-commit2-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 2\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+Number of Translated Addresses = 1000
+Page Faults = 244
+Page Fault Rate = 0.244
+TLB Hits = 0
+TLB Hit Rate = 0.000
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 2
++ 2026-11-22T00:19:20-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T00:19:20-03:00 printf 'COMMIT=2 BATCH=%d REPETITION=%d\n' 1 4
+COMMIT=2 BATCH=1 REPETITION=4
++ 2026-11-22T00:19:20-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364"\n                run_dir="/tmp/vm-commit2-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                head -n 100 /mnt/c/Users/PICHAU/Downloads/correct.txt | sed -E "s/TLB: [0-9]+/TLB: -1/" >/tmp/vm-commit2-reference-100.txt\n                head -n 100 correct.txt >/tmp/vm-commit2-actual-100.txt\n                diff -u /tmp/vm-commit2-reference-100.txt /tmp/vm-commit2-actual-100.txt\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit2-invalid.txt\n                if ./vm /tmp/vm-commit2-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 2\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+Number of Translated Addresses = 1000
+Page Faults = 244
+Page Fault Rate = 0.244
+TLB Hits = 0
+TLB Hit Rate = 0.000
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 2
++ 2026-11-22T00:19:21-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T00:19:21-03:00 printf 'COMMIT=2 BATCH=%d REPETITION=%d\n' 1 5
+COMMIT=2 BATCH=1 REPETITION=5
++ 2026-11-22T00:19:21-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364"\n                run_dir="/tmp/vm-commit2-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                head -n 100 /mnt/c/Users/PICHAU/Downloads/correct.txt | sed -E "s/TLB: [0-9]+/TLB: -1/" >/tmp/vm-commit2-reference-100.txt\n                head -n 100 correct.txt >/tmp/vm-commit2-actual-100.txt\n                diff -u /tmp/vm-commit2-reference-100.txt /tmp/vm-commit2-actual-100.txt\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit2-invalid.txt\n                if ./vm /tmp/vm-commit2-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 2\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+Number of Translated Addresses = 1000
+Page Faults = 244
+Page Fault Rate = 0.244
+TLB Hits = 0
+TLB Hit Rate = 0.000
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 2
++ 2026-11-22T00:19:21-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T00:19:21-03:00 printf 'COMMIT=2 BATCH=%d REPETITION=%d\n' 1 6
+COMMIT=2 BATCH=1 REPETITION=6
++ 2026-11-22T00:19:21-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364"\n                run_dir="/tmp/vm-commit2-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                head -n 100 /mnt/c/Users/PICHAU/Downloads/correct.txt | sed -E "s/TLB: [0-9]+/TLB: -1/" >/tmp/vm-commit2-reference-100.txt\n                head -n 100 correct.txt >/tmp/vm-commit2-actual-100.txt\n                diff -u /tmp/vm-commit2-reference-100.txt /tmp/vm-commit2-actual-100.txt\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit2-invalid.txt\n                if ./vm /tmp/vm-commit2-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 2\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+Number of Translated Addresses = 1000
+Page Faults = 244
+Page Fault Rate = 0.244
+TLB Hits = 0
+TLB Hit Rate = 0.000
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 2
++ 2026-11-22T00:19:22-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T00:19:22-03:00 printf 'COMMIT=2 BATCH=%d REPETITION=%d\n' 1 7
+COMMIT=2 BATCH=1 REPETITION=7
++ 2026-11-22T00:19:22-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364"\n                run_dir="/tmp/vm-commit2-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                head -n 100 /mnt/c/Users/PICHAU/Downloads/correct.txt | sed -E "s/TLB: [0-9]+/TLB: -1/" >/tmp/vm-commit2-reference-100.txt\n                head -n 100 correct.txt >/tmp/vm-commit2-actual-100.txt\n                diff -u /tmp/vm-commit2-reference-100.txt /tmp/vm-commit2-actual-100.txt\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit2-invalid.txt\n                if ./vm /tmp/vm-commit2-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 2\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+Number of Translated Addresses = 1000
+Page Faults = 244
+Page Fault Rate = 0.244
+TLB Hits = 0
+TLB Hit Rate = 0.000
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 2
++ 2026-11-22T00:19:22-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T00:19:22-03:00 printf 'COMMIT=2 BATCH=%d REPETITION=%d\n' 1 8
+COMMIT=2 BATCH=1 REPETITION=8
++ 2026-11-22T00:19:22-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364"\n                run_dir="/tmp/vm-commit2-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                head -n 100 /mnt/c/Users/PICHAU/Downloads/correct.txt | sed -E "s/TLB: [0-9]+/TLB: -1/" >/tmp/vm-commit2-reference-100.txt\n                head -n 100 correct.txt >/tmp/vm-commit2-actual-100.txt\n                diff -u /tmp/vm-commit2-reference-100.txt /tmp/vm-commit2-actual-100.txt\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit2-invalid.txt\n                if ./vm /tmp/vm-commit2-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 2\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+Number of Translated Addresses = 1000
+Page Faults = 244
+Page Fault Rate = 0.244
+TLB Hits = 0
+TLB Hit Rate = 0.000
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 2
++ 2026-11-22T00:19:22-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T00:19:22-03:00 printf 'COMMIT=2 BATCH=%d REPETITION=%d\n' 1 9
+COMMIT=2 BATCH=1 REPETITION=9
++ 2026-11-22T00:19:22-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364"\n                run_dir="/tmp/vm-commit2-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                head -n 100 /mnt/c/Users/PICHAU/Downloads/correct.txt | sed -E "s/TLB: [0-9]+/TLB: -1/" >/tmp/vm-commit2-reference-100.txt\n                head -n 100 correct.txt >/tmp/vm-commit2-actual-100.txt\n                diff -u /tmp/vm-commit2-reference-100.txt /tmp/vm-commit2-actual-100.txt\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit2-invalid.txt\n                if ./vm /tmp/vm-commit2-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 2\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+Number of Translated Addresses = 1000
+Page Faults = 244
+Page Fault Rate = 0.244
+TLB Hits = 0
+TLB Hit Rate = 0.000
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 2
++ 2026-11-22T00:19:23-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T00:19:23-03:00 printf 'COMMIT=2 BATCH=%d REPETITION=%d\n' 1 10
+COMMIT=2 BATCH=1 REPETITION=10
++ 2026-11-22T00:19:23-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364"\n                run_dir="/tmp/vm-commit2-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                head -n 100 /mnt/c/Users/PICHAU/Downloads/correct.txt | sed -E "s/TLB: [0-9]+/TLB: -1/" >/tmp/vm-commit2-reference-100.txt\n                head -n 100 correct.txt >/tmp/vm-commit2-actual-100.txt\n                diff -u /tmp/vm-commit2-reference-100.txt /tmp/vm-commit2-actual-100.txt\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit2-invalid.txt\n                if ./vm /tmp/vm-commit2-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 2\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_1/commits/commit_02_3c69364'
+Number of Translated Addresses = 1000
+Page Faults = 244
+Page Fault Rate = 0.244
+TLB Hits = 0
+TLB Hit Rate = 0.000
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 2
++ 2026-11-22T00:19:23-03:00 make clean
+rm -f vm correct.txt

@@ -11,7 +11,7 @@
 #define LOGICAL_ADDRESS_MAX 65535L
 #define PAGE_SIZE 256
 #define PAGE_COUNT 256
-#define FRAME_COUNT 256
+#define FRAME_COUNT 128
 #define BACKING_STORE_FILE "BACKING_STORE.bin"
 #define OUTPUT_FILE "correct.txt"
 
@@ -27,9 +27,11 @@ typedef struct {
 
 typedef struct {
     int page_table[PAGE_COUNT];
+    int frame_to_page[FRAME_COUNT];
     int8_t backing_store[PAGE_COUNT * PAGE_SIZE];
     int8_t physical_memory[FRAME_COUNT * PAGE_SIZE];
     size_t next_free_frame;
+    size_t next_fifo_frame;
     size_t page_faults;
 } Machine;
 
@@ -175,25 +177,40 @@ static void initialize_machine(Machine *machine)
     for (size_t page = 0; page < PAGE_COUNT; page++) {
         machine->page_table[page] = -1;
     }
+    for (size_t frame = 0; frame < FRAME_COUNT; frame++) {
+        machine->frame_to_page[frame] = -1;
+    }
 }
 
-static int resolve_frame(Machine *machine, uint8_t page)
+static int resolve_frame(Machine *machine, uint8_t page, Policy page_policy)
 {
     int frame = machine->page_table[page];
     if (frame >= 0) {
         return frame;
     }
 
-    frame = (int)machine->next_free_frame++;
+    if (machine->next_free_frame < FRAME_COUNT) {
+        frame = (int)machine->next_free_frame++;
+    } else {
+        (void)page_policy;
+        frame = (int)machine->next_fifo_frame;
+        machine->next_fifo_frame = (machine->next_fifo_frame + 1) % FRAME_COUNT;
+        int evicted_page = machine->frame_to_page[frame];
+        machine->page_table[evicted_page] = -1;
+    }
+
     memcpy(&machine->physical_memory[(size_t)frame * PAGE_SIZE],
            &machine->backing_store[(size_t)page * PAGE_SIZE],
            PAGE_SIZE);
     machine->page_table[page] = frame;
+    machine->frame_to_page[frame] = page;
     machine->page_faults++;
     return frame;
 }
 
-static int run_simulation(Machine *machine, const AddressList *addresses)
+static int run_simulation(Machine *machine,
+                          const AddressList *addresses,
+                          Policy page_policy)
 {
     FILE *output = fopen(OUTPUT_FILE, "w");
     if (output == NULL) {
@@ -205,7 +222,7 @@ static int run_simulation(Machine *machine, const AddressList *addresses)
         uint16_t logical = addresses->items[index];
         uint8_t page = (uint8_t)(logical >> 8);
         uint8_t offset = (uint8_t)(logical & 0xffu);
-        int frame = resolve_frame(machine, page);
+        int frame = resolve_frame(machine, page, page_policy);
         size_t physical = (size_t)frame * PAGE_SIZE + offset;
         int value = machine->physical_memory[physical];
 
@@ -255,9 +272,8 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
-    (void)page_policy;
     (void)tlb_policy;
-    if (run_simulation(&machine, &addresses) != 0) {
+    if (run_simulation(&machine, &addresses, page_policy) != 0) {
         free(addresses.items);
         return EXIT_FAILURE;
     }

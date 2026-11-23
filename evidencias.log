@@ -4846,3 +4846,498 @@ Error: invalid logical address on line 2
 PASS commit 8
 + 2026-11-23T15:40:51-03:00 make clean
 rm -f vm correct.txt
+2026-11-23T18:05:26-03:00
+helioblaster
+/mnt/c/Users/PICHAU/Desktop/concluido
++ 2026-11-23T18:05:26-03:00 sha256sum vm.c Makefile
+0f4fccc206b702c0fb3b5c1137531e0615758ec216e37794f7cb375e406d3ef8  vm.c
+bc1d6e32101d34d193868a940cbb4764c325dc3c995249d1627a351b2282ae1c  Makefile
+++ 2026-11-23T18:05:26-03:00 seq 1 10
++ 2026-11-23T18:05:26-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T18:05:26-03:00 printf 'COMMIT=9 BATCH=%d REPETITION=%d\n' 0 1
+COMMIT=9 BATCH=0 REPETITION=1
++ 2026-11-23T18:05:26-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036"\n                run_dir="/tmp/vm-commit9-run"\n                baseline_dir="/tmp/vm-commit9-baselines"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                if [ -e "$baseline_dir/fifo-fifo.txt" ]; then cmp correct.txt "$baseline_dir/fifo-fifo.txt"; else cp correct.txt "$baseline_dir/fifo-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/fifo-lru.txt" ]; then cmp correct.txt "$baseline_dir/fifo-lru.txt"; else cp correct.txt "$baseline_dir/fifo-lru.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                if [ -e "$baseline_dir/lru-fifo.txt" ]; then cmp correct.txt "$baseline_dir/lru-fifo.txt"; else cp correct.txt "$baseline_dir/lru-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/lru-lru.txt" ]; then cmp correct.txt "$baseline_dir/lru-lru.txt"; else cp correct.txt "$baseline_dir/lru-lru.txt"; fi\n                sha256sum correct.txt\n\n                printf "MATRIX_PASS commit 9\\n"\n                printf "PASS commit 9\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+MATRIX_PASS commit 9
+PASS commit 9
++ 2026-11-23T18:05:31-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T18:05:31-03:00 printf 'COMMIT=9 BATCH=%d REPETITION=%d\n' 0 2
+COMMIT=9 BATCH=0 REPETITION=2
++ 2026-11-23T18:05:31-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036"\n                run_dir="/tmp/vm-commit9-run"\n                baseline_dir="/tmp/vm-commit9-baselines"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                if [ -e "$baseline_dir/fifo-fifo.txt" ]; then cmp correct.txt "$baseline_dir/fifo-fifo.txt"; else cp correct.txt "$baseline_dir/fifo-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/fifo-lru.txt" ]; then cmp correct.txt "$baseline_dir/fifo-lru.txt"; else cp correct.txt "$baseline_dir/fifo-lru.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                if [ -e "$baseline_dir/lru-fifo.txt" ]; then cmp correct.txt "$baseline_dir/lru-fifo.txt"; else cp correct.txt "$baseline_dir/lru-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/lru-lru.txt" ]; then cmp correct.txt "$baseline_dir/lru-lru.txt"; else cp correct.txt "$baseline_dir/lru-lru.txt"; fi\n                sha256sum correct.txt\n\n                printf "MATRIX_PASS commit 9\\n"\n                printf "PASS commit 9\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+MATRIX_PASS commit 9
+PASS commit 9
++ 2026-11-23T18:05:36-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T18:05:36-03:00 printf 'COMMIT=9 BATCH=%d REPETITION=%d\n' 0 3
+COMMIT=9 BATCH=0 REPETITION=3
++ 2026-11-23T18:05:36-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036"\n                run_dir="/tmp/vm-commit9-run"\n                baseline_dir="/tmp/vm-commit9-baselines"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                if [ -e "$baseline_dir/fifo-fifo.txt" ]; then cmp correct.txt "$baseline_dir/fifo-fifo.txt"; else cp correct.txt "$baseline_dir/fifo-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/fifo-lru.txt" ]; then cmp correct.txt "$baseline_dir/fifo-lru.txt"; else cp correct.txt "$baseline_dir/fifo-lru.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                if [ -e "$baseline_dir/lru-fifo.txt" ]; then cmp correct.txt "$baseline_dir/lru-fifo.txt"; else cp correct.txt "$baseline_dir/lru-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/lru-lru.txt" ]; then cmp correct.txt "$baseline_dir/lru-lru.txt"; else cp correct.txt "$baseline_dir/lru-lru.txt"; fi\n                sha256sum correct.txt\n\n                printf "MATRIX_PASS commit 9\\n"\n                printf "PASS commit 9\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+MATRIX_PASS commit 9
+PASS commit 9
++ 2026-11-23T18:05:41-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T18:05:41-03:00 printf 'COMMIT=9 BATCH=%d REPETITION=%d\n' 0 4
+COMMIT=9 BATCH=0 REPETITION=4
++ 2026-11-23T18:05:41-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036"\n                run_dir="/tmp/vm-commit9-run"\n                baseline_dir="/tmp/vm-commit9-baselines"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                if [ -e "$baseline_dir/fifo-fifo.txt" ]; then cmp correct.txt "$baseline_dir/fifo-fifo.txt"; else cp correct.txt "$baseline_dir/fifo-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/fifo-lru.txt" ]; then cmp correct.txt "$baseline_dir/fifo-lru.txt"; else cp correct.txt "$baseline_dir/fifo-lru.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                if [ -e "$baseline_dir/lru-fifo.txt" ]; then cmp correct.txt "$baseline_dir/lru-fifo.txt"; else cp correct.txt "$baseline_dir/lru-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/lru-lru.txt" ]; then cmp correct.txt "$baseline_dir/lru-lru.txt"; else cp correct.txt "$baseline_dir/lru-lru.txt"; fi\n                sha256sum correct.txt\n\n                printf "MATRIX_PASS commit 9\\n"\n                printf "PASS commit 9\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+MATRIX_PASS commit 9
+PASS commit 9
++ 2026-11-23T18:05:46-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T18:05:46-03:00 printf 'COMMIT=9 BATCH=%d REPETITION=%d\n' 0 5
+COMMIT=9 BATCH=0 REPETITION=5
++ 2026-11-23T18:05:46-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036"\n                run_dir="/tmp/vm-commit9-run"\n                baseline_dir="/tmp/vm-commit9-baselines"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                if [ -e "$baseline_dir/fifo-fifo.txt" ]; then cmp correct.txt "$baseline_dir/fifo-fifo.txt"; else cp correct.txt "$baseline_dir/fifo-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/fifo-lru.txt" ]; then cmp correct.txt "$baseline_dir/fifo-lru.txt"; else cp correct.txt "$baseline_dir/fifo-lru.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                if [ -e "$baseline_dir/lru-fifo.txt" ]; then cmp correct.txt "$baseline_dir/lru-fifo.txt"; else cp correct.txt "$baseline_dir/lru-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/lru-lru.txt" ]; then cmp correct.txt "$baseline_dir/lru-lru.txt"; else cp correct.txt "$baseline_dir/lru-lru.txt"; fi\n                sha256sum correct.txt\n\n                printf "MATRIX_PASS commit 9\\n"\n                printf "PASS commit 9\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+MATRIX_PASS commit 9
+PASS commit 9
++ 2026-11-23T18:05:51-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T18:05:51-03:00 printf 'COMMIT=9 BATCH=%d REPETITION=%d\n' 0 6
+COMMIT=9 BATCH=0 REPETITION=6
++ 2026-11-23T18:05:51-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036"\n                run_dir="/tmp/vm-commit9-run"\n                baseline_dir="/tmp/vm-commit9-baselines"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                if [ -e "$baseline_dir/fifo-fifo.txt" ]; then cmp correct.txt "$baseline_dir/fifo-fifo.txt"; else cp correct.txt "$baseline_dir/fifo-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/fifo-lru.txt" ]; then cmp correct.txt "$baseline_dir/fifo-lru.txt"; else cp correct.txt "$baseline_dir/fifo-lru.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                if [ -e "$baseline_dir/lru-fifo.txt" ]; then cmp correct.txt "$baseline_dir/lru-fifo.txt"; else cp correct.txt "$baseline_dir/lru-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/lru-lru.txt" ]; then cmp correct.txt "$baseline_dir/lru-lru.txt"; else cp correct.txt "$baseline_dir/lru-lru.txt"; fi\n                sha256sum correct.txt\n\n                printf "MATRIX_PASS commit 9\\n"\n                printf "PASS commit 9\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+MATRIX_PASS commit 9
+PASS commit 9
++ 2026-11-23T18:05:56-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T18:05:56-03:00 printf 'COMMIT=9 BATCH=%d REPETITION=%d\n' 0 7
+COMMIT=9 BATCH=0 REPETITION=7
++ 2026-11-23T18:05:56-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036"\n                run_dir="/tmp/vm-commit9-run"\n                baseline_dir="/tmp/vm-commit9-baselines"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                if [ -e "$baseline_dir/fifo-fifo.txt" ]; then cmp correct.txt "$baseline_dir/fifo-fifo.txt"; else cp correct.txt "$baseline_dir/fifo-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/fifo-lru.txt" ]; then cmp correct.txt "$baseline_dir/fifo-lru.txt"; else cp correct.txt "$baseline_dir/fifo-lru.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                if [ -e "$baseline_dir/lru-fifo.txt" ]; then cmp correct.txt "$baseline_dir/lru-fifo.txt"; else cp correct.txt "$baseline_dir/lru-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/lru-lru.txt" ]; then cmp correct.txt "$baseline_dir/lru-lru.txt"; else cp correct.txt "$baseline_dir/lru-lru.txt"; fi\n                sha256sum correct.txt\n\n                printf "MATRIX_PASS commit 9\\n"\n                printf "PASS commit 9\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+MATRIX_PASS commit 9
+PASS commit 9
++ 2026-11-23T18:06:01-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T18:06:01-03:00 printf 'COMMIT=9 BATCH=%d REPETITION=%d\n' 0 8
+COMMIT=9 BATCH=0 REPETITION=8
++ 2026-11-23T18:06:01-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036"\n                run_dir="/tmp/vm-commit9-run"\n                baseline_dir="/tmp/vm-commit9-baselines"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                if [ -e "$baseline_dir/fifo-fifo.txt" ]; then cmp correct.txt "$baseline_dir/fifo-fifo.txt"; else cp correct.txt "$baseline_dir/fifo-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/fifo-lru.txt" ]; then cmp correct.txt "$baseline_dir/fifo-lru.txt"; else cp correct.txt "$baseline_dir/fifo-lru.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                if [ -e "$baseline_dir/lru-fifo.txt" ]; then cmp correct.txt "$baseline_dir/lru-fifo.txt"; else cp correct.txt "$baseline_dir/lru-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/lru-lru.txt" ]; then cmp correct.txt "$baseline_dir/lru-lru.txt"; else cp correct.txt "$baseline_dir/lru-lru.txt"; fi\n                sha256sum correct.txt\n\n                printf "MATRIX_PASS commit 9\\n"\n                printf "PASS commit 9\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+MATRIX_PASS commit 9
+PASS commit 9
++ 2026-11-23T18:06:06-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T18:06:06-03:00 printf 'COMMIT=9 BATCH=%d REPETITION=%d\n' 0 9
+COMMIT=9 BATCH=0 REPETITION=9
++ 2026-11-23T18:06:06-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036"\n                run_dir="/tmp/vm-commit9-run"\n                baseline_dir="/tmp/vm-commit9-baselines"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                if [ -e "$baseline_dir/fifo-fifo.txt" ]; then cmp correct.txt "$baseline_dir/fifo-fifo.txt"; else cp correct.txt "$baseline_dir/fifo-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/fifo-lru.txt" ]; then cmp correct.txt "$baseline_dir/fifo-lru.txt"; else cp correct.txt "$baseline_dir/fifo-lru.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                if [ -e "$baseline_dir/lru-fifo.txt" ]; then cmp correct.txt "$baseline_dir/lru-fifo.txt"; else cp correct.txt "$baseline_dir/lru-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/lru-lru.txt" ]; then cmp correct.txt "$baseline_dir/lru-lru.txt"; else cp correct.txt "$baseline_dir/lru-lru.txt"; fi\n                sha256sum correct.txt\n\n                printf "MATRIX_PASS commit 9\\n"\n                printf "PASS commit 9\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+MATRIX_PASS commit 9
+PASS commit 9
++ 2026-11-23T18:06:11-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T18:06:11-03:00 printf 'COMMIT=9 BATCH=%d REPETITION=%d\n' 0 10
+COMMIT=9 BATCH=0 REPETITION=10
++ 2026-11-23T18:06:11-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036"\n                run_dir="/tmp/vm-commit9-run"\n                baseline_dir="/tmp/vm-commit9-baselines"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                if [ -e "$baseline_dir/fifo-fifo.txt" ]; then cmp correct.txt "$baseline_dir/fifo-fifo.txt"; else cp correct.txt "$baseline_dir/fifo-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/fifo-lru.txt" ]; then cmp correct.txt "$baseline_dir/fifo-lru.txt"; else cp correct.txt "$baseline_dir/fifo-lru.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                if [ -e "$baseline_dir/lru-fifo.txt" ]; then cmp correct.txt "$baseline_dir/lru-fifo.txt"; else cp correct.txt "$baseline_dir/lru-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/lru-lru.txt" ]; then cmp correct.txt "$baseline_dir/lru-lru.txt"; else cp correct.txt "$baseline_dir/lru-lru.txt"; fi\n                sha256sum correct.txt\n\n                printf "MATRIX_PASS commit 9\\n"\n                printf "PASS commit 9\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+MATRIX_PASS commit 9
+PASS commit 9
++ 2026-11-23T18:06:16-03:00 make clean
+rm -f vm correct.txt
++ 2026-11-23T18:11:16-03:00 sha256sum vm.c Makefile
+0f4fccc206b702c0fb3b5c1137531e0615758ec216e37794f7cb375e406d3ef8  vm.c
+bc1d6e32101d34d193868a940cbb4764c325dc3c995249d1627a351b2282ae1c  Makefile
+++ 2026-11-23T18:11:16-03:00 seq 1 10
++ 2026-11-23T18:11:16-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T18:11:16-03:00 printf 'COMMIT=9 BATCH=%d REPETITION=%d\n' 1 1
+COMMIT=9 BATCH=1 REPETITION=1
++ 2026-11-23T18:11:16-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036"\n                run_dir="/tmp/vm-commit9-run"\n                baseline_dir="/tmp/vm-commit9-baselines"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                if [ -e "$baseline_dir/fifo-fifo.txt" ]; then cmp correct.txt "$baseline_dir/fifo-fifo.txt"; else cp correct.txt "$baseline_dir/fifo-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/fifo-lru.txt" ]; then cmp correct.txt "$baseline_dir/fifo-lru.txt"; else cp correct.txt "$baseline_dir/fifo-lru.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                if [ -e "$baseline_dir/lru-fifo.txt" ]; then cmp correct.txt "$baseline_dir/lru-fifo.txt"; else cp correct.txt "$baseline_dir/lru-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/lru-lru.txt" ]; then cmp correct.txt "$baseline_dir/lru-lru.txt"; else cp correct.txt "$baseline_dir/lru-lru.txt"; fi\n                sha256sum correct.txt\n\n                printf "MATRIX_PASS commit 9\\n"\n                printf "PASS commit 9\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+MATRIX_PASS commit 9
+PASS commit 9
++ 2026-11-23T18:11:21-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T18:11:21-03:00 printf 'COMMIT=9 BATCH=%d REPETITION=%d\n' 1 2
+COMMIT=9 BATCH=1 REPETITION=2
++ 2026-11-23T18:11:21-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036"\n                run_dir="/tmp/vm-commit9-run"\n                baseline_dir="/tmp/vm-commit9-baselines"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                if [ -e "$baseline_dir/fifo-fifo.txt" ]; then cmp correct.txt "$baseline_dir/fifo-fifo.txt"; else cp correct.txt "$baseline_dir/fifo-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/fifo-lru.txt" ]; then cmp correct.txt "$baseline_dir/fifo-lru.txt"; else cp correct.txt "$baseline_dir/fifo-lru.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                if [ -e "$baseline_dir/lru-fifo.txt" ]; then cmp correct.txt "$baseline_dir/lru-fifo.txt"; else cp correct.txt "$baseline_dir/lru-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/lru-lru.txt" ]; then cmp correct.txt "$baseline_dir/lru-lru.txt"; else cp correct.txt "$baseline_dir/lru-lru.txt"; fi\n                sha256sum correct.txt\n\n                printf "MATRIX_PASS commit 9\\n"\n                printf "PASS commit 9\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+MATRIX_PASS commit 9
+PASS commit 9
++ 2026-11-23T18:11:26-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T18:11:26-03:00 printf 'COMMIT=9 BATCH=%d REPETITION=%d\n' 1 3
+COMMIT=9 BATCH=1 REPETITION=3
++ 2026-11-23T18:11:26-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036"\n                run_dir="/tmp/vm-commit9-run"\n                baseline_dir="/tmp/vm-commit9-baselines"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                if [ -e "$baseline_dir/fifo-fifo.txt" ]; then cmp correct.txt "$baseline_dir/fifo-fifo.txt"; else cp correct.txt "$baseline_dir/fifo-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/fifo-lru.txt" ]; then cmp correct.txt "$baseline_dir/fifo-lru.txt"; else cp correct.txt "$baseline_dir/fifo-lru.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                if [ -e "$baseline_dir/lru-fifo.txt" ]; then cmp correct.txt "$baseline_dir/lru-fifo.txt"; else cp correct.txt "$baseline_dir/lru-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/lru-lru.txt" ]; then cmp correct.txt "$baseline_dir/lru-lru.txt"; else cp correct.txt "$baseline_dir/lru-lru.txt"; fi\n                sha256sum correct.txt\n\n                printf "MATRIX_PASS commit 9\\n"\n                printf "PASS commit 9\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+MATRIX_PASS commit 9
+PASS commit 9
++ 2026-11-23T18:11:30-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T18:11:30-03:00 printf 'COMMIT=9 BATCH=%d REPETITION=%d\n' 1 4
+COMMIT=9 BATCH=1 REPETITION=4
++ 2026-11-23T18:11:30-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036"\n                run_dir="/tmp/vm-commit9-run"\n                baseline_dir="/tmp/vm-commit9-baselines"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                if [ -e "$baseline_dir/fifo-fifo.txt" ]; then cmp correct.txt "$baseline_dir/fifo-fifo.txt"; else cp correct.txt "$baseline_dir/fifo-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/fifo-lru.txt" ]; then cmp correct.txt "$baseline_dir/fifo-lru.txt"; else cp correct.txt "$baseline_dir/fifo-lru.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                if [ -e "$baseline_dir/lru-fifo.txt" ]; then cmp correct.txt "$baseline_dir/lru-fifo.txt"; else cp correct.txt "$baseline_dir/lru-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/lru-lru.txt" ]; then cmp correct.txt "$baseline_dir/lru-lru.txt"; else cp correct.txt "$baseline_dir/lru-lru.txt"; fi\n                sha256sum correct.txt\n\n                printf "MATRIX_PASS commit 9\\n"\n                printf "PASS commit 9\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+MATRIX_PASS commit 9
+PASS commit 9
++ 2026-11-23T18:11:34-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T18:11:34-03:00 printf 'COMMIT=9 BATCH=%d REPETITION=%d\n' 1 5
+COMMIT=9 BATCH=1 REPETITION=5
++ 2026-11-23T18:11:34-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036"\n                run_dir="/tmp/vm-commit9-run"\n                baseline_dir="/tmp/vm-commit9-baselines"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                if [ -e "$baseline_dir/fifo-fifo.txt" ]; then cmp correct.txt "$baseline_dir/fifo-fifo.txt"; else cp correct.txt "$baseline_dir/fifo-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/fifo-lru.txt" ]; then cmp correct.txt "$baseline_dir/fifo-lru.txt"; else cp correct.txt "$baseline_dir/fifo-lru.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                if [ -e "$baseline_dir/lru-fifo.txt" ]; then cmp correct.txt "$baseline_dir/lru-fifo.txt"; else cp correct.txt "$baseline_dir/lru-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/lru-lru.txt" ]; then cmp correct.txt "$baseline_dir/lru-lru.txt"; else cp correct.txt "$baseline_dir/lru-lru.txt"; fi\n                sha256sum correct.txt\n\n                printf "MATRIX_PASS commit 9\\n"\n                printf "PASS commit 9\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+MATRIX_PASS commit 9
+PASS commit 9
++ 2026-11-23T18:11:38-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T18:11:38-03:00 printf 'COMMIT=9 BATCH=%d REPETITION=%d\n' 1 6
+COMMIT=9 BATCH=1 REPETITION=6
++ 2026-11-23T18:11:38-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036"\n                run_dir="/tmp/vm-commit9-run"\n                baseline_dir="/tmp/vm-commit9-baselines"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                if [ -e "$baseline_dir/fifo-fifo.txt" ]; then cmp correct.txt "$baseline_dir/fifo-fifo.txt"; else cp correct.txt "$baseline_dir/fifo-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/fifo-lru.txt" ]; then cmp correct.txt "$baseline_dir/fifo-lru.txt"; else cp correct.txt "$baseline_dir/fifo-lru.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                if [ -e "$baseline_dir/lru-fifo.txt" ]; then cmp correct.txt "$baseline_dir/lru-fifo.txt"; else cp correct.txt "$baseline_dir/lru-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/lru-lru.txt" ]; then cmp correct.txt "$baseline_dir/lru-lru.txt"; else cp correct.txt "$baseline_dir/lru-lru.txt"; fi\n                sha256sum correct.txt\n\n                printf "MATRIX_PASS commit 9\\n"\n                printf "PASS commit 9\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+MATRIX_PASS commit 9
+PASS commit 9
++ 2026-11-23T18:11:43-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T18:11:43-03:00 printf 'COMMIT=9 BATCH=%d REPETITION=%d\n' 1 7
+COMMIT=9 BATCH=1 REPETITION=7
++ 2026-11-23T18:11:43-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036"\n                run_dir="/tmp/vm-commit9-run"\n                baseline_dir="/tmp/vm-commit9-baselines"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                if [ -e "$baseline_dir/fifo-fifo.txt" ]; then cmp correct.txt "$baseline_dir/fifo-fifo.txt"; else cp correct.txt "$baseline_dir/fifo-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/fifo-lru.txt" ]; then cmp correct.txt "$baseline_dir/fifo-lru.txt"; else cp correct.txt "$baseline_dir/fifo-lru.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                if [ -e "$baseline_dir/lru-fifo.txt" ]; then cmp correct.txt "$baseline_dir/lru-fifo.txt"; else cp correct.txt "$baseline_dir/lru-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/lru-lru.txt" ]; then cmp correct.txt "$baseline_dir/lru-lru.txt"; else cp correct.txt "$baseline_dir/lru-lru.txt"; fi\n                sha256sum correct.txt\n\n                printf "MATRIX_PASS commit 9\\n"\n                printf "PASS commit 9\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+MATRIX_PASS commit 9
+PASS commit 9
++ 2026-11-23T18:11:47-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T18:11:47-03:00 printf 'COMMIT=9 BATCH=%d REPETITION=%d\n' 1 8
+COMMIT=9 BATCH=1 REPETITION=8
++ 2026-11-23T18:11:47-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036"\n                run_dir="/tmp/vm-commit9-run"\n                baseline_dir="/tmp/vm-commit9-baselines"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                if [ -e "$baseline_dir/fifo-fifo.txt" ]; then cmp correct.txt "$baseline_dir/fifo-fifo.txt"; else cp correct.txt "$baseline_dir/fifo-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/fifo-lru.txt" ]; then cmp correct.txt "$baseline_dir/fifo-lru.txt"; else cp correct.txt "$baseline_dir/fifo-lru.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                if [ -e "$baseline_dir/lru-fifo.txt" ]; then cmp correct.txt "$baseline_dir/lru-fifo.txt"; else cp correct.txt "$baseline_dir/lru-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/lru-lru.txt" ]; then cmp correct.txt "$baseline_dir/lru-lru.txt"; else cp correct.txt "$baseline_dir/lru-lru.txt"; fi\n                sha256sum correct.txt\n\n                printf "MATRIX_PASS commit 9\\n"\n                printf "PASS commit 9\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+MATRIX_PASS commit 9
+PASS commit 9
++ 2026-11-23T18:11:52-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T18:11:52-03:00 printf 'COMMIT=9 BATCH=%d REPETITION=%d\n' 1 9
+COMMIT=9 BATCH=1 REPETITION=9
++ 2026-11-23T18:11:52-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036"\n                run_dir="/tmp/vm-commit9-run"\n                baseline_dir="/tmp/vm-commit9-baselines"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                if [ -e "$baseline_dir/fifo-fifo.txt" ]; then cmp correct.txt "$baseline_dir/fifo-fifo.txt"; else cp correct.txt "$baseline_dir/fifo-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/fifo-lru.txt" ]; then cmp correct.txt "$baseline_dir/fifo-lru.txt"; else cp correct.txt "$baseline_dir/fifo-lru.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                if [ -e "$baseline_dir/lru-fifo.txt" ]; then cmp correct.txt "$baseline_dir/lru-fifo.txt"; else cp correct.txt "$baseline_dir/lru-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/lru-lru.txt" ]; then cmp correct.txt "$baseline_dir/lru-lru.txt"; else cp correct.txt "$baseline_dir/lru-lru.txt"; fi\n                sha256sum correct.txt\n\n                printf "MATRIX_PASS commit 9\\n"\n                printf "PASS commit 9\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+MATRIX_PASS commit 9
+PASS commit 9
++ 2026-11-23T18:11:57-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T18:11:57-03:00 printf 'COMMIT=9 BATCH=%d REPETITION=%d\n' 1 10
+COMMIT=9 BATCH=1 REPETITION=10
++ 2026-11-23T18:11:57-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036"\n                run_dir="/tmp/vm-commit9-run"\n                baseline_dir="/tmp/vm-commit9-baselines"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                if [ -e "$baseline_dir/fifo-fifo.txt" ]; then cmp correct.txt "$baseline_dir/fifo-fifo.txt"; else cp correct.txt "$baseline_dir/fifo-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/fifo-lru.txt" ]; then cmp correct.txt "$baseline_dir/fifo-lru.txt"; else cp correct.txt "$baseline_dir/fifo-lru.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                if [ -e "$baseline_dir/lru-fifo.txt" ]; then cmp correct.txt "$baseline_dir/lru-fifo.txt"; else cp correct.txt "$baseline_dir/lru-fifo.txt"; fi\n                sha256sum correct.txt\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                if [ -e "$baseline_dir/lru-lru.txt" ]; then cmp correct.txt "$baseline_dir/lru-lru.txt"; else cp correct.txt "$baseline_dir/lru-lru.txt"; fi\n                sha256sum correct.txt\n\n                printf "MATRIX_PASS commit 9\\n"\n                printf "PASS commit 9\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+MATRIX_PASS commit 9
+PASS commit 9
++ 2026-11-23T18:12:01-03:00 make clean
+rm -f vm correct.txt

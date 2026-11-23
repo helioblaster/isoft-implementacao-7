@@ -3508,3 +3508,958 @@ Error: invalid logical address on line 2
 PASS commit 6
 + 2026-11-22T18:58:20-03:00 make clean
 rm -f vm correct.txt
+2026-11-22T21:16:06-03:00
+helioblaster
+/mnt/c/Users/PICHAU/Desktop/concluido
++ 2026-11-22T21:16:06-03:00 sha256sum vm.c Makefile
+78f97f3cfe5e0d3b8508cb35e9ad79fc6afbedd8848969fa2c8019d213fac7c4  vm.c
+bc1d6e32101d34d193868a940cbb4764c325dc3c995249d1627a351b2282ae1c  Makefile
+++ 2026-11-22T21:16:06-03:00 seq 1 10
++ 2026-11-22T21:16:06-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T21:16:06-03:00 printf 'COMMIT=7 BATCH=%d REPETITION=%d\n' 0 1
+COMMIT=7 BATCH=0 REPETITION=1
++ 2026-11-22T21:16:06-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3"\n                run_dir="/tmp/vm-commit7-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                awk "BEGIN { for (i = 0; i < 128; i++) print i * 256; print 0; for (i = 1; i < 128; i++) { print 0; print i * 256 } print 32768 }" >page-lru-hit.txt\n                ./vm page-lru-hit.txt lru lru\n                wc -l correct.txt | grep -Eq "^389[[:space:]]+correct.txt$"\n                sed -n "382p;383p;384p" correct.txt\n                sed -n "384p" correct.txt | grep -F "Physical address: 256"\n                tail -n 5 correct.txt\n                printf "FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit\\n"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit7-invalid.txt\n                if ./vm /tmp/vm-commit7-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 7\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+Virtual address: 0 TLB: 0 Physical address: 0 Value: 0
+Virtual address: 32512 TLB: 7 Physical address: 32512 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Number of Translated Addresses = 384
+Page Faults = 129
+Page Fault Rate = 0.336
+TLB Hits = 127
+TLB Hit Rate = 0.331
+FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  /mnt/c/Users/PICHAU/Downloads/correct.txt
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 7
++ 2026-11-22T21:16:20-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T21:16:20-03:00 printf 'COMMIT=7 BATCH=%d REPETITION=%d\n' 0 2
+COMMIT=7 BATCH=0 REPETITION=2
++ 2026-11-22T21:16:20-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3"\n                run_dir="/tmp/vm-commit7-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                awk "BEGIN { for (i = 0; i < 128; i++) print i * 256; print 0; for (i = 1; i < 128; i++) { print 0; print i * 256 } print 32768 }" >page-lru-hit.txt\n                ./vm page-lru-hit.txt lru lru\n                wc -l correct.txt | grep -Eq "^389[[:space:]]+correct.txt$"\n                sed -n "382p;383p;384p" correct.txt\n                sed -n "384p" correct.txt | grep -F "Physical address: 256"\n                tail -n 5 correct.txt\n                printf "FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit\\n"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit7-invalid.txt\n                if ./vm /tmp/vm-commit7-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 7\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+Virtual address: 0 TLB: 0 Physical address: 0 Value: 0
+Virtual address: 32512 TLB: 7 Physical address: 32512 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Number of Translated Addresses = 384
+Page Faults = 129
+Page Fault Rate = 0.336
+TLB Hits = 127
+TLB Hit Rate = 0.331
+FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  /mnt/c/Users/PICHAU/Downloads/correct.txt
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 7
++ 2026-11-22T21:16:31-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T21:16:31-03:00 printf 'COMMIT=7 BATCH=%d REPETITION=%d\n' 0 3
+COMMIT=7 BATCH=0 REPETITION=3
++ 2026-11-22T21:16:31-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3"\n                run_dir="/tmp/vm-commit7-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                awk "BEGIN { for (i = 0; i < 128; i++) print i * 256; print 0; for (i = 1; i < 128; i++) { print 0; print i * 256 } print 32768 }" >page-lru-hit.txt\n                ./vm page-lru-hit.txt lru lru\n                wc -l correct.txt | grep -Eq "^389[[:space:]]+correct.txt$"\n                sed -n "382p;383p;384p" correct.txt\n                sed -n "384p" correct.txt | grep -F "Physical address: 256"\n                tail -n 5 correct.txt\n                printf "FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit\\n"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit7-invalid.txt\n                if ./vm /tmp/vm-commit7-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 7\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+Virtual address: 0 TLB: 0 Physical address: 0 Value: 0
+Virtual address: 32512 TLB: 7 Physical address: 32512 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Number of Translated Addresses = 384
+Page Faults = 129
+Page Fault Rate = 0.336
+TLB Hits = 127
+TLB Hit Rate = 0.331
+FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  /mnt/c/Users/PICHAU/Downloads/correct.txt
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 7
++ 2026-11-22T21:16:42-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T21:16:42-03:00 printf 'COMMIT=7 BATCH=%d REPETITION=%d\n' 0 4
+COMMIT=7 BATCH=0 REPETITION=4
++ 2026-11-22T21:16:42-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3"\n                run_dir="/tmp/vm-commit7-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                awk "BEGIN { for (i = 0; i < 128; i++) print i * 256; print 0; for (i = 1; i < 128; i++) { print 0; print i * 256 } print 32768 }" >page-lru-hit.txt\n                ./vm page-lru-hit.txt lru lru\n                wc -l correct.txt | grep -Eq "^389[[:space:]]+correct.txt$"\n                sed -n "382p;383p;384p" correct.txt\n                sed -n "384p" correct.txt | grep -F "Physical address: 256"\n                tail -n 5 correct.txt\n                printf "FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit\\n"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit7-invalid.txt\n                if ./vm /tmp/vm-commit7-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 7\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+Virtual address: 0 TLB: 0 Physical address: 0 Value: 0
+Virtual address: 32512 TLB: 7 Physical address: 32512 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Number of Translated Addresses = 384
+Page Faults = 129
+Page Fault Rate = 0.336
+TLB Hits = 127
+TLB Hit Rate = 0.331
+FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  /mnt/c/Users/PICHAU/Downloads/correct.txt
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 7
++ 2026-11-22T21:16:53-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T21:16:53-03:00 printf 'COMMIT=7 BATCH=%d REPETITION=%d\n' 0 5
+COMMIT=7 BATCH=0 REPETITION=5
++ 2026-11-22T21:16:53-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3"\n                run_dir="/tmp/vm-commit7-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                awk "BEGIN { for (i = 0; i < 128; i++) print i * 256; print 0; for (i = 1; i < 128; i++) { print 0; print i * 256 } print 32768 }" >page-lru-hit.txt\n                ./vm page-lru-hit.txt lru lru\n                wc -l correct.txt | grep -Eq "^389[[:space:]]+correct.txt$"\n                sed -n "382p;383p;384p" correct.txt\n                sed -n "384p" correct.txt | grep -F "Physical address: 256"\n                tail -n 5 correct.txt\n                printf "FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit\\n"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit7-invalid.txt\n                if ./vm /tmp/vm-commit7-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 7\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+Virtual address: 0 TLB: 0 Physical address: 0 Value: 0
+Virtual address: 32512 TLB: 7 Physical address: 32512 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Number of Translated Addresses = 384
+Page Faults = 129
+Page Fault Rate = 0.336
+TLB Hits = 127
+TLB Hit Rate = 0.331
+FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  /mnt/c/Users/PICHAU/Downloads/correct.txt
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 7
++ 2026-11-22T21:17:02-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T21:17:02-03:00 printf 'COMMIT=7 BATCH=%d REPETITION=%d\n' 0 6
+COMMIT=7 BATCH=0 REPETITION=6
++ 2026-11-22T21:17:02-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3"\n                run_dir="/tmp/vm-commit7-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                awk "BEGIN { for (i = 0; i < 128; i++) print i * 256; print 0; for (i = 1; i < 128; i++) { print 0; print i * 256 } print 32768 }" >page-lru-hit.txt\n                ./vm page-lru-hit.txt lru lru\n                wc -l correct.txt | grep -Eq "^389[[:space:]]+correct.txt$"\n                sed -n "382p;383p;384p" correct.txt\n                sed -n "384p" correct.txt | grep -F "Physical address: 256"\n                tail -n 5 correct.txt\n                printf "FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit\\n"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit7-invalid.txt\n                if ./vm /tmp/vm-commit7-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 7\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+Virtual address: 0 TLB: 0 Physical address: 0 Value: 0
+Virtual address: 32512 TLB: 7 Physical address: 32512 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Number of Translated Addresses = 384
+Page Faults = 129
+Page Fault Rate = 0.336
+TLB Hits = 127
+TLB Hit Rate = 0.331
+FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  /mnt/c/Users/PICHAU/Downloads/correct.txt
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 7
++ 2026-11-22T21:17:12-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T21:17:12-03:00 printf 'COMMIT=7 BATCH=%d REPETITION=%d\n' 0 7
+COMMIT=7 BATCH=0 REPETITION=7
++ 2026-11-22T21:17:12-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3"\n                run_dir="/tmp/vm-commit7-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                awk "BEGIN { for (i = 0; i < 128; i++) print i * 256; print 0; for (i = 1; i < 128; i++) { print 0; print i * 256 } print 32768 }" >page-lru-hit.txt\n                ./vm page-lru-hit.txt lru lru\n                wc -l correct.txt | grep -Eq "^389[[:space:]]+correct.txt$"\n                sed -n "382p;383p;384p" correct.txt\n                sed -n "384p" correct.txt | grep -F "Physical address: 256"\n                tail -n 5 correct.txt\n                printf "FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit\\n"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit7-invalid.txt\n                if ./vm /tmp/vm-commit7-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 7\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+Virtual address: 0 TLB: 0 Physical address: 0 Value: 0
+Virtual address: 32512 TLB: 7 Physical address: 32512 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Number of Translated Addresses = 384
+Page Faults = 129
+Page Fault Rate = 0.336
+TLB Hits = 127
+TLB Hit Rate = 0.331
+FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  /mnt/c/Users/PICHAU/Downloads/correct.txt
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 7
++ 2026-11-22T21:17:23-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T21:17:23-03:00 printf 'COMMIT=7 BATCH=%d REPETITION=%d\n' 0 8
+COMMIT=7 BATCH=0 REPETITION=8
++ 2026-11-22T21:17:23-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3"\n                run_dir="/tmp/vm-commit7-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                awk "BEGIN { for (i = 0; i < 128; i++) print i * 256; print 0; for (i = 1; i < 128; i++) { print 0; print i * 256 } print 32768 }" >page-lru-hit.txt\n                ./vm page-lru-hit.txt lru lru\n                wc -l correct.txt | grep -Eq "^389[[:space:]]+correct.txt$"\n                sed -n "382p;383p;384p" correct.txt\n                sed -n "384p" correct.txt | grep -F "Physical address: 256"\n                tail -n 5 correct.txt\n                printf "FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit\\n"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit7-invalid.txt\n                if ./vm /tmp/vm-commit7-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 7\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+Virtual address: 0 TLB: 0 Physical address: 0 Value: 0
+Virtual address: 32512 TLB: 7 Physical address: 32512 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Number of Translated Addresses = 384
+Page Faults = 129
+Page Fault Rate = 0.336
+TLB Hits = 127
+TLB Hit Rate = 0.331
+FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  /mnt/c/Users/PICHAU/Downloads/correct.txt
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 7
++ 2026-11-22T21:17:34-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T21:17:34-03:00 printf 'COMMIT=7 BATCH=%d REPETITION=%d\n' 0 9
+COMMIT=7 BATCH=0 REPETITION=9
++ 2026-11-22T21:17:34-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3"\n                run_dir="/tmp/vm-commit7-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                awk "BEGIN { for (i = 0; i < 128; i++) print i * 256; print 0; for (i = 1; i < 128; i++) { print 0; print i * 256 } print 32768 }" >page-lru-hit.txt\n                ./vm page-lru-hit.txt lru lru\n                wc -l correct.txt | grep -Eq "^389[[:space:]]+correct.txt$"\n                sed -n "382p;383p;384p" correct.txt\n                sed -n "384p" correct.txt | grep -F "Physical address: 256"\n                tail -n 5 correct.txt\n                printf "FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit\\n"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit7-invalid.txt\n                if ./vm /tmp/vm-commit7-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 7\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+Virtual address: 0 TLB: 0 Physical address: 0 Value: 0
+Virtual address: 32512 TLB: 7 Physical address: 32512 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Number of Translated Addresses = 384
+Page Faults = 129
+Page Fault Rate = 0.336
+TLB Hits = 127
+TLB Hit Rate = 0.331
+FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  /mnt/c/Users/PICHAU/Downloads/correct.txt
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 7
++ 2026-11-22T21:17:45-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T21:17:45-03:00 printf 'COMMIT=7 BATCH=%d REPETITION=%d\n' 0 10
+COMMIT=7 BATCH=0 REPETITION=10
++ 2026-11-22T21:17:45-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3"\n                run_dir="/tmp/vm-commit7-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                awk "BEGIN { for (i = 0; i < 128; i++) print i * 256; print 0; for (i = 1; i < 128; i++) { print 0; print i * 256 } print 32768 }" >page-lru-hit.txt\n                ./vm page-lru-hit.txt lru lru\n                wc -l correct.txt | grep -Eq "^389[[:space:]]+correct.txt$"\n                sed -n "382p;383p;384p" correct.txt\n                sed -n "384p" correct.txt | grep -F "Physical address: 256"\n                tail -n 5 correct.txt\n                printf "FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit\\n"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit7-invalid.txt\n                if ./vm /tmp/vm-commit7-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 7\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+Virtual address: 0 TLB: 0 Physical address: 0 Value: 0
+Virtual address: 32512 TLB: 7 Physical address: 32512 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Number of Translated Addresses = 384
+Page Faults = 129
+Page Fault Rate = 0.336
+TLB Hits = 127
+TLB Hit Rate = 0.331
+FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  /mnt/c/Users/PICHAU/Downloads/correct.txt
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 7
++ 2026-11-22T21:17:56-03:00 make clean
+rm -f vm correct.txt
++ 2026-11-22T21:22:57-03:00 sha256sum vm.c Makefile
+78f97f3cfe5e0d3b8508cb35e9ad79fc6afbedd8848969fa2c8019d213fac7c4  vm.c
+bc1d6e32101d34d193868a940cbb4764c325dc3c995249d1627a351b2282ae1c  Makefile
+++ 2026-11-22T21:22:57-03:00 seq 1 10
++ 2026-11-22T21:22:57-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T21:22:57-03:00 printf 'COMMIT=7 BATCH=%d REPETITION=%d\n' 1 1
+COMMIT=7 BATCH=1 REPETITION=1
++ 2026-11-22T21:22:57-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3"\n                run_dir="/tmp/vm-commit7-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                awk "BEGIN { for (i = 0; i < 128; i++) print i * 256; print 0; for (i = 1; i < 128; i++) { print 0; print i * 256 } print 32768 }" >page-lru-hit.txt\n                ./vm page-lru-hit.txt lru lru\n                wc -l correct.txt | grep -Eq "^389[[:space:]]+correct.txt$"\n                sed -n "382p;383p;384p" correct.txt\n                sed -n "384p" correct.txt | grep -F "Physical address: 256"\n                tail -n 5 correct.txt\n                printf "FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit\\n"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit7-invalid.txt\n                if ./vm /tmp/vm-commit7-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 7\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+Virtual address: 0 TLB: 0 Physical address: 0 Value: 0
+Virtual address: 32512 TLB: 7 Physical address: 32512 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Number of Translated Addresses = 384
+Page Faults = 129
+Page Fault Rate = 0.336
+TLB Hits = 127
+TLB Hit Rate = 0.331
+FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  /mnt/c/Users/PICHAU/Downloads/correct.txt
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 7
++ 2026-11-22T21:23:08-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T21:23:08-03:00 printf 'COMMIT=7 BATCH=%d REPETITION=%d\n' 1 2
+COMMIT=7 BATCH=1 REPETITION=2
++ 2026-11-22T21:23:08-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3"\n                run_dir="/tmp/vm-commit7-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                awk "BEGIN { for (i = 0; i < 128; i++) print i * 256; print 0; for (i = 1; i < 128; i++) { print 0; print i * 256 } print 32768 }" >page-lru-hit.txt\n                ./vm page-lru-hit.txt lru lru\n                wc -l correct.txt | grep -Eq "^389[[:space:]]+correct.txt$"\n                sed -n "382p;383p;384p" correct.txt\n                sed -n "384p" correct.txt | grep -F "Physical address: 256"\n                tail -n 5 correct.txt\n                printf "FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit\\n"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit7-invalid.txt\n                if ./vm /tmp/vm-commit7-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 7\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+Virtual address: 0 TLB: 0 Physical address: 0 Value: 0
+Virtual address: 32512 TLB: 7 Physical address: 32512 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Number of Translated Addresses = 384
+Page Faults = 129
+Page Fault Rate = 0.336
+TLB Hits = 127
+TLB Hit Rate = 0.331
+FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  /mnt/c/Users/PICHAU/Downloads/correct.txt
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 7
++ 2026-11-22T21:23:19-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T21:23:19-03:00 printf 'COMMIT=7 BATCH=%d REPETITION=%d\n' 1 3
+COMMIT=7 BATCH=1 REPETITION=3
++ 2026-11-22T21:23:19-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3"\n                run_dir="/tmp/vm-commit7-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                awk "BEGIN { for (i = 0; i < 128; i++) print i * 256; print 0; for (i = 1; i < 128; i++) { print 0; print i * 256 } print 32768 }" >page-lru-hit.txt\n                ./vm page-lru-hit.txt lru lru\n                wc -l correct.txt | grep -Eq "^389[[:space:]]+correct.txt$"\n                sed -n "382p;383p;384p" correct.txt\n                sed -n "384p" correct.txt | grep -F "Physical address: 256"\n                tail -n 5 correct.txt\n                printf "FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit\\n"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit7-invalid.txt\n                if ./vm /tmp/vm-commit7-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 7\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+Virtual address: 0 TLB: 0 Physical address: 0 Value: 0
+Virtual address: 32512 TLB: 7 Physical address: 32512 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Number of Translated Addresses = 384
+Page Faults = 129
+Page Fault Rate = 0.336
+TLB Hits = 127
+TLB Hit Rate = 0.331
+FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  /mnt/c/Users/PICHAU/Downloads/correct.txt
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 7
++ 2026-11-22T21:23:29-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T21:23:29-03:00 printf 'COMMIT=7 BATCH=%d REPETITION=%d\n' 1 4
+COMMIT=7 BATCH=1 REPETITION=4
++ 2026-11-22T21:23:29-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3"\n                run_dir="/tmp/vm-commit7-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                awk "BEGIN { for (i = 0; i < 128; i++) print i * 256; print 0; for (i = 1; i < 128; i++) { print 0; print i * 256 } print 32768 }" >page-lru-hit.txt\n                ./vm page-lru-hit.txt lru lru\n                wc -l correct.txt | grep -Eq "^389[[:space:]]+correct.txt$"\n                sed -n "382p;383p;384p" correct.txt\n                sed -n "384p" correct.txt | grep -F "Physical address: 256"\n                tail -n 5 correct.txt\n                printf "FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit\\n"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit7-invalid.txt\n                if ./vm /tmp/vm-commit7-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 7\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+Virtual address: 0 TLB: 0 Physical address: 0 Value: 0
+Virtual address: 32512 TLB: 7 Physical address: 32512 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Number of Translated Addresses = 384
+Page Faults = 129
+Page Fault Rate = 0.336
+TLB Hits = 127
+TLB Hit Rate = 0.331
+FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  /mnt/c/Users/PICHAU/Downloads/correct.txt
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 7
++ 2026-11-22T21:23:38-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T21:23:38-03:00 printf 'COMMIT=7 BATCH=%d REPETITION=%d\n' 1 5
+COMMIT=7 BATCH=1 REPETITION=5
++ 2026-11-22T21:23:38-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3"\n                run_dir="/tmp/vm-commit7-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                awk "BEGIN { for (i = 0; i < 128; i++) print i * 256; print 0; for (i = 1; i < 128; i++) { print 0; print i * 256 } print 32768 }" >page-lru-hit.txt\n                ./vm page-lru-hit.txt lru lru\n                wc -l correct.txt | grep -Eq "^389[[:space:]]+correct.txt$"\n                sed -n "382p;383p;384p" correct.txt\n                sed -n "384p" correct.txt | grep -F "Physical address: 256"\n                tail -n 5 correct.txt\n                printf "FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit\\n"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit7-invalid.txt\n                if ./vm /tmp/vm-commit7-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 7\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+Virtual address: 0 TLB: 0 Physical address: 0 Value: 0
+Virtual address: 32512 TLB: 7 Physical address: 32512 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Number of Translated Addresses = 384
+Page Faults = 129
+Page Fault Rate = 0.336
+TLB Hits = 127
+TLB Hit Rate = 0.331
+FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  /mnt/c/Users/PICHAU/Downloads/correct.txt
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 7
++ 2026-11-22T21:23:46-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T21:23:46-03:00 printf 'COMMIT=7 BATCH=%d REPETITION=%d\n' 1 6
+COMMIT=7 BATCH=1 REPETITION=6
++ 2026-11-22T21:23:46-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3"\n                run_dir="/tmp/vm-commit7-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                awk "BEGIN { for (i = 0; i < 128; i++) print i * 256; print 0; for (i = 1; i < 128; i++) { print 0; print i * 256 } print 32768 }" >page-lru-hit.txt\n                ./vm page-lru-hit.txt lru lru\n                wc -l correct.txt | grep -Eq "^389[[:space:]]+correct.txt$"\n                sed -n "382p;383p;384p" correct.txt\n                sed -n "384p" correct.txt | grep -F "Physical address: 256"\n                tail -n 5 correct.txt\n                printf "FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit\\n"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit7-invalid.txt\n                if ./vm /tmp/vm-commit7-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 7\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+Virtual address: 0 TLB: 0 Physical address: 0 Value: 0
+Virtual address: 32512 TLB: 7 Physical address: 32512 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Number of Translated Addresses = 384
+Page Faults = 129
+Page Fault Rate = 0.336
+TLB Hits = 127
+TLB Hit Rate = 0.331
+FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  /mnt/c/Users/PICHAU/Downloads/correct.txt
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 7
++ 2026-11-22T21:23:56-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T21:23:56-03:00 printf 'COMMIT=7 BATCH=%d REPETITION=%d\n' 1 7
+COMMIT=7 BATCH=1 REPETITION=7
++ 2026-11-22T21:23:56-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3"\n                run_dir="/tmp/vm-commit7-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                awk "BEGIN { for (i = 0; i < 128; i++) print i * 256; print 0; for (i = 1; i < 128; i++) { print 0; print i * 256 } print 32768 }" >page-lru-hit.txt\n                ./vm page-lru-hit.txt lru lru\n                wc -l correct.txt | grep -Eq "^389[[:space:]]+correct.txt$"\n                sed -n "382p;383p;384p" correct.txt\n                sed -n "384p" correct.txt | grep -F "Physical address: 256"\n                tail -n 5 correct.txt\n                printf "FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit\\n"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit7-invalid.txt\n                if ./vm /tmp/vm-commit7-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 7\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+Virtual address: 0 TLB: 0 Physical address: 0 Value: 0
+Virtual address: 32512 TLB: 7 Physical address: 32512 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Number of Translated Addresses = 384
+Page Faults = 129
+Page Fault Rate = 0.336
+TLB Hits = 127
+TLB Hit Rate = 0.331
+FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  /mnt/c/Users/PICHAU/Downloads/correct.txt
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 7
++ 2026-11-22T21:24:05-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T21:24:05-03:00 printf 'COMMIT=7 BATCH=%d REPETITION=%d\n' 1 8
+COMMIT=7 BATCH=1 REPETITION=8
++ 2026-11-22T21:24:05-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3"\n                run_dir="/tmp/vm-commit7-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                awk "BEGIN { for (i = 0; i < 128; i++) print i * 256; print 0; for (i = 1; i < 128; i++) { print 0; print i * 256 } print 32768 }" >page-lru-hit.txt\n                ./vm page-lru-hit.txt lru lru\n                wc -l correct.txt | grep -Eq "^389[[:space:]]+correct.txt$"\n                sed -n "382p;383p;384p" correct.txt\n                sed -n "384p" correct.txt | grep -F "Physical address: 256"\n                tail -n 5 correct.txt\n                printf "FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit\\n"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit7-invalid.txt\n                if ./vm /tmp/vm-commit7-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 7\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+Virtual address: 0 TLB: 0 Physical address: 0 Value: 0
+Virtual address: 32512 TLB: 7 Physical address: 32512 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Number of Translated Addresses = 384
+Page Faults = 129
+Page Fault Rate = 0.336
+TLB Hits = 127
+TLB Hit Rate = 0.331
+FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  /mnt/c/Users/PICHAU/Downloads/correct.txt
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 7
++ 2026-11-22T21:24:15-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T21:24:15-03:00 printf 'COMMIT=7 BATCH=%d REPETITION=%d\n' 1 9
+COMMIT=7 BATCH=1 REPETITION=9
++ 2026-11-22T21:24:15-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3"\n                run_dir="/tmp/vm-commit7-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                awk "BEGIN { for (i = 0; i < 128; i++) print i * 256; print 0; for (i = 1; i < 128; i++) { print 0; print i * 256 } print 32768 }" >page-lru-hit.txt\n                ./vm page-lru-hit.txt lru lru\n                wc -l correct.txt | grep -Eq "^389[[:space:]]+correct.txt$"\n                sed -n "382p;383p;384p" correct.txt\n                sed -n "384p" correct.txt | grep -F "Physical address: 256"\n                tail -n 5 correct.txt\n                printf "FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit\\n"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit7-invalid.txt\n                if ./vm /tmp/vm-commit7-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 7\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+Virtual address: 0 TLB: 0 Physical address: 0 Value: 0
+Virtual address: 32512 TLB: 7 Physical address: 32512 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Number of Translated Addresses = 384
+Page Faults = 129
+Page Fault Rate = 0.336
+TLB Hits = 127
+TLB Hit Rate = 0.331
+FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  /mnt/c/Users/PICHAU/Downloads/correct.txt
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 7
++ 2026-11-22T21:24:25-03:00 for repetition in $(seq 1 10)
++ 2026-11-22T21:24:25-03:00 printf 'COMMIT=7 BATCH=%d REPETITION=%d\n' 1 10
+COMMIT=7 BATCH=1 REPETITION=10
++ 2026-11-22T21:24:25-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3"\n                run_dir="/tmp/vm-commit7-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n                awk "BEGIN { for (i = 0; i < 128; i++) print i * 256; print 0; for (i = 1; i < 128; i++) { print 0; print i * 256 } print 32768 }" >page-lru-hit.txt\n                ./vm page-lru-hit.txt lru lru\n                wc -l correct.txt | grep -Eq "^389[[:space:]]+correct.txt$"\n                sed -n "382p;383p;384p" correct.txt\n                sed -n "384p" correct.txt | grep -F "Physical address: 256"\n                tail -n 5 correct.txt\n                printf "FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit\\n"\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                wc -l correct.txt | grep -Eq "^1005[[:space:]]+correct.txt$"\n                tail -n 5 correct.txt\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "10\\ntexto\\n" >/tmp/vm-commit7-invalid.txt\n                if ./vm /tmp/vm-commit7-invalid.txt lru fifo; then exit 1; fi\n                printf "PASS commit 7\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_2/commits/commit_07_8a926a3'
+Virtual address: 0 TLB: 0 Physical address: 0 Value: 0
+Virtual address: 32512 TLB: 7 Physical address: 32512 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Virtual address: 32768 TLB: 8 Physical address: 256 Value: 0
+Number of Translated Addresses = 384
+Page Faults = 129
+Page Fault Rate = 0.336
+TLB Hits = 127
+TLB Hit Rate = 0.331
+FIXED_BUG commit 7: page LRU timestamp refreshed on TLB hit
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  /mnt/c/Users/PICHAU/Downloads/correct.txt
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 54
+TLB Hit Rate = 0.054
+Number of Translated Addresses = 1000
+Page Faults = 538
+Page Fault Rate = 0.538
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Number of Translated Addresses = 1000
+Page Faults = 539
+Page Fault Rate = 0.539
+TLB Hits = 55
+TLB Hit Rate = 0.055
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+Error: invalid logical address on line 2
+PASS commit 7
++ 2026-11-22T21:24:36-03:00 make clean
+rm -f vm correct.txt

@@ -356,6 +356,7 @@ static int run_simulation(Machine *machine,
         if (tlb_slot >= 0) {
             machine->tlb_hits++;
             machine->tlb[tlb_slot].last_used = access_time;
+            machine->page_last_used[page] = access_time;
         } else {
             frame = resolve_frame(machine, page, page_policy, access_time);
             tlb_slot = insert_tlb(machine, page, frame, tlb_policy, access_time);

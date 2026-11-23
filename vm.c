@@ -331,6 +331,19 @@ static int insert_tlb(Machine *machine,
     return (int)slot;
 }
 
+static int discard_partial_output(FILE *output)
+{
+    int close_status = fclose(output);
+    int remove_status = remove(OUTPUT_FILE);
+    if (close_status != 0) {
+        fprintf(stderr, "Error: unable to close partial %s\n", OUTPUT_FILE);
+    }
+    if (remove_status != 0 && errno != ENOENT) {
+        fprintf(stderr, "Error: unable to remove partial %s\n", OUTPUT_FILE);
+    }
+    return -1;
+}
+
 static int run_simulation(Machine *machine,
                           const AddressList *addresses,
                           Policy page_policy,
@@ -350,8 +363,7 @@ static int run_simulation(Machine *machine,
         int frame = -1;
         int tlb_slot = search_tlb(machine, page, &frame);
         if (tlb_slot == -2) {
-            fclose(output);
-            return -1;
+            return discard_partial_output(output);
         }
         if (tlb_slot >= 0) {
             machine->tlb_hits++;
@@ -364,21 +376,28 @@ static int run_simulation(Machine *machine,
         size_t physical = (size_t)frame * PAGE_SIZE + offset;
         int value = machine->physical_memory[physical];
 
-        fprintf(output,
-                "Virtual address: %u TLB: %d Physical address: %zu Value: %d\n",
-                (unsigned)logical, tlb_slot, physical, value);
+        if (fprintf(output,
+                    "Virtual address: %u TLB: %d Physical address: %zu Value: %d\n",
+                    (unsigned)logical, tlb_slot, physical, value) < 0) {
+            fprintf(stderr, "Error: unable to write %s\n", OUTPUT_FILE);
+            return discard_partial_output(output);
+        }
     }
 
     double page_fault_rate = (double)machine->page_faults / (double)addresses->count;
-    fprintf(output, "Number of Translated Addresses = %zu\n", addresses->count);
-    fprintf(output, "Page Faults = %zu\n", machine->page_faults);
-    fprintf(output, "Page Fault Rate = %.3f\n", page_fault_rate);
     double tlb_hit_rate = (double)machine->tlb_hits / (double)addresses->count;
-    fprintf(output, "TLB Hits = %zu\n", machine->tlb_hits);
-    fprintf(output, "TLB Hit Rate = %.3f\n", tlb_hit_rate);
+    if (fprintf(output, "Number of Translated Addresses = %zu\n", addresses->count) < 0 ||
+        fprintf(output, "Page Faults = %zu\n", machine->page_faults) < 0 ||
+        fprintf(output, "Page Fault Rate = %.3f\n", page_fault_rate) < 0 ||
+        fprintf(output, "TLB Hits = %zu\n", machine->tlb_hits) < 0 ||
+        fprintf(output, "TLB Hit Rate = %.3f\n", tlb_hit_rate) < 0) {
+        fprintf(stderr, "Error: unable to write summary to %s\n", OUTPUT_FILE);
+        return discard_partial_output(output);
+    }
 
     if (fclose(output) != 0) {
         fprintf(stderr, "Error: unable to finish writing %s\n", OUTPUT_FILE);
+        remove(OUTPUT_FILE);
         return -1;
     }
     return 0;

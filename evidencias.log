@@ -5341,3 +5341,2109 @@ MATRIX_PASS commit 9
 PASS commit 9
 + 2026-11-23T18:12:01-03:00 make clean
 rm -f vm correct.txt
+2026-11-23T19:51:42-03:00
+helioblaster
+/mnt/c/Users/PICHAU/Desktop/concluido
++ 2026-11-23T19:51:42-03:00 sha256sum vm.c Makefile README.md hmrn.pdf
+0f4fccc206b702c0fb3b5c1137531e0615758ec216e37794f7cb375e406d3ef8  vm.c
+bc1d6e32101d34d193868a940cbb4764c325dc3c995249d1627a351b2282ae1c  Makefile
+216d6157867cebb7b4af45a3fda4b05baf4051dc1defa2ce176cefcbe70a6e07  README.md
+2e7a522972e9215da280447440b4ae10887f4ea967002370036161535418d9a2  hmrn.pdf
++ 2026-11-23T19:51:42-03:00 cmp vm.c /mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036/vm.c
++ 2026-11-23T19:51:42-03:00 cmp Makefile /mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036/Makefile
++ 2026-11-23T19:51:42-03:00 grep -F './vm addresses.txt lru fifo' README.md
+./vm addresses.txt lru fifo
++ 2026-11-23T19:51:42-03:00 grep -F evidencias.log README.md
+`evidencias.log` é um registro único e acumulativo. Uma etapa nova sempre fica no fim do mesmo arquivo e preserva as anteriores. Assim, a etapa 3 contém o histórico das etapas 1, 2 e 3; o mesmo vale para as etapas seguintes.
++ 2026-11-23T19:51:42-03:00 pdfinfo hmrn.pdf
++ 2026-11-23T19:51:42-03:00 grep -E '^(Title|Pages|Page size|File size):'
+Title:           Relatório - Implementação 6
+Pages:           4
+Page size:       595.304 x 841.89 pts (A4)
+File size:       116391 bytes
++ 2026-11-23T19:51:42-03:00 pdfinfo hmrn.pdf
++ 2026-11-23T19:51:42-03:00 grep -Eq '^Pages:[[:space:]]+4$'
++ 2026-11-23T19:51:42-03:00 sort
++ 2026-11-23T19:51:42-03:00 tar -tf /mnt/c/Users/PICHAU/Desktop/concluido/entrega_classroom/hmrn.tar
++ 2026-11-23T19:51:42-03:00 printf 'hmrn/Makefile\nhmrn/vm.c\n'
++ 2026-11-23T19:51:42-03:00 diff -u /tmp/vm-commit10-tar-expected.txt /tmp/vm-commit10-tar-actual.txt
++ 2026-11-23T19:51:42-03:00 cmp hmrn.pdf /mnt/c/Users/PICHAU/Desktop/concluido/entrega_classroom/hmrn.pdf
++ 2026-11-23T19:51:42-03:00 printf 'DELIVERY_PASS commit 10 batch %d\n' 0
+DELIVERY_PASS commit 10 batch 0
+++ 2026-11-23T19:51:42-03:00 seq 1 10
++ 2026-11-23T19:51:42-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T19:51:42-03:00 printf 'COMMIT=10 BATCH=%d REPETITION=%d\n' 0 1
+COMMIT=10 BATCH=0 REPETITION=1
++ 2026-11-23T19:51:42-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd"\n                run_dir="/tmp/vm-commit10-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                sha256sum correct.txt | grep -F "d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt | grep -F "05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b"\n\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "MATRIX_PASS commit 10\\n"\n                printf "PASS commit 10\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+MATRIX_PASS commit 10
+PASS commit 10
++ 2026-11-23T19:51:48-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T19:51:48-03:00 printf 'COMMIT=10 BATCH=%d REPETITION=%d\n' 0 2
+COMMIT=10 BATCH=0 REPETITION=2
++ 2026-11-23T19:51:48-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd"\n                run_dir="/tmp/vm-commit10-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                sha256sum correct.txt | grep -F "d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt | grep -F "05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b"\n\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "MATRIX_PASS commit 10\\n"\n                printf "PASS commit 10\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+MATRIX_PASS commit 10
+PASS commit 10
++ 2026-11-23T19:51:52-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T19:51:52-03:00 printf 'COMMIT=10 BATCH=%d REPETITION=%d\n' 0 3
+COMMIT=10 BATCH=0 REPETITION=3
++ 2026-11-23T19:51:52-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd"\n                run_dir="/tmp/vm-commit10-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                sha256sum correct.txt | grep -F "d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt | grep -F "05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b"\n\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "MATRIX_PASS commit 10\\n"\n                printf "PASS commit 10\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+MATRIX_PASS commit 10
+PASS commit 10
++ 2026-11-23T19:51:56-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T19:51:56-03:00 printf 'COMMIT=10 BATCH=%d REPETITION=%d\n' 0 4
+COMMIT=10 BATCH=0 REPETITION=4
++ 2026-11-23T19:51:56-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd"\n                run_dir="/tmp/vm-commit10-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                sha256sum correct.txt | grep -F "d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt | grep -F "05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b"\n\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "MATRIX_PASS commit 10\\n"\n                printf "PASS commit 10\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+MATRIX_PASS commit 10
+PASS commit 10
++ 2026-11-23T19:52:00-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T19:52:00-03:00 printf 'COMMIT=10 BATCH=%d REPETITION=%d\n' 0 5
+COMMIT=10 BATCH=0 REPETITION=5
++ 2026-11-23T19:52:00-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd"\n                run_dir="/tmp/vm-commit10-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                sha256sum correct.txt | grep -F "d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt | grep -F "05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b"\n\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "MATRIX_PASS commit 10\\n"\n                printf "PASS commit 10\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+MATRIX_PASS commit 10
+PASS commit 10
++ 2026-11-23T19:52:05-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T19:52:05-03:00 printf 'COMMIT=10 BATCH=%d REPETITION=%d\n' 0 6
+COMMIT=10 BATCH=0 REPETITION=6
++ 2026-11-23T19:52:05-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd"\n                run_dir="/tmp/vm-commit10-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                sha256sum correct.txt | grep -F "d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt | grep -F "05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b"\n\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "MATRIX_PASS commit 10\\n"\n                printf "PASS commit 10\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+MATRIX_PASS commit 10
+PASS commit 10
++ 2026-11-23T19:52:09-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T19:52:09-03:00 printf 'COMMIT=10 BATCH=%d REPETITION=%d\n' 0 7
+COMMIT=10 BATCH=0 REPETITION=7
++ 2026-11-23T19:52:09-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd"\n                run_dir="/tmp/vm-commit10-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                sha256sum correct.txt | grep -F "d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt | grep -F "05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b"\n\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "MATRIX_PASS commit 10\\n"\n                printf "PASS commit 10\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+MATRIX_PASS commit 10
+PASS commit 10
++ 2026-11-23T19:52:14-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T19:52:14-03:00 printf 'COMMIT=10 BATCH=%d REPETITION=%d\n' 0 8
+COMMIT=10 BATCH=0 REPETITION=8
++ 2026-11-23T19:52:14-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd"\n                run_dir="/tmp/vm-commit10-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                sha256sum correct.txt | grep -F "d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt | grep -F "05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b"\n\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "MATRIX_PASS commit 10\\n"\n                printf "PASS commit 10\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+MATRIX_PASS commit 10
+PASS commit 10
++ 2026-11-23T19:52:18-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T19:52:18-03:00 printf 'COMMIT=10 BATCH=%d REPETITION=%d\n' 0 9
+COMMIT=10 BATCH=0 REPETITION=9
++ 2026-11-23T19:52:18-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd"\n                run_dir="/tmp/vm-commit10-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                sha256sum correct.txt | grep -F "d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt | grep -F "05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b"\n\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "MATRIX_PASS commit 10\\n"\n                printf "PASS commit 10\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+MATRIX_PASS commit 10
+PASS commit 10
++ 2026-11-23T19:52:22-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T19:52:22-03:00 printf 'COMMIT=10 BATCH=%d REPETITION=%d\n' 0 10
+COMMIT=10 BATCH=0 REPETITION=10
++ 2026-11-23T19:52:22-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd"\n                run_dir="/tmp/vm-commit10-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                sha256sum correct.txt | grep -F "d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt | grep -F "05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b"\n\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "MATRIX_PASS commit 10\\n"\n                printf "PASS commit 10\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+MATRIX_PASS commit 10
+PASS commit 10
++ 2026-11-23T19:52:26-03:00 make clean
+rm -f vm correct.txt
++ 2026-11-23T19:57:27-03:00 sha256sum vm.c Makefile README.md hmrn.pdf
+0f4fccc206b702c0fb3b5c1137531e0615758ec216e37794f7cb375e406d3ef8  vm.c
+bc1d6e32101d34d193868a940cbb4764c325dc3c995249d1627a351b2282ae1c  Makefile
+216d6157867cebb7b4af45a3fda4b05baf4051dc1defa2ce176cefcbe70a6e07  README.md
+2e7a522972e9215da280447440b4ae10887f4ea967002370036161535418d9a2  hmrn.pdf
++ 2026-11-23T19:57:27-03:00 cmp vm.c /mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036/vm.c
++ 2026-11-23T19:57:27-03:00 cmp Makefile /mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_09_8174036/Makefile
++ 2026-11-23T19:57:27-03:00 grep -F './vm addresses.txt lru fifo' README.md
+./vm addresses.txt lru fifo
++ 2026-11-23T19:57:27-03:00 grep -F evidencias.log README.md
+`evidencias.log` é um registro único e acumulativo. Uma etapa nova sempre fica no fim do mesmo arquivo e preserva as anteriores. Assim, a etapa 3 contém o histórico das etapas 1, 2 e 3; o mesmo vale para as etapas seguintes.
++ 2026-11-23T19:57:27-03:00 pdfinfo hmrn.pdf
++ 2026-11-23T19:57:27-03:00 grep -E '^(Title|Pages|Page size|File size):'
+Title:           Relatório - Implementação 6
+Pages:           4
+Page size:       595.304 x 841.89 pts (A4)
+File size:       116391 bytes
++ 2026-11-23T19:57:27-03:00 pdfinfo hmrn.pdf
++ 2026-11-23T19:57:27-03:00 grep -Eq '^Pages:[[:space:]]+4$'
++ 2026-11-23T19:57:27-03:00 tar -tf /mnt/c/Users/PICHAU/Desktop/concluido/entrega_classroom/hmrn.tar
++ 2026-11-23T19:57:27-03:00 sort
++ 2026-11-23T19:57:27-03:00 printf 'hmrn/Makefile\nhmrn/vm.c\n'
++ 2026-11-23T19:57:27-03:00 diff -u /tmp/vm-commit10-tar-expected.txt /tmp/vm-commit10-tar-actual.txt
++ 2026-11-23T19:57:27-03:00 cmp hmrn.pdf /mnt/c/Users/PICHAU/Desktop/concluido/entrega_classroom/hmrn.pdf
++ 2026-11-23T19:57:27-03:00 printf 'DELIVERY_PASS commit 10 batch %d\n' 1
+DELIVERY_PASS commit 10 batch 1
+++ 2026-11-23T19:57:27-03:00 seq 1 10
++ 2026-11-23T19:57:27-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T19:57:27-03:00 printf 'COMMIT=10 BATCH=%d REPETITION=%d\n' 1 1
+COMMIT=10 BATCH=1 REPETITION=1
++ 2026-11-23T19:57:27-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd"\n                run_dir="/tmp/vm-commit10-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                sha256sum correct.txt | grep -F "d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt | grep -F "05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b"\n\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "MATRIX_PASS commit 10\\n"\n                printf "PASS commit 10\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+MATRIX_PASS commit 10
+PASS commit 10
++ 2026-11-23T19:57:34-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T19:57:34-03:00 printf 'COMMIT=10 BATCH=%d REPETITION=%d\n' 1 2
+COMMIT=10 BATCH=1 REPETITION=2
++ 2026-11-23T19:57:34-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd"\n                run_dir="/tmp/vm-commit10-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                sha256sum correct.txt | grep -F "d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt | grep -F "05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b"\n\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "MATRIX_PASS commit 10\\n"\n                printf "PASS commit 10\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+MATRIX_PASS commit 10
+PASS commit 10
++ 2026-11-23T19:57:40-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T19:57:40-03:00 printf 'COMMIT=10 BATCH=%d REPETITION=%d\n' 1 3
+COMMIT=10 BATCH=1 REPETITION=3
++ 2026-11-23T19:57:40-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd"\n                run_dir="/tmp/vm-commit10-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                sha256sum correct.txt | grep -F "d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt | grep -F "05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b"\n\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "MATRIX_PASS commit 10\\n"\n                printf "PASS commit 10\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+MATRIX_PASS commit 10
+PASS commit 10
++ 2026-11-23T19:57:45-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T19:57:45-03:00 printf 'COMMIT=10 BATCH=%d REPETITION=%d\n' 1 4
+COMMIT=10 BATCH=1 REPETITION=4
++ 2026-11-23T19:57:45-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd"\n                run_dir="/tmp/vm-commit10-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                sha256sum correct.txt | grep -F "d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt | grep -F "05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b"\n\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "MATRIX_PASS commit 10\\n"\n                printf "PASS commit 10\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+MATRIX_PASS commit 10
+PASS commit 10
++ 2026-11-23T19:57:49-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T19:57:49-03:00 printf 'COMMIT=10 BATCH=%d REPETITION=%d\n' 1 5
+COMMIT=10 BATCH=1 REPETITION=5
++ 2026-11-23T19:57:49-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd"\n                run_dir="/tmp/vm-commit10-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                sha256sum correct.txt | grep -F "d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt | grep -F "05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b"\n\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "MATRIX_PASS commit 10\\n"\n                printf "PASS commit 10\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+MATRIX_PASS commit 10
+PASS commit 10
++ 2026-11-23T19:57:54-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T19:57:54-03:00 printf 'COMMIT=10 BATCH=%d REPETITION=%d\n' 1 6
+COMMIT=10 BATCH=1 REPETITION=6
++ 2026-11-23T19:57:54-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd"\n                run_dir="/tmp/vm-commit10-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                sha256sum correct.txt | grep -F "d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt | grep -F "05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b"\n\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "MATRIX_PASS commit 10\\n"\n                printf "PASS commit 10\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+MATRIX_PASS commit 10
+PASS commit 10
++ 2026-11-23T19:57:58-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T19:57:58-03:00 printf 'COMMIT=10 BATCH=%d REPETITION=%d\n' 1 7
+COMMIT=10 BATCH=1 REPETITION=7
++ 2026-11-23T19:57:58-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd"\n                run_dir="/tmp/vm-commit10-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                sha256sum correct.txt | grep -F "d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt | grep -F "05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b"\n\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "MATRIX_PASS commit 10\\n"\n                printf "PASS commit 10\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+MATRIX_PASS commit 10
+PASS commit 10
++ 2026-11-23T19:58:03-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T19:58:03-03:00 printf 'COMMIT=10 BATCH=%d REPETITION=%d\n' 1 8
+COMMIT=10 BATCH=1 REPETITION=8
++ 2026-11-23T19:58:03-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd"\n                run_dir="/tmp/vm-commit10-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                sha256sum correct.txt | grep -F "d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt | grep -F "05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b"\n\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "MATRIX_PASS commit 10\\n"\n                printf "PASS commit 10\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+MATRIX_PASS commit 10
+PASS commit 10
++ 2026-11-23T19:58:08-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T19:58:08-03:00 printf 'COMMIT=10 BATCH=%d REPETITION=%d\n' 1 9
+COMMIT=10 BATCH=1 REPETITION=9
++ 2026-11-23T19:58:08-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd"\n                run_dir="/tmp/vm-commit10-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                sha256sum correct.txt | grep -F "d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt | grep -F "05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b"\n\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "MATRIX_PASS commit 10\\n"\n                printf "PASS commit 10\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+MATRIX_PASS commit 10
+PASS commit 10
++ 2026-11-23T19:58:12-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T19:58:12-03:00 printf 'COMMIT=10 BATCH=%d REPETITION=%d\n' 1 10
+COMMIT=10 BATCH=1 REPETITION=10
++ 2026-11-23T19:58:12-03:00 timeout 60s bash -c $'\n                set -euo pipefail\n                stage="/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd"\n                run_dir="/tmp/vm-commit10-run"\n                make -C "$stage" clean\n                make -C "$stage"\n                cp "$stage/vm" "$run_dir/vm"\n                cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin "$run_dir/BACKING_STORE.bin"\n                cd "$run_dir"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                sha256sum correct.txt | grep -F "d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru\n                grep -Fx "Page Faults = 538" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 54" correct.txt\n                cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt\n                sha256sum correct.txt | grep -F "05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106"\n\n                ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru\n                grep -Fx "Page Faults = 539" correct.txt\n                grep -Fx "TLB Hits = 55" correct.txt\n                sha256sum correct.txt | grep -F "2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b"\n\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru; then exit 1; fi\n                if ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalido fifo; then exit 1; fi\n                if ./vm arquivo-inexistente.txt lru fifo; then exit 1; fi\n                printf "MATRIX_PASS commit 10\\n"\n                printf "PASS commit 10\\n"\n            '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+Page Faults = 538
+TLB Hits = 54
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
+Page Faults = 538
+TLB Hits = 55
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
+Page Faults = 539
+TLB Hits = 54
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
+Page Faults = 539
+TLB Hits = 55
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
+Error: replacement policies must be 'fifo' or 'lru'
+Error: unable to open address file 'arquivo-inexistente.txt'
+MATRIX_PASS commit 10
+PASS commit 10
++ 2026-11-23T19:58:16-03:00 make clean
+rm -f vm correct.txt
++ 2026-11-23T20:36:26-03:00 date --iso-8601=seconds
+2026-11-23T20:36:26-03:00
++ 2026-11-23T20:36:26-03:00 hostname
+DESKTOP-PD06LSE
++ 2026-11-23T20:36:26-03:00 pwd
+/mnt/c/Users/PICHAU/Desktop/concluido
++ 2026-11-23T20:36:26-03:00 sha256sum /mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd/vm.c /mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd/Makefile /mnt/c/Users/PICHAU/Downloads/addresses.txt /mnt/c/Users/PICHAU/Downloads/correct.txt /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin
+063b2e64a2efbd9da0b391feddb842be3088af86c44b471f991b1f5e2b579bff  /mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd/vm.c
+bc1d6e32101d34d193868a940cbb4764c325dc3c995249d1627a351b2282ae1c  /mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd/Makefile
+0d4629652a7945b0d9ffd13b603e6e1428ae2b0b2d06914ec888d795320b2d67  /mnt/c/Users/PICHAU/Downloads/addresses.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  /mnt/c/Users/PICHAU/Downloads/correct.txt
+6b455ced8be207fda06d48e8fedd5e081b303b45d3ac1685ff630efd91d1c464  /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin
++ 2026-11-23T20:36:26-03:00 cmp /mnt/c/Users/PICHAU/Downloads/addresses.txt /mnt/c/Users/PICHAU/Desktop/concluido/materiais_fornecidos/addresses.txt
++ 2026-11-23T20:36:26-03:00 cmp /mnt/c/Users/PICHAU/Downloads/correct.txt /mnt/c/Users/PICHAU/Desktop/concluido/materiais_fornecidos/correct.txt
++ 2026-11-23T20:36:26-03:00 cmp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin /mnt/c/Users/PICHAU/Desktop/concluido/materiais_fornecidos/BACKING_STORE.bin
++ 2026-11-23T20:36:26-03:00 rm -rf -- /tmp/vm-commit10-final /tmp/vm-commit10-sanitized
++ 2026-11-23T20:36:26-03:00 mkdir -p -- /tmp/vm-commit10-final /tmp/vm-commit10-sanitized
+++ 2026-11-23T20:36:26-03:00 seq 1 10
++ 2026-11-23T20:36:27-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T20:36:27-03:00 printf 'COMMIT=10 BATCH=2 REPETITION=%d\n' 1
+COMMIT=10 BATCH=2 REPETITION=1
++ 2026-11-23T20:36:27-03:00 timeout 120s bash -c $'\n        set -euo pipefail\n        make -C \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd\' clean\n        make -C \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd\'\n        cp \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd/vm\' \'/tmp/vm-commit10-final/vm\'\n        cp \'/mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin\' \'/tmp/vm-commit10-final/BACKING_STORE.bin\'\n    '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
++ 2026-11-23T20:36:27-03:00 cd /tmp/vm-commit10-final
++ 2026-11-23T20:36:27-03:00 run_matrix
++ 2026-11-23T20:36:27-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo
++ 2026-11-23T20:36:30-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:30-03:00 grep -Fx 'Page Faults = 538' correct.txt
+Page Faults = 538
++ 2026-11-23T20:36:30-03:00 grep -Fx 'TLB Hits = 54' correct.txt
+TLB Hits = 54
+++ 2026-11-23T20:36:30-03:00 wc -l
++ 2026-11-23T20:36:30-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:30-03:00 grep -F d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86
++ 2026-11-23T20:36:30-03:00 sha256sum correct.txt
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
++ 2026-11-23T20:36:30-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru
++ 2026-11-23T20:36:31-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:31-03:00 grep -Fx 'Page Faults = 538' correct.txt
+Page Faults = 538
++ 2026-11-23T20:36:31-03:00 grep -Fx 'TLB Hits = 55' correct.txt
+TLB Hits = 55
+++ 2026-11-23T20:36:31-03:00 wc -l
++ 2026-11-23T20:36:31-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:31-03:00 grep -F ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6
++ 2026-11-23T20:36:31-03:00 sha256sum correct.txt
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
++ 2026-11-23T20:36:31-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:32-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:32-03:00 grep -Fx 'Page Faults = 539' correct.txt
+Page Faults = 539
++ 2026-11-23T20:36:32-03:00 grep -Fx 'TLB Hits = 54' correct.txt
+TLB Hits = 54
+++ 2026-11-23T20:36:32-03:00 wc -l
++ 2026-11-23T20:36:32-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:32-03:00 cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt
++ 2026-11-23T20:36:32-03:00 sha256sum correct.txt
++ 2026-11-23T20:36:32-03:00 grep -F 05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
++ 2026-11-23T20:36:32-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru
++ 2026-11-23T20:36:33-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:33-03:00 grep -Fx 'Page Faults = 539' correct.txt
+Page Faults = 539
++ 2026-11-23T20:36:33-03:00 grep -Fx 'TLB Hits = 55' correct.txt
+TLB Hits = 55
+++ 2026-11-23T20:36:33-03:00 wc -l
++ 2026-11-23T20:36:33-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:33-03:00 grep -F 2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b
++ 2026-11-23T20:36:33-03:00 sha256sum correct.txt
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
++ 2026-11-23T20:36:33-03:00 run_error_cases
++ 2026-11-23T20:36:33-03:00 printf '10\ntexto\n'
++ 2026-11-23T20:36:33-03:00 printf '10\n\n20\n'
++ 2026-11-23T20:36:33-03:00 printf '%s\n' -1
++ 2026-11-23T20:36:33-03:00 printf '%s\n' 65536
++ 2026-11-23T20:36:33-03:00 :
++ 2026-11-23T20:36:33-03:00 expect_failure_no_output ./vm
++ 2026-11-23T20:36:33-03:00 rm -f correct.txt
++ 2026-11-23T20:36:33-03:00 ./vm
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
++ 2026-11-23T20:36:33-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:33-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru
++ 2026-11-23T20:36:33-03:00 rm -f correct.txt
++ 2026-11-23T20:36:33-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
++ 2026-11-23T20:36:33-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:33-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalid fifo
++ 2026-11-23T20:36:33-03:00 rm -f correct.txt
++ 2026-11-23T20:36:33-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalid fifo
+Error: replacement policies must be 'fifo' or 'lru'
++ 2026-11-23T20:36:33-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:33-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru invalid
++ 2026-11-23T20:36:33-03:00 rm -f correct.txt
++ 2026-11-23T20:36:33-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru invalid
+Error: replacement policies must be 'fifo' or 'lru'
++ 2026-11-23T20:36:33-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:33-03:00 expect_failure_no_output ./vm /tmp/vm-missing-addresses.txt lru fifo
++ 2026-11-23T20:36:33-03:00 rm -f correct.txt
++ 2026-11-23T20:36:33-03:00 ./vm /tmp/vm-missing-addresses.txt lru fifo
+Error: unable to open address file '/tmp/vm-missing-addresses.txt'
++ 2026-11-23T20:36:33-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:33-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-text.txt lru fifo
++ 2026-11-23T20:36:33-03:00 rm -f correct.txt
++ 2026-11-23T20:36:33-03:00 ./vm /tmp/vm-invalid-text.txt lru fifo
+Error: invalid logical address on line 2
++ 2026-11-23T20:36:33-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:33-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-blank.txt lru fifo
++ 2026-11-23T20:36:33-03:00 rm -f correct.txt
++ 2026-11-23T20:36:33-03:00 ./vm /tmp/vm-invalid-blank.txt lru fifo
+Error: invalid logical address on line 2
++ 2026-11-23T20:36:33-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:33-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-negative.txt lru fifo
++ 2026-11-23T20:36:34-03:00 rm -f correct.txt
++ 2026-11-23T20:36:34-03:00 ./vm /tmp/vm-invalid-negative.txt lru fifo
+Error: invalid logical address on line 1
++ 2026-11-23T20:36:34-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:34-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-high.txt lru fifo
++ 2026-11-23T20:36:34-03:00 rm -f correct.txt
++ 2026-11-23T20:36:34-03:00 ./vm /tmp/vm-invalid-high.txt lru fifo
+Error: invalid logical address on line 1
++ 2026-11-23T20:36:34-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:34-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-empty.txt lru fifo
++ 2026-11-23T20:36:34-03:00 rm -f correct.txt
++ 2026-11-23T20:36:34-03:00 ./vm /tmp/vm-invalid-empty.txt lru fifo
+Error: address file is empty
++ 2026-11-23T20:36:34-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:34-03:00 rm -f BACKING_STORE.bin
++ 2026-11-23T20:36:34-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:34-03:00 rm -f correct.txt
++ 2026-11-23T20:36:34-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: unable to open BACKING_STORE.bin
++ 2026-11-23T20:36:34-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:34-03:00 head -c 65535 /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin
++ 2026-11-23T20:36:34-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:34-03:00 rm -f correct.txt
++ 2026-11-23T20:36:34-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: BACKING_STORE.bin must contain exactly 65536 bytes
++ 2026-11-23T20:36:34-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:34-03:00 cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin BACKING_STORE.bin
++ 2026-11-23T20:36:34-03:00 printf '\0'
++ 2026-11-23T20:36:34-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:34-03:00 rm -f correct.txt
++ 2026-11-23T20:36:34-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: BACKING_STORE.bin must contain exactly 65536 bytes
++ 2026-11-23T20:36:34-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:34-03:00 cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin BACKING_STORE.bin
++ 2026-11-23T20:36:34-03:00 printf 'FINAL_MATRIX_PASS commit 10 repetition %d\n' 1
+FINAL_MATRIX_PASS commit 10 repetition 1
++ 2026-11-23T20:36:34-03:00 printf 'FINAL_ERROR_PASS commit 10 repetition %d\n' 1
+FINAL_ERROR_PASS commit 10 repetition 1
++ 2026-11-23T20:36:34-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T20:36:34-03:00 printf 'COMMIT=10 BATCH=2 REPETITION=%d\n' 2
+COMMIT=10 BATCH=2 REPETITION=2
++ 2026-11-23T20:36:34-03:00 timeout 120s bash -c $'\n        set -euo pipefail\n        make -C \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd\' clean\n        make -C \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd\'\n        cp \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd/vm\' \'/tmp/vm-commit10-final/vm\'\n        cp \'/mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin\' \'/tmp/vm-commit10-final/BACKING_STORE.bin\'\n    '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
++ 2026-11-23T20:36:34-03:00 cd /tmp/vm-commit10-final
++ 2026-11-23T20:36:34-03:00 run_matrix
++ 2026-11-23T20:36:34-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo
++ 2026-11-23T20:36:35-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:35-03:00 grep -Fx 'Page Faults = 538' correct.txt
+Page Faults = 538
++ 2026-11-23T20:36:35-03:00 grep -Fx 'TLB Hits = 54' correct.txt
+TLB Hits = 54
+++ 2026-11-23T20:36:35-03:00 wc -l
++ 2026-11-23T20:36:35-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:35-03:00 sha256sum correct.txt
++ 2026-11-23T20:36:35-03:00 grep -F d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
++ 2026-11-23T20:36:35-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru
++ 2026-11-23T20:36:36-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:36-03:00 grep -Fx 'Page Faults = 538' correct.txt
+Page Faults = 538
++ 2026-11-23T20:36:36-03:00 grep -Fx 'TLB Hits = 55' correct.txt
+TLB Hits = 55
+++ 2026-11-23T20:36:36-03:00 wc -l
++ 2026-11-23T20:36:36-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:36-03:00 sha256sum correct.txt
++ 2026-11-23T20:36:36-03:00 grep -F ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
++ 2026-11-23T20:36:36-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:37-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:37-03:00 grep -Fx 'Page Faults = 539' correct.txt
+Page Faults = 539
++ 2026-11-23T20:36:37-03:00 grep -Fx 'TLB Hits = 54' correct.txt
+TLB Hits = 54
+++ 2026-11-23T20:36:37-03:00 wc -l
++ 2026-11-23T20:36:37-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:37-03:00 cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt
++ 2026-11-23T20:36:37-03:00 grep -F 05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106
++ 2026-11-23T20:36:37-03:00 sha256sum correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
++ 2026-11-23T20:36:37-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru
++ 2026-11-23T20:36:38-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:38-03:00 grep -Fx 'Page Faults = 539' correct.txt
+Page Faults = 539
++ 2026-11-23T20:36:38-03:00 grep -Fx 'TLB Hits = 55' correct.txt
+TLB Hits = 55
+++ 2026-11-23T20:36:38-03:00 wc -l
++ 2026-11-23T20:36:38-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:38-03:00 sha256sum correct.txt
++ 2026-11-23T20:36:38-03:00 grep -F 2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
++ 2026-11-23T20:36:38-03:00 run_error_cases
++ 2026-11-23T20:36:38-03:00 printf '10\ntexto\n'
++ 2026-11-23T20:36:38-03:00 printf '10\n\n20\n'
++ 2026-11-23T20:36:38-03:00 printf '%s\n' -1
++ 2026-11-23T20:36:38-03:00 printf '%s\n' 65536
++ 2026-11-23T20:36:38-03:00 :
++ 2026-11-23T20:36:38-03:00 expect_failure_no_output ./vm
++ 2026-11-23T20:36:38-03:00 rm -f correct.txt
++ 2026-11-23T20:36:38-03:00 ./vm
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
++ 2026-11-23T20:36:38-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:38-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru
++ 2026-11-23T20:36:38-03:00 rm -f correct.txt
++ 2026-11-23T20:36:38-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
++ 2026-11-23T20:36:38-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:38-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalid fifo
++ 2026-11-23T20:36:38-03:00 rm -f correct.txt
++ 2026-11-23T20:36:38-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalid fifo
+Error: replacement policies must be 'fifo' or 'lru'
++ 2026-11-23T20:36:38-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:38-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru invalid
++ 2026-11-23T20:36:38-03:00 rm -f correct.txt
++ 2026-11-23T20:36:38-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru invalid
+Error: replacement policies must be 'fifo' or 'lru'
++ 2026-11-23T20:36:38-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:38-03:00 expect_failure_no_output ./vm /tmp/vm-missing-addresses.txt lru fifo
++ 2026-11-23T20:36:38-03:00 rm -f correct.txt
++ 2026-11-23T20:36:38-03:00 ./vm /tmp/vm-missing-addresses.txt lru fifo
+Error: unable to open address file '/tmp/vm-missing-addresses.txt'
++ 2026-11-23T20:36:38-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:38-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-text.txt lru fifo
++ 2026-11-23T20:36:38-03:00 rm -f correct.txt
++ 2026-11-23T20:36:38-03:00 ./vm /tmp/vm-invalid-text.txt lru fifo
+Error: invalid logical address on line 2
++ 2026-11-23T20:36:38-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:38-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-blank.txt lru fifo
++ 2026-11-23T20:36:38-03:00 rm -f correct.txt
++ 2026-11-23T20:36:38-03:00 ./vm /tmp/vm-invalid-blank.txt lru fifo
+Error: invalid logical address on line 2
++ 2026-11-23T20:36:38-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:38-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-negative.txt lru fifo
++ 2026-11-23T20:36:38-03:00 rm -f correct.txt
++ 2026-11-23T20:36:38-03:00 ./vm /tmp/vm-invalid-negative.txt lru fifo
+Error: invalid logical address on line 1
++ 2026-11-23T20:36:38-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:39-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-high.txt lru fifo
++ 2026-11-23T20:36:39-03:00 rm -f correct.txt
++ 2026-11-23T20:36:39-03:00 ./vm /tmp/vm-invalid-high.txt lru fifo
+Error: invalid logical address on line 1
++ 2026-11-23T20:36:39-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:39-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-empty.txt lru fifo
++ 2026-11-23T20:36:39-03:00 rm -f correct.txt
++ 2026-11-23T20:36:39-03:00 ./vm /tmp/vm-invalid-empty.txt lru fifo
+Error: address file is empty
++ 2026-11-23T20:36:39-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:39-03:00 rm -f BACKING_STORE.bin
++ 2026-11-23T20:36:39-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:39-03:00 rm -f correct.txt
++ 2026-11-23T20:36:39-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: unable to open BACKING_STORE.bin
++ 2026-11-23T20:36:39-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:39-03:00 head -c 65535 /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin
++ 2026-11-23T20:36:39-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:39-03:00 rm -f correct.txt
++ 2026-11-23T20:36:39-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: BACKING_STORE.bin must contain exactly 65536 bytes
++ 2026-11-23T20:36:39-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:39-03:00 cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin BACKING_STORE.bin
++ 2026-11-23T20:36:39-03:00 printf '\0'
++ 2026-11-23T20:36:39-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:39-03:00 rm -f correct.txt
++ 2026-11-23T20:36:39-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: BACKING_STORE.bin must contain exactly 65536 bytes
++ 2026-11-23T20:36:39-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:39-03:00 cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin BACKING_STORE.bin
++ 2026-11-23T20:36:39-03:00 printf 'FINAL_MATRIX_PASS commit 10 repetition %d\n' 2
+FINAL_MATRIX_PASS commit 10 repetition 2
++ 2026-11-23T20:36:39-03:00 printf 'FINAL_ERROR_PASS commit 10 repetition %d\n' 2
+FINAL_ERROR_PASS commit 10 repetition 2
++ 2026-11-23T20:36:39-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T20:36:39-03:00 printf 'COMMIT=10 BATCH=2 REPETITION=%d\n' 3
+COMMIT=10 BATCH=2 REPETITION=3
++ 2026-11-23T20:36:39-03:00 timeout 120s bash -c $'\n        set -euo pipefail\n        make -C \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd\' clean\n        make -C \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd\'\n        cp \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd/vm\' \'/tmp/vm-commit10-final/vm\'\n        cp \'/mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin\' \'/tmp/vm-commit10-final/BACKING_STORE.bin\'\n    '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
++ 2026-11-23T20:36:39-03:00 cd /tmp/vm-commit10-final
++ 2026-11-23T20:36:39-03:00 run_matrix
++ 2026-11-23T20:36:39-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo
++ 2026-11-23T20:36:40-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:40-03:00 grep -Fx 'Page Faults = 538' correct.txt
+Page Faults = 538
++ 2026-11-23T20:36:40-03:00 grep -Fx 'TLB Hits = 54' correct.txt
+TLB Hits = 54
+++ 2026-11-23T20:36:40-03:00 wc -l
++ 2026-11-23T20:36:40-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:40-03:00 grep -F d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86
++ 2026-11-23T20:36:40-03:00 sha256sum correct.txt
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
++ 2026-11-23T20:36:40-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru
++ 2026-11-23T20:36:41-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:41-03:00 grep -Fx 'Page Faults = 538' correct.txt
+Page Faults = 538
++ 2026-11-23T20:36:41-03:00 grep -Fx 'TLB Hits = 55' correct.txt
+TLB Hits = 55
+++ 2026-11-23T20:36:41-03:00 wc -l
++ 2026-11-23T20:36:41-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:41-03:00 sha256sum correct.txt
++ 2026-11-23T20:36:41-03:00 grep -F ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
++ 2026-11-23T20:36:41-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:42-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:42-03:00 grep -Fx 'Page Faults = 539' correct.txt
+Page Faults = 539
++ 2026-11-23T20:36:42-03:00 grep -Fx 'TLB Hits = 54' correct.txt
+TLB Hits = 54
+++ 2026-11-23T20:36:42-03:00 wc -l
++ 2026-11-23T20:36:42-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:42-03:00 cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt
++ 2026-11-23T20:36:42-03:00 sha256sum correct.txt
++ 2026-11-23T20:36:42-03:00 grep -F 05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
++ 2026-11-23T20:36:42-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru
++ 2026-11-23T20:36:43-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:43-03:00 grep -Fx 'Page Faults = 539' correct.txt
+Page Faults = 539
++ 2026-11-23T20:36:43-03:00 grep -Fx 'TLB Hits = 55' correct.txt
+TLB Hits = 55
+++ 2026-11-23T20:36:43-03:00 wc -l
++ 2026-11-23T20:36:43-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:43-03:00 grep -F 2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b
++ 2026-11-23T20:36:43-03:00 sha256sum correct.txt
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
++ 2026-11-23T20:36:43-03:00 run_error_cases
++ 2026-11-23T20:36:43-03:00 printf '10\ntexto\n'
++ 2026-11-23T20:36:43-03:00 printf '10\n\n20\n'
++ 2026-11-23T20:36:43-03:00 printf '%s\n' -1
++ 2026-11-23T20:36:43-03:00 printf '%s\n' 65536
++ 2026-11-23T20:36:43-03:00 :
++ 2026-11-23T20:36:43-03:00 expect_failure_no_output ./vm
++ 2026-11-23T20:36:43-03:00 rm -f correct.txt
++ 2026-11-23T20:36:43-03:00 ./vm
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
++ 2026-11-23T20:36:43-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:43-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru
++ 2026-11-23T20:36:43-03:00 rm -f correct.txt
++ 2026-11-23T20:36:43-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
++ 2026-11-23T20:36:43-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:43-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalid fifo
++ 2026-11-23T20:36:43-03:00 rm -f correct.txt
++ 2026-11-23T20:36:43-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalid fifo
+Error: replacement policies must be 'fifo' or 'lru'
++ 2026-11-23T20:36:43-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:43-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru invalid
++ 2026-11-23T20:36:43-03:00 rm -f correct.txt
++ 2026-11-23T20:36:43-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru invalid
+Error: replacement policies must be 'fifo' or 'lru'
++ 2026-11-23T20:36:43-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:43-03:00 expect_failure_no_output ./vm /tmp/vm-missing-addresses.txt lru fifo
++ 2026-11-23T20:36:43-03:00 rm -f correct.txt
++ 2026-11-23T20:36:43-03:00 ./vm /tmp/vm-missing-addresses.txt lru fifo
+Error: unable to open address file '/tmp/vm-missing-addresses.txt'
++ 2026-11-23T20:36:43-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:43-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-text.txt lru fifo
++ 2026-11-23T20:36:43-03:00 rm -f correct.txt
++ 2026-11-23T20:36:43-03:00 ./vm /tmp/vm-invalid-text.txt lru fifo
+Error: invalid logical address on line 2
++ 2026-11-23T20:36:43-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:43-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-blank.txt lru fifo
++ 2026-11-23T20:36:43-03:00 rm -f correct.txt
++ 2026-11-23T20:36:43-03:00 ./vm /tmp/vm-invalid-blank.txt lru fifo
+Error: invalid logical address on line 2
++ 2026-11-23T20:36:43-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:43-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-negative.txt lru fifo
++ 2026-11-23T20:36:43-03:00 rm -f correct.txt
++ 2026-11-23T20:36:43-03:00 ./vm /tmp/vm-invalid-negative.txt lru fifo
+Error: invalid logical address on line 1
++ 2026-11-23T20:36:43-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:43-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-high.txt lru fifo
++ 2026-11-23T20:36:43-03:00 rm -f correct.txt
++ 2026-11-23T20:36:43-03:00 ./vm /tmp/vm-invalid-high.txt lru fifo
+Error: invalid logical address on line 1
++ 2026-11-23T20:36:43-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:44-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-empty.txt lru fifo
++ 2026-11-23T20:36:44-03:00 rm -f correct.txt
++ 2026-11-23T20:36:44-03:00 ./vm /tmp/vm-invalid-empty.txt lru fifo
+Error: address file is empty
++ 2026-11-23T20:36:44-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:44-03:00 rm -f BACKING_STORE.bin
++ 2026-11-23T20:36:44-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:44-03:00 rm -f correct.txt
++ 2026-11-23T20:36:44-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: unable to open BACKING_STORE.bin
++ 2026-11-23T20:36:44-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:44-03:00 head -c 65535 /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin
++ 2026-11-23T20:36:44-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:44-03:00 rm -f correct.txt
++ 2026-11-23T20:36:44-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: BACKING_STORE.bin must contain exactly 65536 bytes
++ 2026-11-23T20:36:44-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:44-03:00 cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin BACKING_STORE.bin
++ 2026-11-23T20:36:44-03:00 printf '\0'
++ 2026-11-23T20:36:44-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:44-03:00 rm -f correct.txt
++ 2026-11-23T20:36:44-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: BACKING_STORE.bin must contain exactly 65536 bytes
++ 2026-11-23T20:36:44-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:44-03:00 cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin BACKING_STORE.bin
++ 2026-11-23T20:36:44-03:00 printf 'FINAL_MATRIX_PASS commit 10 repetition %d\n' 3
+FINAL_MATRIX_PASS commit 10 repetition 3
++ 2026-11-23T20:36:44-03:00 printf 'FINAL_ERROR_PASS commit 10 repetition %d\n' 3
+FINAL_ERROR_PASS commit 10 repetition 3
++ 2026-11-23T20:36:44-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T20:36:44-03:00 printf 'COMMIT=10 BATCH=2 REPETITION=%d\n' 4
+COMMIT=10 BATCH=2 REPETITION=4
++ 2026-11-23T20:36:44-03:00 timeout 120s bash -c $'\n        set -euo pipefail\n        make -C \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd\' clean\n        make -C \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd\'\n        cp \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd/vm\' \'/tmp/vm-commit10-final/vm\'\n        cp \'/mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin\' \'/tmp/vm-commit10-final/BACKING_STORE.bin\'\n    '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
++ 2026-11-23T20:36:44-03:00 cd /tmp/vm-commit10-final
++ 2026-11-23T20:36:44-03:00 run_matrix
++ 2026-11-23T20:36:44-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo
++ 2026-11-23T20:36:45-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:45-03:00 grep -Fx 'Page Faults = 538' correct.txt
+Page Faults = 538
++ 2026-11-23T20:36:45-03:00 grep -Fx 'TLB Hits = 54' correct.txt
+TLB Hits = 54
+++ 2026-11-23T20:36:45-03:00 wc -l
++ 2026-11-23T20:36:45-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:45-03:00 grep -F d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86
++ 2026-11-23T20:36:45-03:00 sha256sum correct.txt
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
++ 2026-11-23T20:36:45-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru
++ 2026-11-23T20:36:46-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:46-03:00 grep -Fx 'Page Faults = 538' correct.txt
+Page Faults = 538
++ 2026-11-23T20:36:46-03:00 grep -Fx 'TLB Hits = 55' correct.txt
+TLB Hits = 55
+++ 2026-11-23T20:36:46-03:00 wc -l
++ 2026-11-23T20:36:46-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:46-03:00 grep -F ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6
++ 2026-11-23T20:36:46-03:00 sha256sum correct.txt
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
++ 2026-11-23T20:36:46-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:47-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:47-03:00 grep -Fx 'Page Faults = 539' correct.txt
+Page Faults = 539
++ 2026-11-23T20:36:47-03:00 grep -Fx 'TLB Hits = 54' correct.txt
+TLB Hits = 54
+++ 2026-11-23T20:36:47-03:00 wc -l
++ 2026-11-23T20:36:47-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:47-03:00 cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt
++ 2026-11-23T20:36:47-03:00 sha256sum correct.txt
++ 2026-11-23T20:36:47-03:00 grep -F 05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
++ 2026-11-23T20:36:47-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru
++ 2026-11-23T20:36:48-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:48-03:00 grep -Fx 'Page Faults = 539' correct.txt
+Page Faults = 539
++ 2026-11-23T20:36:48-03:00 grep -Fx 'TLB Hits = 55' correct.txt
+TLB Hits = 55
+++ 2026-11-23T20:36:48-03:00 wc -l
++ 2026-11-23T20:36:48-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:48-03:00 sha256sum correct.txt
++ 2026-11-23T20:36:48-03:00 grep -F 2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
++ 2026-11-23T20:36:48-03:00 run_error_cases
++ 2026-11-23T20:36:48-03:00 printf '10\ntexto\n'
++ 2026-11-23T20:36:48-03:00 printf '10\n\n20\n'
++ 2026-11-23T20:36:48-03:00 printf '%s\n' -1
++ 2026-11-23T20:36:48-03:00 printf '%s\n' 65536
++ 2026-11-23T20:36:48-03:00 :
++ 2026-11-23T20:36:48-03:00 expect_failure_no_output ./vm
++ 2026-11-23T20:36:48-03:00 rm -f correct.txt
++ 2026-11-23T20:36:48-03:00 ./vm
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
++ 2026-11-23T20:36:48-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:48-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru
++ 2026-11-23T20:36:48-03:00 rm -f correct.txt
++ 2026-11-23T20:36:48-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
++ 2026-11-23T20:36:48-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:48-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalid fifo
++ 2026-11-23T20:36:48-03:00 rm -f correct.txt
++ 2026-11-23T20:36:48-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalid fifo
+Error: replacement policies must be 'fifo' or 'lru'
++ 2026-11-23T20:36:48-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:48-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru invalid
++ 2026-11-23T20:36:48-03:00 rm -f correct.txt
++ 2026-11-23T20:36:48-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru invalid
+Error: replacement policies must be 'fifo' or 'lru'
++ 2026-11-23T20:36:49-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:49-03:00 expect_failure_no_output ./vm /tmp/vm-missing-addresses.txt lru fifo
++ 2026-11-23T20:36:49-03:00 rm -f correct.txt
++ 2026-11-23T20:36:49-03:00 ./vm /tmp/vm-missing-addresses.txt lru fifo
+Error: unable to open address file '/tmp/vm-missing-addresses.txt'
++ 2026-11-23T20:36:49-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:49-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-text.txt lru fifo
++ 2026-11-23T20:36:49-03:00 rm -f correct.txt
++ 2026-11-23T20:36:49-03:00 ./vm /tmp/vm-invalid-text.txt lru fifo
+Error: invalid logical address on line 2
++ 2026-11-23T20:36:49-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:49-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-blank.txt lru fifo
++ 2026-11-23T20:36:49-03:00 rm -f correct.txt
++ 2026-11-23T20:36:49-03:00 ./vm /tmp/vm-invalid-blank.txt lru fifo
+Error: invalid logical address on line 2
++ 2026-11-23T20:36:49-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:49-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-negative.txt lru fifo
++ 2026-11-23T20:36:49-03:00 rm -f correct.txt
++ 2026-11-23T20:36:49-03:00 ./vm /tmp/vm-invalid-negative.txt lru fifo
+Error: invalid logical address on line 1
++ 2026-11-23T20:36:49-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:49-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-high.txt lru fifo
++ 2026-11-23T20:36:49-03:00 rm -f correct.txt
++ 2026-11-23T20:36:49-03:00 ./vm /tmp/vm-invalid-high.txt lru fifo
+Error: invalid logical address on line 1
++ 2026-11-23T20:36:49-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:49-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-empty.txt lru fifo
++ 2026-11-23T20:36:49-03:00 rm -f correct.txt
++ 2026-11-23T20:36:49-03:00 ./vm /tmp/vm-invalid-empty.txt lru fifo
+Error: address file is empty
++ 2026-11-23T20:36:49-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:49-03:00 rm -f BACKING_STORE.bin
++ 2026-11-23T20:36:49-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:49-03:00 rm -f correct.txt
++ 2026-11-23T20:36:49-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: unable to open BACKING_STORE.bin
++ 2026-11-23T20:36:49-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:49-03:00 head -c 65535 /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin
++ 2026-11-23T20:36:49-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:49-03:00 rm -f correct.txt
++ 2026-11-23T20:36:49-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: BACKING_STORE.bin must contain exactly 65536 bytes
++ 2026-11-23T20:36:49-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:49-03:00 cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin BACKING_STORE.bin
++ 2026-11-23T20:36:49-03:00 printf '\0'
++ 2026-11-23T20:36:49-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:49-03:00 rm -f correct.txt
++ 2026-11-23T20:36:49-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: BACKING_STORE.bin must contain exactly 65536 bytes
++ 2026-11-23T20:36:49-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:49-03:00 cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin BACKING_STORE.bin
++ 2026-11-23T20:36:49-03:00 printf 'FINAL_MATRIX_PASS commit 10 repetition %d\n' 4
+FINAL_MATRIX_PASS commit 10 repetition 4
++ 2026-11-23T20:36:49-03:00 printf 'FINAL_ERROR_PASS commit 10 repetition %d\n' 4
+FINAL_ERROR_PASS commit 10 repetition 4
++ 2026-11-23T20:36:49-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T20:36:49-03:00 printf 'COMMIT=10 BATCH=2 REPETITION=%d\n' 5
+COMMIT=10 BATCH=2 REPETITION=5
++ 2026-11-23T20:36:49-03:00 timeout 120s bash -c $'\n        set -euo pipefail\n        make -C \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd\' clean\n        make -C \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd\'\n        cp \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd/vm\' \'/tmp/vm-commit10-final/vm\'\n        cp \'/mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin\' \'/tmp/vm-commit10-final/BACKING_STORE.bin\'\n    '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
++ 2026-11-23T20:36:49-03:00 cd /tmp/vm-commit10-final
++ 2026-11-23T20:36:49-03:00 run_matrix
++ 2026-11-23T20:36:49-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo
++ 2026-11-23T20:36:50-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:50-03:00 grep -Fx 'Page Faults = 538' correct.txt
+Page Faults = 538
++ 2026-11-23T20:36:50-03:00 grep -Fx 'TLB Hits = 54' correct.txt
+TLB Hits = 54
+++ 2026-11-23T20:36:50-03:00 wc -l
++ 2026-11-23T20:36:50-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:50-03:00 sha256sum correct.txt
++ 2026-11-23T20:36:50-03:00 grep -F d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
++ 2026-11-23T20:36:50-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru
++ 2026-11-23T20:36:51-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:51-03:00 grep -Fx 'Page Faults = 538' correct.txt
+Page Faults = 538
++ 2026-11-23T20:36:51-03:00 grep -Fx 'TLB Hits = 55' correct.txt
+TLB Hits = 55
+++ 2026-11-23T20:36:51-03:00 wc -l
++ 2026-11-23T20:36:52-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:52-03:00 sha256sum correct.txt
++ 2026-11-23T20:36:52-03:00 grep -F ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
++ 2026-11-23T20:36:52-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:52-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:52-03:00 grep -Fx 'Page Faults = 539' correct.txt
+Page Faults = 539
++ 2026-11-23T20:36:52-03:00 grep -Fx 'TLB Hits = 54' correct.txt
+TLB Hits = 54
+++ 2026-11-23T20:36:52-03:00 wc -l
++ 2026-11-23T20:36:52-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:52-03:00 cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt
++ 2026-11-23T20:36:52-03:00 sha256sum correct.txt
++ 2026-11-23T20:36:52-03:00 grep -F 05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
++ 2026-11-23T20:36:53-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru
++ 2026-11-23T20:36:53-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:53-03:00 grep -Fx 'Page Faults = 539' correct.txt
+Page Faults = 539
++ 2026-11-23T20:36:53-03:00 grep -Fx 'TLB Hits = 55' correct.txt
+TLB Hits = 55
+++ 2026-11-23T20:36:53-03:00 wc -l
++ 2026-11-23T20:36:54-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:54-03:00 grep -F 2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b
++ 2026-11-23T20:36:54-03:00 sha256sum correct.txt
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
++ 2026-11-23T20:36:54-03:00 run_error_cases
++ 2026-11-23T20:36:54-03:00 printf '10\ntexto\n'
++ 2026-11-23T20:36:54-03:00 printf '10\n\n20\n'
++ 2026-11-23T20:36:54-03:00 printf '%s\n' -1
++ 2026-11-23T20:36:54-03:00 printf '%s\n' 65536
++ 2026-11-23T20:36:54-03:00 :
++ 2026-11-23T20:36:54-03:00 expect_failure_no_output ./vm
++ 2026-11-23T20:36:54-03:00 rm -f correct.txt
++ 2026-11-23T20:36:54-03:00 ./vm
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
++ 2026-11-23T20:36:54-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:54-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru
++ 2026-11-23T20:36:54-03:00 rm -f correct.txt
++ 2026-11-23T20:36:54-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
++ 2026-11-23T20:36:54-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:54-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalid fifo
++ 2026-11-23T20:36:54-03:00 rm -f correct.txt
++ 2026-11-23T20:36:54-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalid fifo
+Error: replacement policies must be 'fifo' or 'lru'
++ 2026-11-23T20:36:54-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:54-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru invalid
++ 2026-11-23T20:36:54-03:00 rm -f correct.txt
++ 2026-11-23T20:36:54-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru invalid
+Error: replacement policies must be 'fifo' or 'lru'
++ 2026-11-23T20:36:54-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:54-03:00 expect_failure_no_output ./vm /tmp/vm-missing-addresses.txt lru fifo
++ 2026-11-23T20:36:54-03:00 rm -f correct.txt
++ 2026-11-23T20:36:54-03:00 ./vm /tmp/vm-missing-addresses.txt lru fifo
+Error: unable to open address file '/tmp/vm-missing-addresses.txt'
++ 2026-11-23T20:36:54-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:54-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-text.txt lru fifo
++ 2026-11-23T20:36:54-03:00 rm -f correct.txt
++ 2026-11-23T20:36:54-03:00 ./vm /tmp/vm-invalid-text.txt lru fifo
+Error: invalid logical address on line 2
++ 2026-11-23T20:36:54-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:54-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-blank.txt lru fifo
++ 2026-11-23T20:36:54-03:00 rm -f correct.txt
++ 2026-11-23T20:36:54-03:00 ./vm /tmp/vm-invalid-blank.txt lru fifo
+Error: invalid logical address on line 2
++ 2026-11-23T20:36:54-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:54-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-negative.txt lru fifo
++ 2026-11-23T20:36:54-03:00 rm -f correct.txt
++ 2026-11-23T20:36:54-03:00 ./vm /tmp/vm-invalid-negative.txt lru fifo
+Error: invalid logical address on line 1
++ 2026-11-23T20:36:54-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:54-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-high.txt lru fifo
++ 2026-11-23T20:36:54-03:00 rm -f correct.txt
++ 2026-11-23T20:36:54-03:00 ./vm /tmp/vm-invalid-high.txt lru fifo
+Error: invalid logical address on line 1
++ 2026-11-23T20:36:54-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:54-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-empty.txt lru fifo
++ 2026-11-23T20:36:54-03:00 rm -f correct.txt
++ 2026-11-23T20:36:54-03:00 ./vm /tmp/vm-invalid-empty.txt lru fifo
+Error: address file is empty
++ 2026-11-23T20:36:54-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:54-03:00 rm -f BACKING_STORE.bin
++ 2026-11-23T20:36:54-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:54-03:00 rm -f correct.txt
++ 2026-11-23T20:36:54-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: unable to open BACKING_STORE.bin
++ 2026-11-23T20:36:54-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:54-03:00 head -c 65535 /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin
++ 2026-11-23T20:36:54-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:54-03:00 rm -f correct.txt
++ 2026-11-23T20:36:54-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: BACKING_STORE.bin must contain exactly 65536 bytes
++ 2026-11-23T20:36:54-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:54-03:00 cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin BACKING_STORE.bin
++ 2026-11-23T20:36:54-03:00 printf '\0'
++ 2026-11-23T20:36:54-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:54-03:00 rm -f correct.txt
++ 2026-11-23T20:36:54-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: BACKING_STORE.bin must contain exactly 65536 bytes
++ 2026-11-23T20:36:54-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:54-03:00 cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin BACKING_STORE.bin
++ 2026-11-23T20:36:54-03:00 printf 'FINAL_MATRIX_PASS commit 10 repetition %d\n' 5
+FINAL_MATRIX_PASS commit 10 repetition 5
++ 2026-11-23T20:36:54-03:00 printf 'FINAL_ERROR_PASS commit 10 repetition %d\n' 5
+FINAL_ERROR_PASS commit 10 repetition 5
++ 2026-11-23T20:36:54-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T20:36:54-03:00 printf 'COMMIT=10 BATCH=2 REPETITION=%d\n' 6
+COMMIT=10 BATCH=2 REPETITION=6
++ 2026-11-23T20:36:54-03:00 timeout 120s bash -c $'\n        set -euo pipefail\n        make -C \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd\' clean\n        make -C \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd\'\n        cp \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd/vm\' \'/tmp/vm-commit10-final/vm\'\n        cp \'/mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin\' \'/tmp/vm-commit10-final/BACKING_STORE.bin\'\n    '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
++ 2026-11-23T20:36:54-03:00 cd /tmp/vm-commit10-final
++ 2026-11-23T20:36:54-03:00 run_matrix
++ 2026-11-23T20:36:54-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo
++ 2026-11-23T20:36:55-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:55-03:00 grep -Fx 'Page Faults = 538' correct.txt
+Page Faults = 538
++ 2026-11-23T20:36:55-03:00 grep -Fx 'TLB Hits = 54' correct.txt
+TLB Hits = 54
+++ 2026-11-23T20:36:55-03:00 wc -l
++ 2026-11-23T20:36:55-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:56-03:00 grep -F d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86
++ 2026-11-23T20:36:56-03:00 sha256sum correct.txt
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
++ 2026-11-23T20:36:56-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru
++ 2026-11-23T20:36:57-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:57-03:00 grep -Fx 'Page Faults = 538' correct.txt
+Page Faults = 538
++ 2026-11-23T20:36:57-03:00 grep -Fx 'TLB Hits = 55' correct.txt
+TLB Hits = 55
+++ 2026-11-23T20:36:57-03:00 wc -l
++ 2026-11-23T20:36:57-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:57-03:00 sha256sum correct.txt
++ 2026-11-23T20:36:57-03:00 grep -F ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
++ 2026-11-23T20:36:57-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:58-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:58-03:00 grep -Fx 'Page Faults = 539' correct.txt
+Page Faults = 539
++ 2026-11-23T20:36:58-03:00 grep -Fx 'TLB Hits = 54' correct.txt
+TLB Hits = 54
+++ 2026-11-23T20:36:58-03:00 wc -l
++ 2026-11-23T20:36:58-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:58-03:00 cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt
++ 2026-11-23T20:36:58-03:00 sha256sum correct.txt
++ 2026-11-23T20:36:58-03:00 grep -F 05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
++ 2026-11-23T20:36:58-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru
++ 2026-11-23T20:36:59-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:36:59-03:00 grep -Fx 'Page Faults = 539' correct.txt
+Page Faults = 539
++ 2026-11-23T20:36:59-03:00 grep -Fx 'TLB Hits = 55' correct.txt
+TLB Hits = 55
+++ 2026-11-23T20:36:59-03:00 wc -l
++ 2026-11-23T20:36:59-03:00 test 1005 -eq 1005
++ 2026-11-23T20:36:59-03:00 sha256sum correct.txt
++ 2026-11-23T20:36:59-03:00 grep -F 2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
++ 2026-11-23T20:36:59-03:00 run_error_cases
++ 2026-11-23T20:36:59-03:00 printf '10\ntexto\n'
++ 2026-11-23T20:36:59-03:00 printf '10\n\n20\n'
++ 2026-11-23T20:36:59-03:00 printf '%s\n' -1
++ 2026-11-23T20:36:59-03:00 printf '%s\n' 65536
++ 2026-11-23T20:36:59-03:00 :
++ 2026-11-23T20:36:59-03:00 expect_failure_no_output ./vm
++ 2026-11-23T20:36:59-03:00 rm -f correct.txt
++ 2026-11-23T20:36:59-03:00 ./vm
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
++ 2026-11-23T20:36:59-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:59-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru
++ 2026-11-23T20:36:59-03:00 rm -f correct.txt
++ 2026-11-23T20:36:59-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
++ 2026-11-23T20:36:59-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:59-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalid fifo
++ 2026-11-23T20:36:59-03:00 rm -f correct.txt
++ 2026-11-23T20:36:59-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalid fifo
+Error: replacement policies must be 'fifo' or 'lru'
++ 2026-11-23T20:36:59-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:59-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru invalid
++ 2026-11-23T20:36:59-03:00 rm -f correct.txt
++ 2026-11-23T20:36:59-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru invalid
+Error: replacement policies must be 'fifo' or 'lru'
++ 2026-11-23T20:36:59-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:59-03:00 expect_failure_no_output ./vm /tmp/vm-missing-addresses.txt lru fifo
++ 2026-11-23T20:36:59-03:00 rm -f correct.txt
++ 2026-11-23T20:36:59-03:00 ./vm /tmp/vm-missing-addresses.txt lru fifo
+Error: unable to open address file '/tmp/vm-missing-addresses.txt'
++ 2026-11-23T20:36:59-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:59-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-text.txt lru fifo
++ 2026-11-23T20:36:59-03:00 rm -f correct.txt
++ 2026-11-23T20:36:59-03:00 ./vm /tmp/vm-invalid-text.txt lru fifo
+Error: invalid logical address on line 2
++ 2026-11-23T20:36:59-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:59-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-blank.txt lru fifo
++ 2026-11-23T20:36:59-03:00 rm -f correct.txt
++ 2026-11-23T20:36:59-03:00 ./vm /tmp/vm-invalid-blank.txt lru fifo
+Error: invalid logical address on line 2
++ 2026-11-23T20:36:59-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:59-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-negative.txt lru fifo
++ 2026-11-23T20:36:59-03:00 rm -f correct.txt
++ 2026-11-23T20:36:59-03:00 ./vm /tmp/vm-invalid-negative.txt lru fifo
+Error: invalid logical address on line 1
++ 2026-11-23T20:36:59-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:59-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-high.txt lru fifo
++ 2026-11-23T20:36:59-03:00 rm -f correct.txt
++ 2026-11-23T20:36:59-03:00 ./vm /tmp/vm-invalid-high.txt lru fifo
+Error: invalid logical address on line 1
++ 2026-11-23T20:36:59-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:59-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-empty.txt lru fifo
++ 2026-11-23T20:36:59-03:00 rm -f correct.txt
++ 2026-11-23T20:36:59-03:00 ./vm /tmp/vm-invalid-empty.txt lru fifo
+Error: address file is empty
++ 2026-11-23T20:36:59-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:59-03:00 rm -f BACKING_STORE.bin
++ 2026-11-23T20:36:59-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:59-03:00 rm -f correct.txt
++ 2026-11-23T20:36:59-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: unable to open BACKING_STORE.bin
++ 2026-11-23T20:36:59-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:59-03:00 head -c 65535 /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin
++ 2026-11-23T20:36:59-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:59-03:00 rm -f correct.txt
++ 2026-11-23T20:36:59-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: BACKING_STORE.bin must contain exactly 65536 bytes
++ 2026-11-23T20:36:59-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:59-03:00 cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin BACKING_STORE.bin
++ 2026-11-23T20:36:59-03:00 printf '\0'
++ 2026-11-23T20:36:59-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:36:59-03:00 rm -f correct.txt
++ 2026-11-23T20:36:59-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: BACKING_STORE.bin must contain exactly 65536 bytes
++ 2026-11-23T20:36:59-03:00 test '!' -e correct.txt
++ 2026-11-23T20:36:59-03:00 cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin BACKING_STORE.bin
++ 2026-11-23T20:36:59-03:00 printf 'FINAL_MATRIX_PASS commit 10 repetition %d\n' 6
+FINAL_MATRIX_PASS commit 10 repetition 6
++ 2026-11-23T20:36:59-03:00 printf 'FINAL_ERROR_PASS commit 10 repetition %d\n' 6
+FINAL_ERROR_PASS commit 10 repetition 6
++ 2026-11-23T20:36:59-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T20:36:59-03:00 printf 'COMMIT=10 BATCH=2 REPETITION=%d\n' 7
+COMMIT=10 BATCH=2 REPETITION=7
++ 2026-11-23T20:36:59-03:00 timeout 120s bash -c $'\n        set -euo pipefail\n        make -C \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd\' clean\n        make -C \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd\'\n        cp \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd/vm\' \'/tmp/vm-commit10-final/vm\'\n        cp \'/mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin\' \'/tmp/vm-commit10-final/BACKING_STORE.bin\'\n    '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
++ 2026-11-23T20:37:00-03:00 cd /tmp/vm-commit10-final
++ 2026-11-23T20:37:00-03:00 run_matrix
++ 2026-11-23T20:37:00-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo
++ 2026-11-23T20:37:01-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:37:01-03:00 grep -Fx 'Page Faults = 538' correct.txt
+Page Faults = 538
++ 2026-11-23T20:37:01-03:00 grep -Fx 'TLB Hits = 54' correct.txt
+TLB Hits = 54
+++ 2026-11-23T20:37:01-03:00 wc -l
++ 2026-11-23T20:37:01-03:00 test 1005 -eq 1005
++ 2026-11-23T20:37:01-03:00 grep -F d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86
++ 2026-11-23T20:37:01-03:00 sha256sum correct.txt
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
++ 2026-11-23T20:37:01-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru
++ 2026-11-23T20:37:02-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:37:02-03:00 grep -Fx 'Page Faults = 538' correct.txt
+Page Faults = 538
++ 2026-11-23T20:37:02-03:00 grep -Fx 'TLB Hits = 55' correct.txt
+TLB Hits = 55
+++ 2026-11-23T20:37:02-03:00 wc -l
++ 2026-11-23T20:37:02-03:00 test 1005 -eq 1005
++ 2026-11-23T20:37:02-03:00 sha256sum correct.txt
++ 2026-11-23T20:37:02-03:00 grep -F ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
++ 2026-11-23T20:37:02-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:37:03-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:37:03-03:00 grep -Fx 'Page Faults = 539' correct.txt
+Page Faults = 539
++ 2026-11-23T20:37:03-03:00 grep -Fx 'TLB Hits = 54' correct.txt
+TLB Hits = 54
+++ 2026-11-23T20:37:03-03:00 wc -l
++ 2026-11-23T20:37:03-03:00 test 1005 -eq 1005
++ 2026-11-23T20:37:03-03:00 cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt
++ 2026-11-23T20:37:03-03:00 sha256sum correct.txt
++ 2026-11-23T20:37:03-03:00 grep -F 05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
++ 2026-11-23T20:37:03-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru
++ 2026-11-23T20:37:04-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:37:04-03:00 grep -Fx 'Page Faults = 539' correct.txt
+Page Faults = 539
++ 2026-11-23T20:37:04-03:00 grep -Fx 'TLB Hits = 55' correct.txt
+TLB Hits = 55
+++ 2026-11-23T20:37:04-03:00 wc -l
++ 2026-11-23T20:37:04-03:00 test 1005 -eq 1005
++ 2026-11-23T20:37:04-03:00 grep -F 2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b
++ 2026-11-23T20:37:04-03:00 sha256sum correct.txt
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
++ 2026-11-23T20:37:04-03:00 run_error_cases
++ 2026-11-23T20:37:04-03:00 printf '10\ntexto\n'
++ 2026-11-23T20:37:04-03:00 printf '10\n\n20\n'
++ 2026-11-23T20:37:04-03:00 printf '%s\n' -1
++ 2026-11-23T20:37:04-03:00 printf '%s\n' 65536
++ 2026-11-23T20:37:04-03:00 :
++ 2026-11-23T20:37:04-03:00 expect_failure_no_output ./vm
++ 2026-11-23T20:37:04-03:00 rm -f correct.txt
++ 2026-11-23T20:37:04-03:00 ./vm
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
++ 2026-11-23T20:37:04-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:04-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru
++ 2026-11-23T20:37:04-03:00 rm -f correct.txt
++ 2026-11-23T20:37:04-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
++ 2026-11-23T20:37:04-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:04-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalid fifo
++ 2026-11-23T20:37:04-03:00 rm -f correct.txt
++ 2026-11-23T20:37:04-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalid fifo
+Error: replacement policies must be 'fifo' or 'lru'
++ 2026-11-23T20:37:04-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:04-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru invalid
++ 2026-11-23T20:37:04-03:00 rm -f correct.txt
++ 2026-11-23T20:37:04-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru invalid
+Error: replacement policies must be 'fifo' or 'lru'
++ 2026-11-23T20:37:04-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:04-03:00 expect_failure_no_output ./vm /tmp/vm-missing-addresses.txt lru fifo
++ 2026-11-23T20:37:04-03:00 rm -f correct.txt
++ 2026-11-23T20:37:04-03:00 ./vm /tmp/vm-missing-addresses.txt lru fifo
+Error: unable to open address file '/tmp/vm-missing-addresses.txt'
++ 2026-11-23T20:37:04-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:04-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-text.txt lru fifo
++ 2026-11-23T20:37:04-03:00 rm -f correct.txt
++ 2026-11-23T20:37:04-03:00 ./vm /tmp/vm-invalid-text.txt lru fifo
+Error: invalid logical address on line 2
++ 2026-11-23T20:37:04-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:04-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-blank.txt lru fifo
++ 2026-11-23T20:37:04-03:00 rm -f correct.txt
++ 2026-11-23T20:37:04-03:00 ./vm /tmp/vm-invalid-blank.txt lru fifo
+Error: invalid logical address on line 2
++ 2026-11-23T20:37:04-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:04-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-negative.txt lru fifo
++ 2026-11-23T20:37:04-03:00 rm -f correct.txt
++ 2026-11-23T20:37:04-03:00 ./vm /tmp/vm-invalid-negative.txt lru fifo
+Error: invalid logical address on line 1
++ 2026-11-23T20:37:04-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:04-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-high.txt lru fifo
++ 2026-11-23T20:37:04-03:00 rm -f correct.txt
++ 2026-11-23T20:37:04-03:00 ./vm /tmp/vm-invalid-high.txt lru fifo
+Error: invalid logical address on line 1
++ 2026-11-23T20:37:04-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:04-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-empty.txt lru fifo
++ 2026-11-23T20:37:04-03:00 rm -f correct.txt
++ 2026-11-23T20:37:04-03:00 ./vm /tmp/vm-invalid-empty.txt lru fifo
+Error: address file is empty
++ 2026-11-23T20:37:04-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:04-03:00 rm -f BACKING_STORE.bin
++ 2026-11-23T20:37:04-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:37:04-03:00 rm -f correct.txt
++ 2026-11-23T20:37:04-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: unable to open BACKING_STORE.bin
++ 2026-11-23T20:37:04-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:04-03:00 head -c 65535 /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin
++ 2026-11-23T20:37:04-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:37:04-03:00 rm -f correct.txt
++ 2026-11-23T20:37:04-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: BACKING_STORE.bin must contain exactly 65536 bytes
++ 2026-11-23T20:37:04-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:04-03:00 cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin BACKING_STORE.bin
++ 2026-11-23T20:37:04-03:00 printf '\0'
++ 2026-11-23T20:37:04-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:37:04-03:00 rm -f correct.txt
++ 2026-11-23T20:37:04-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: BACKING_STORE.bin must contain exactly 65536 bytes
++ 2026-11-23T20:37:04-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:04-03:00 cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin BACKING_STORE.bin
++ 2026-11-23T20:37:04-03:00 printf 'FINAL_MATRIX_PASS commit 10 repetition %d\n' 7
+FINAL_MATRIX_PASS commit 10 repetition 7
++ 2026-11-23T20:37:04-03:00 printf 'FINAL_ERROR_PASS commit 10 repetition %d\n' 7
+FINAL_ERROR_PASS commit 10 repetition 7
++ 2026-11-23T20:37:04-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T20:37:04-03:00 printf 'COMMIT=10 BATCH=2 REPETITION=%d\n' 8
+COMMIT=10 BATCH=2 REPETITION=8
++ 2026-11-23T20:37:04-03:00 timeout 120s bash -c $'\n        set -euo pipefail\n        make -C \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd\' clean\n        make -C \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd\'\n        cp \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd/vm\' \'/tmp/vm-commit10-final/vm\'\n        cp \'/mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin\' \'/tmp/vm-commit10-final/BACKING_STORE.bin\'\n    '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
++ 2026-11-23T20:37:05-03:00 cd /tmp/vm-commit10-final
++ 2026-11-23T20:37:05-03:00 run_matrix
++ 2026-11-23T20:37:05-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo
++ 2026-11-23T20:37:07-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:37:07-03:00 grep -Fx 'Page Faults = 538' correct.txt
+Page Faults = 538
++ 2026-11-23T20:37:07-03:00 grep -Fx 'TLB Hits = 54' correct.txt
+TLB Hits = 54
+++ 2026-11-23T20:37:07-03:00 wc -l
++ 2026-11-23T20:37:07-03:00 test 1005 -eq 1005
++ 2026-11-23T20:37:07-03:00 sha256sum correct.txt
++ 2026-11-23T20:37:07-03:00 grep -F d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
++ 2026-11-23T20:37:07-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru
++ 2026-11-23T20:37:08-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:37:08-03:00 grep -Fx 'Page Faults = 538' correct.txt
+Page Faults = 538
++ 2026-11-23T20:37:08-03:00 grep -Fx 'TLB Hits = 55' correct.txt
+TLB Hits = 55
+++ 2026-11-23T20:37:08-03:00 wc -l
++ 2026-11-23T20:37:08-03:00 test 1005 -eq 1005
++ 2026-11-23T20:37:08-03:00 grep -F ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6
++ 2026-11-23T20:37:08-03:00 sha256sum correct.txt
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
++ 2026-11-23T20:37:08-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:37:09-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:37:09-03:00 grep -Fx 'Page Faults = 539' correct.txt
+Page Faults = 539
++ 2026-11-23T20:37:09-03:00 grep -Fx 'TLB Hits = 54' correct.txt
+TLB Hits = 54
+++ 2026-11-23T20:37:09-03:00 wc -l
++ 2026-11-23T20:37:09-03:00 test 1005 -eq 1005
++ 2026-11-23T20:37:09-03:00 cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt
++ 2026-11-23T20:37:09-03:00 sha256sum correct.txt
++ 2026-11-23T20:37:09-03:00 grep -F 05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
++ 2026-11-23T20:37:09-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru
++ 2026-11-23T20:37:10-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:37:10-03:00 grep -Fx 'Page Faults = 539' correct.txt
+Page Faults = 539
++ 2026-11-23T20:37:10-03:00 grep -Fx 'TLB Hits = 55' correct.txt
+TLB Hits = 55
+++ 2026-11-23T20:37:10-03:00 wc -l
++ 2026-11-23T20:37:10-03:00 test 1005 -eq 1005
++ 2026-11-23T20:37:10-03:00 sha256sum correct.txt
++ 2026-11-23T20:37:10-03:00 grep -F 2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
++ 2026-11-23T20:37:10-03:00 run_error_cases
++ 2026-11-23T20:37:10-03:00 printf '10\ntexto\n'
++ 2026-11-23T20:37:10-03:00 printf '10\n\n20\n'
++ 2026-11-23T20:37:10-03:00 printf '%s\n' -1
++ 2026-11-23T20:37:10-03:00 printf '%s\n' 65536
++ 2026-11-23T20:37:10-03:00 :
++ 2026-11-23T20:37:10-03:00 expect_failure_no_output ./vm
++ 2026-11-23T20:37:10-03:00 rm -f correct.txt
++ 2026-11-23T20:37:10-03:00 ./vm
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
++ 2026-11-23T20:37:10-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:10-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru
++ 2026-11-23T20:37:10-03:00 rm -f correct.txt
++ 2026-11-23T20:37:10-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
++ 2026-11-23T20:37:10-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:10-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalid fifo
++ 2026-11-23T20:37:10-03:00 rm -f correct.txt
++ 2026-11-23T20:37:10-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalid fifo
+Error: replacement policies must be 'fifo' or 'lru'
++ 2026-11-23T20:37:10-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:10-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru invalid
++ 2026-11-23T20:37:10-03:00 rm -f correct.txt
++ 2026-11-23T20:37:10-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru invalid
+Error: replacement policies must be 'fifo' or 'lru'
++ 2026-11-23T20:37:10-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:10-03:00 expect_failure_no_output ./vm /tmp/vm-missing-addresses.txt lru fifo
++ 2026-11-23T20:37:10-03:00 rm -f correct.txt
++ 2026-11-23T20:37:10-03:00 ./vm /tmp/vm-missing-addresses.txt lru fifo
+Error: unable to open address file '/tmp/vm-missing-addresses.txt'
++ 2026-11-23T20:37:10-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:10-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-text.txt lru fifo
++ 2026-11-23T20:37:10-03:00 rm -f correct.txt
++ 2026-11-23T20:37:10-03:00 ./vm /tmp/vm-invalid-text.txt lru fifo
+Error: invalid logical address on line 2
++ 2026-11-23T20:37:10-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:10-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-blank.txt lru fifo
++ 2026-11-23T20:37:10-03:00 rm -f correct.txt
++ 2026-11-23T20:37:10-03:00 ./vm /tmp/vm-invalid-blank.txt lru fifo
+Error: invalid logical address on line 2
++ 2026-11-23T20:37:10-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:10-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-negative.txt lru fifo
++ 2026-11-23T20:37:10-03:00 rm -f correct.txt
++ 2026-11-23T20:37:10-03:00 ./vm /tmp/vm-invalid-negative.txt lru fifo
+Error: invalid logical address on line 1
++ 2026-11-23T20:37:10-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:10-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-high.txt lru fifo
++ 2026-11-23T20:37:10-03:00 rm -f correct.txt
++ 2026-11-23T20:37:10-03:00 ./vm /tmp/vm-invalid-high.txt lru fifo
+Error: invalid logical address on line 1
++ 2026-11-23T20:37:10-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:10-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-empty.txt lru fifo
++ 2026-11-23T20:37:10-03:00 rm -f correct.txt
++ 2026-11-23T20:37:10-03:00 ./vm /tmp/vm-invalid-empty.txt lru fifo
+Error: address file is empty
++ 2026-11-23T20:37:10-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:10-03:00 rm -f BACKING_STORE.bin
++ 2026-11-23T20:37:10-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:37:10-03:00 rm -f correct.txt
++ 2026-11-23T20:37:10-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: unable to open BACKING_STORE.bin
++ 2026-11-23T20:37:10-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:10-03:00 head -c 65535 /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin
++ 2026-11-23T20:37:10-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:37:10-03:00 rm -f correct.txt
++ 2026-11-23T20:37:10-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: BACKING_STORE.bin must contain exactly 65536 bytes
++ 2026-11-23T20:37:10-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:10-03:00 cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin BACKING_STORE.bin
++ 2026-11-23T20:37:10-03:00 printf '\0'
++ 2026-11-23T20:37:10-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:37:11-03:00 rm -f correct.txt
++ 2026-11-23T20:37:11-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: BACKING_STORE.bin must contain exactly 65536 bytes
++ 2026-11-23T20:37:11-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:11-03:00 cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin BACKING_STORE.bin
++ 2026-11-23T20:37:11-03:00 printf 'FINAL_MATRIX_PASS commit 10 repetition %d\n' 8
+FINAL_MATRIX_PASS commit 10 repetition 8
++ 2026-11-23T20:37:11-03:00 printf 'FINAL_ERROR_PASS commit 10 repetition %d\n' 8
+FINAL_ERROR_PASS commit 10 repetition 8
++ 2026-11-23T20:37:11-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T20:37:11-03:00 printf 'COMMIT=10 BATCH=2 REPETITION=%d\n' 9
+COMMIT=10 BATCH=2 REPETITION=9
++ 2026-11-23T20:37:11-03:00 timeout 120s bash -c $'\n        set -euo pipefail\n        make -C \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd\' clean\n        make -C \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd\'\n        cp \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd/vm\' \'/tmp/vm-commit10-final/vm\'\n        cp \'/mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin\' \'/tmp/vm-commit10-final/BACKING_STORE.bin\'\n    '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
++ 2026-11-23T20:37:11-03:00 cd /tmp/vm-commit10-final
++ 2026-11-23T20:37:11-03:00 run_matrix
++ 2026-11-23T20:37:11-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo
++ 2026-11-23T20:37:12-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:37:12-03:00 grep -Fx 'Page Faults = 538' correct.txt
+Page Faults = 538
++ 2026-11-23T20:37:12-03:00 grep -Fx 'TLB Hits = 54' correct.txt
+TLB Hits = 54
+++ 2026-11-23T20:37:12-03:00 wc -l
++ 2026-11-23T20:37:12-03:00 test 1005 -eq 1005
++ 2026-11-23T20:37:12-03:00 sha256sum correct.txt
++ 2026-11-23T20:37:12-03:00 grep -F d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
++ 2026-11-23T20:37:12-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru
++ 2026-11-23T20:37:13-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:37:13-03:00 grep -Fx 'Page Faults = 538' correct.txt
+Page Faults = 538
++ 2026-11-23T20:37:13-03:00 grep -Fx 'TLB Hits = 55' correct.txt
+TLB Hits = 55
+++ 2026-11-23T20:37:13-03:00 wc -l
++ 2026-11-23T20:37:13-03:00 test 1005 -eq 1005
++ 2026-11-23T20:37:13-03:00 sha256sum correct.txt
++ 2026-11-23T20:37:13-03:00 grep -F ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
++ 2026-11-23T20:37:13-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:37:14-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:37:14-03:00 grep -Fx 'Page Faults = 539' correct.txt
+Page Faults = 539
++ 2026-11-23T20:37:14-03:00 grep -Fx 'TLB Hits = 54' correct.txt
+TLB Hits = 54
+++ 2026-11-23T20:37:14-03:00 wc -l
++ 2026-11-23T20:37:14-03:00 test 1005 -eq 1005
++ 2026-11-23T20:37:14-03:00 cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt
++ 2026-11-23T20:37:14-03:00 grep -F 05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106
++ 2026-11-23T20:37:14-03:00 sha256sum correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
++ 2026-11-23T20:37:14-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru
++ 2026-11-23T20:37:15-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:37:15-03:00 grep -Fx 'Page Faults = 539' correct.txt
+Page Faults = 539
++ 2026-11-23T20:37:15-03:00 grep -Fx 'TLB Hits = 55' correct.txt
+TLB Hits = 55
+++ 2026-11-23T20:37:16-03:00 wc -l
++ 2026-11-23T20:37:16-03:00 test 1005 -eq 1005
++ 2026-11-23T20:37:16-03:00 sha256sum correct.txt
++ 2026-11-23T20:37:16-03:00 grep -F 2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
++ 2026-11-23T20:37:16-03:00 run_error_cases
++ 2026-11-23T20:37:16-03:00 printf '10\ntexto\n'
++ 2026-11-23T20:37:16-03:00 printf '10\n\n20\n'
++ 2026-11-23T20:37:16-03:00 printf '%s\n' -1
++ 2026-11-23T20:37:16-03:00 printf '%s\n' 65536
++ 2026-11-23T20:37:16-03:00 :
++ 2026-11-23T20:37:16-03:00 expect_failure_no_output ./vm
++ 2026-11-23T20:37:16-03:00 rm -f correct.txt
++ 2026-11-23T20:37:16-03:00 ./vm
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
++ 2026-11-23T20:37:16-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:16-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru
++ 2026-11-23T20:37:16-03:00 rm -f correct.txt
++ 2026-11-23T20:37:16-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
++ 2026-11-23T20:37:16-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:16-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalid fifo
++ 2026-11-23T20:37:16-03:00 rm -f correct.txt
++ 2026-11-23T20:37:16-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalid fifo
+Error: replacement policies must be 'fifo' or 'lru'
++ 2026-11-23T20:37:16-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:16-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru invalid
++ 2026-11-23T20:37:16-03:00 rm -f correct.txt
++ 2026-11-23T20:37:16-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru invalid
+Error: replacement policies must be 'fifo' or 'lru'
++ 2026-11-23T20:37:16-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:16-03:00 expect_failure_no_output ./vm /tmp/vm-missing-addresses.txt lru fifo
++ 2026-11-23T20:37:16-03:00 rm -f correct.txt
++ 2026-11-23T20:37:16-03:00 ./vm /tmp/vm-missing-addresses.txt lru fifo
+Error: unable to open address file '/tmp/vm-missing-addresses.txt'
++ 2026-11-23T20:37:16-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:16-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-text.txt lru fifo
++ 2026-11-23T20:37:16-03:00 rm -f correct.txt
++ 2026-11-23T20:37:16-03:00 ./vm /tmp/vm-invalid-text.txt lru fifo
+Error: invalid logical address on line 2
++ 2026-11-23T20:37:16-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:16-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-blank.txt lru fifo
++ 2026-11-23T20:37:16-03:00 rm -f correct.txt
++ 2026-11-23T20:37:16-03:00 ./vm /tmp/vm-invalid-blank.txt lru fifo
+Error: invalid logical address on line 2
++ 2026-11-23T20:37:16-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:16-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-negative.txt lru fifo
++ 2026-11-23T20:37:16-03:00 rm -f correct.txt
++ 2026-11-23T20:37:16-03:00 ./vm /tmp/vm-invalid-negative.txt lru fifo
+Error: invalid logical address on line 1
++ 2026-11-23T20:37:16-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:16-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-high.txt lru fifo
++ 2026-11-23T20:37:16-03:00 rm -f correct.txt
++ 2026-11-23T20:37:16-03:00 ./vm /tmp/vm-invalid-high.txt lru fifo
+Error: invalid logical address on line 1
++ 2026-11-23T20:37:16-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:16-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-empty.txt lru fifo
++ 2026-11-23T20:37:16-03:00 rm -f correct.txt
++ 2026-11-23T20:37:16-03:00 ./vm /tmp/vm-invalid-empty.txt lru fifo
+Error: address file is empty
++ 2026-11-23T20:37:16-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:16-03:00 rm -f BACKING_STORE.bin
++ 2026-11-23T20:37:16-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:37:16-03:00 rm -f correct.txt
++ 2026-11-23T20:37:16-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: unable to open BACKING_STORE.bin
++ 2026-11-23T20:37:16-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:16-03:00 head -c 65535 /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin
++ 2026-11-23T20:37:16-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:37:16-03:00 rm -f correct.txt
++ 2026-11-23T20:37:16-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: BACKING_STORE.bin must contain exactly 65536 bytes
++ 2026-11-23T20:37:16-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:16-03:00 cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin BACKING_STORE.bin
++ 2026-11-23T20:37:16-03:00 printf '\0'
++ 2026-11-23T20:37:16-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:37:16-03:00 rm -f correct.txt
++ 2026-11-23T20:37:16-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: BACKING_STORE.bin must contain exactly 65536 bytes
++ 2026-11-23T20:37:16-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:16-03:00 cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin BACKING_STORE.bin
++ 2026-11-23T20:37:16-03:00 printf 'FINAL_MATRIX_PASS commit 10 repetition %d\n' 9
+FINAL_MATRIX_PASS commit 10 repetition 9
++ 2026-11-23T20:37:16-03:00 printf 'FINAL_ERROR_PASS commit 10 repetition %d\n' 9
+FINAL_ERROR_PASS commit 10 repetition 9
++ 2026-11-23T20:37:16-03:00 for repetition in $(seq 1 10)
++ 2026-11-23T20:37:16-03:00 printf 'COMMIT=10 BATCH=2 REPETITION=%d\n' 10
+COMMIT=10 BATCH=2 REPETITION=10
++ 2026-11-23T20:37:16-03:00 timeout 120s bash -c $'\n        set -euo pipefail\n        make -C \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd\' clean\n        make -C \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd\'\n        cp \'/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd/vm\' \'/tmp/vm-commit10-final/vm\'\n        cp \'/mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin\' \'/tmp/vm-commit10-final/BACKING_STORE.bin\'\n    '
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
++ 2026-11-23T20:37:17-03:00 cd /tmp/vm-commit10-final
++ 2026-11-23T20:37:17-03:00 run_matrix
++ 2026-11-23T20:37:17-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo fifo
++ 2026-11-23T20:37:18-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:37:18-03:00 grep -Fx 'Page Faults = 538' correct.txt
+Page Faults = 538
++ 2026-11-23T20:37:18-03:00 grep -Fx 'TLB Hits = 54' correct.txt
+TLB Hits = 54
+++ 2026-11-23T20:37:18-03:00 wc -l
++ 2026-11-23T20:37:18-03:00 test 1005 -eq 1005
++ 2026-11-23T20:37:18-03:00 sha256sum correct.txt
++ 2026-11-23T20:37:18-03:00 grep -F d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86
+d3dc3f980659e18c69dedcf34024537bea558a25e0260707a5121d7085cc7b86  correct.txt
++ 2026-11-23T20:37:18-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt fifo lru
++ 2026-11-23T20:37:19-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:37:19-03:00 grep -Fx 'Page Faults = 538' correct.txt
+Page Faults = 538
++ 2026-11-23T20:37:19-03:00 grep -Fx 'TLB Hits = 55' correct.txt
+TLB Hits = 55
+++ 2026-11-23T20:37:19-03:00 wc -l
++ 2026-11-23T20:37:19-03:00 test 1005 -eq 1005
++ 2026-11-23T20:37:19-03:00 grep -F ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6
++ 2026-11-23T20:37:19-03:00 sha256sum correct.txt
+ac13a7dfa03a01d108f3925256d251b5c16dbd74e56667a03ce40b458311ced6  correct.txt
++ 2026-11-23T20:37:19-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:37:20-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:37:20-03:00 grep -Fx 'Page Faults = 539' correct.txt
+Page Faults = 539
++ 2026-11-23T20:37:20-03:00 grep -Fx 'TLB Hits = 54' correct.txt
+TLB Hits = 54
+++ 2026-11-23T20:37:20-03:00 wc -l
++ 2026-11-23T20:37:20-03:00 test 1005 -eq 1005
++ 2026-11-23T20:37:20-03:00 cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt
++ 2026-11-23T20:37:20-03:00 grep -F 05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106
++ 2026-11-23T20:37:20-03:00 sha256sum correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
++ 2026-11-23T20:37:20-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru lru
++ 2026-11-23T20:37:21-03:00 grep -Fx 'Number of Translated Addresses = 1000' correct.txt
+Number of Translated Addresses = 1000
++ 2026-11-23T20:37:21-03:00 grep -Fx 'Page Faults = 539' correct.txt
+Page Faults = 539
++ 2026-11-23T20:37:21-03:00 grep -Fx 'TLB Hits = 55' correct.txt
+TLB Hits = 55
+++ 2026-11-23T20:37:21-03:00 wc -l
++ 2026-11-23T20:37:21-03:00 test 1005 -eq 1005
++ 2026-11-23T20:37:21-03:00 sha256sum correct.txt
++ 2026-11-23T20:37:21-03:00 grep -F 2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b
+2e6df47766b8b5bbdb3e7b211bc6d573ded795410aac490b6ae729fc668c532b  correct.txt
++ 2026-11-23T20:37:21-03:00 run_error_cases
++ 2026-11-23T20:37:21-03:00 printf '10\ntexto\n'
++ 2026-11-23T20:37:21-03:00 printf '10\n\n20\n'
++ 2026-11-23T20:37:21-03:00 printf '%s\n' -1
++ 2026-11-23T20:37:21-03:00 printf '%s\n' 65536
++ 2026-11-23T20:37:21-03:00 :
++ 2026-11-23T20:37:21-03:00 expect_failure_no_output ./vm
++ 2026-11-23T20:37:21-03:00 rm -f correct.txt
++ 2026-11-23T20:37:21-03:00 ./vm
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
++ 2026-11-23T20:37:21-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:21-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru
++ 2026-11-23T20:37:21-03:00 rm -f correct.txt
++ 2026-11-23T20:37:21-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru
+Usage: ./vm <addresses.txt> <fifo|lru> <fifo|lru>
++ 2026-11-23T20:37:21-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:21-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalid fifo
++ 2026-11-23T20:37:21-03:00 rm -f correct.txt
++ 2026-11-23T20:37:21-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt invalid fifo
+Error: replacement policies must be 'fifo' or 'lru'
++ 2026-11-23T20:37:21-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:21-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru invalid
++ 2026-11-23T20:37:21-03:00 rm -f correct.txt
++ 2026-11-23T20:37:21-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru invalid
+Error: replacement policies must be 'fifo' or 'lru'
++ 2026-11-23T20:37:21-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:21-03:00 expect_failure_no_output ./vm /tmp/vm-missing-addresses.txt lru fifo
++ 2026-11-23T20:37:21-03:00 rm -f correct.txt
++ 2026-11-23T20:37:21-03:00 ./vm /tmp/vm-missing-addresses.txt lru fifo
+Error: unable to open address file '/tmp/vm-missing-addresses.txt'
++ 2026-11-23T20:37:21-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:21-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-text.txt lru fifo
++ 2026-11-23T20:37:21-03:00 rm -f correct.txt
++ 2026-11-23T20:37:21-03:00 ./vm /tmp/vm-invalid-text.txt lru fifo
+Error: invalid logical address on line 2
++ 2026-11-23T20:37:21-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:21-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-blank.txt lru fifo
++ 2026-11-23T20:37:21-03:00 rm -f correct.txt
++ 2026-11-23T20:37:21-03:00 ./vm /tmp/vm-invalid-blank.txt lru fifo
+Error: invalid logical address on line 2
++ 2026-11-23T20:37:21-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:21-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-negative.txt lru fifo
++ 2026-11-23T20:37:21-03:00 rm -f correct.txt
++ 2026-11-23T20:37:21-03:00 ./vm /tmp/vm-invalid-negative.txt lru fifo
+Error: invalid logical address on line 1
++ 2026-11-23T20:37:21-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:21-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-high.txt lru fifo
++ 2026-11-23T20:37:21-03:00 rm -f correct.txt
++ 2026-11-23T20:37:21-03:00 ./vm /tmp/vm-invalid-high.txt lru fifo
+Error: invalid logical address on line 1
++ 2026-11-23T20:37:21-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:21-03:00 expect_failure_no_output ./vm /tmp/vm-invalid-empty.txt lru fifo
++ 2026-11-23T20:37:21-03:00 rm -f correct.txt
++ 2026-11-23T20:37:21-03:00 ./vm /tmp/vm-invalid-empty.txt lru fifo
+Error: address file is empty
++ 2026-11-23T20:37:21-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:21-03:00 rm -f BACKING_STORE.bin
++ 2026-11-23T20:37:21-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:37:21-03:00 rm -f correct.txt
++ 2026-11-23T20:37:21-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: unable to open BACKING_STORE.bin
++ 2026-11-23T20:37:21-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:21-03:00 head -c 65535 /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin
++ 2026-11-23T20:37:21-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:37:22-03:00 rm -f correct.txt
++ 2026-11-23T20:37:22-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: BACKING_STORE.bin must contain exactly 65536 bytes
++ 2026-11-23T20:37:22-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:22-03:00 cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin BACKING_STORE.bin
++ 2026-11-23T20:37:22-03:00 printf '\0'
++ 2026-11-23T20:37:22-03:00 expect_failure_no_output ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:37:22-03:00 rm -f correct.txt
++ 2026-11-23T20:37:22-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
+Error: BACKING_STORE.bin must contain exactly 65536 bytes
++ 2026-11-23T20:37:22-03:00 test '!' -e correct.txt
++ 2026-11-23T20:37:22-03:00 cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin BACKING_STORE.bin
++ 2026-11-23T20:37:22-03:00 printf 'FINAL_MATRIX_PASS commit 10 repetition %d\n' 10
+FINAL_MATRIX_PASS commit 10 repetition 10
++ 2026-11-23T20:37:22-03:00 printf 'FINAL_ERROR_PASS commit 10 repetition %d\n' 10
+FINAL_ERROR_PASS commit 10 repetition 10
++ 2026-11-23T20:37:22-03:00 gcc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -fanalyzer -fsyntax-only /mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd/vm.c -pthread
++ 2026-11-23T20:37:22-03:00 gcc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer /mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd/vm.c -o /tmp/vm-commit10-sanitized/vm -pthread
++ 2026-11-23T20:37:22-03:00 cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin /tmp/vm-commit10-sanitized/BACKING_STORE.bin
++ 2026-11-23T20:37:22-03:00 cd /tmp/vm-commit10-sanitized
++ 2026-11-23T20:37:22-03:00 ASAN_OPTIONS=detect_leaks=1:halt_on_error=1
++ 2026-11-23T20:37:22-03:00 UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1
++ 2026-11-23T20:37:22-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:37:28-03:00 cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt
++ 2026-11-23T20:37:28-03:00 sha256sum correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
++ 2026-11-23T20:37:28-03:00 printf 'FINAL_SANITIZER_PASS commit 10\n'
+FINAL_SANITIZER_PASS commit 10
++ 2026-11-23T20:37:28-03:00 make -C /mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd clean
+make: Entering directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
+rm -f vm correct.txt
+make: Leaving directory '/mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd'
++ 2026-11-23T20:37:28-03:00 rm -rf -- /tmp/vm-commit10-final /tmp/vm-commit10-sanitized
++ 2026-11-23T20:37:28-03:00 printf 'FINAL_PASS commit 10\n'
+FINAL_PASS commit 10
++ 2026-11-23T20:40:56-03:00 rm -f -- /mnt/c/Users/PICHAU/Desktop/concluido/entrega_classroom/hmrn.tar
++ 2026-11-23T20:40:56-03:00 tar -cf /mnt/c/Users/PICHAU/Desktop/concluido/entrega_classroom/hmrn.tar -C /mnt/c/Users/PICHAU/Desktop/concluido/entrega_final/espelho_do_tar hmrn
++ 2026-11-23T20:40:56-03:00 tar -tf /mnt/c/Users/PICHAU/Desktop/concluido/entrega_classroom/hmrn.tar
+hmrn/
+hmrn/Makefile
+hmrn/vm.c
+++ 2026-11-23T20:40:56-03:00 wc -l
+++ 2026-11-23T20:40:56-03:00 tar -tf /mnt/c/Users/PICHAU/Desktop/concluido/entrega_classroom/hmrn.tar
++ 2026-11-23T20:40:56-03:00 test 3 -eq 3
++ 2026-11-23T20:40:56-03:00 grep -Fx hmrn/
++ 2026-11-23T20:40:56-03:00 tar -tf /mnt/c/Users/PICHAU/Desktop/concluido/entrega_classroom/hmrn.tar
+hmrn/
++ 2026-11-23T20:40:56-03:00 tar -tf /mnt/c/Users/PICHAU/Desktop/concluido/entrega_classroom/hmrn.tar
++ 2026-11-23T20:40:56-03:00 grep -Fx hmrn/Makefile
+hmrn/Makefile
++ 2026-11-23T20:40:56-03:00 tar -tf /mnt/c/Users/PICHAU/Desktop/concluido/entrega_classroom/hmrn.tar
++ 2026-11-23T20:40:56-03:00 grep -Fx hmrn/vm.c
+hmrn/vm.c
++ 2026-11-23T20:40:56-03:00 sha256sum /mnt/c/Users/PICHAU/Desktop/concluido/entrega_classroom/hmrn.tar /mnt/c/Users/PICHAU/Desktop/concluido/entrega_final/espelho_do_tar/hmrn/vm.c /mnt/c/Users/PICHAU/Desktop/concluido/entrega_final/espelho_do_tar/hmrn/Makefile
+01778429750a5675ed675a97493f7964bd3399d3bb85eacca9d02533424d55d3  /mnt/c/Users/PICHAU/Desktop/concluido/entrega_classroom/hmrn.tar
+063b2e64a2efbd9da0b391feddb842be3088af86c44b471f991b1f5e2b579bff  /mnt/c/Users/PICHAU/Desktop/concluido/entrega_final/espelho_do_tar/hmrn/vm.c
+bc1d6e32101d34d193868a940cbb4764c325dc3c995249d1627a351b2282ae1c  /mnt/c/Users/PICHAU/Desktop/concluido/entrega_final/espelho_do_tar/hmrn/Makefile
++ 2026-11-23T20:40:56-03:00 rm -rf -- /tmp/hmrn-tar-audit
++ 2026-11-23T20:40:56-03:00 mkdir -p -- /tmp/hmrn-tar-audit
++ 2026-11-23T20:40:56-03:00 tar -xf /mnt/c/Users/PICHAU/Desktop/concluido/entrega_classroom/hmrn.tar -C /tmp/hmrn-tar-audit
+++ 2026-11-23T20:40:56-03:00 find /tmp/hmrn-tar-audit/hmrn -maxdepth 1 -type f
+++ 2026-11-23T20:40:56-03:00 wc -l
++ 2026-11-23T20:40:56-03:00 test 2 -eq 2
++ 2026-11-23T20:40:56-03:00 cmp /tmp/hmrn-tar-audit/hmrn/vm.c /mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd/vm.c
++ 2026-11-23T20:40:56-03:00 cmp /tmp/hmrn-tar-audit/hmrn/Makefile /mnt/c/Users/PICHAU/Desktop/concluido/etapas/dia_3/commits/commit_10_c25e9fd/Makefile
++ 2026-11-23T20:40:56-03:00 cp /mnt/c/Users/PICHAU/Downloads/BACKING_STORE.bin /tmp/hmrn-tar-audit/hmrn/BACKING_STORE.bin
++ 2026-11-23T20:40:56-03:00 make -C /tmp/hmrn-tar-audit/hmrn
+make: Entering directory '/tmp/hmrn-tar-audit/hmrn'
+cc -D_POSIX_C_SOURCE=200809L -std=c11 -Wall -Wextra -Wpedantic -Werror -O2 vm.c -o vm -pthread
+make: Leaving directory '/tmp/hmrn-tar-audit/hmrn'
++ 2026-11-23T20:40:57-03:00 cd /tmp/hmrn-tar-audit/hmrn
++ 2026-11-23T20:40:57-03:00 ./vm /mnt/c/Users/PICHAU/Downloads/addresses.txt lru fifo
++ 2026-11-23T20:40:58-03:00 cmp correct.txt /mnt/c/Users/PICHAU/Downloads/correct.txt
++ 2026-11-23T20:40:58-03:00 sha256sum correct.txt
+05574ab43f7834a48696eb2cc6cee770c37959e5fe464760580946952f874106  correct.txt
++ 2026-11-23T20:40:58-03:00 make clean
+rm -f vm correct.txt
++ 2026-11-23T20:40:58-03:00 rm -f BACKING_STORE.bin
++ 2026-11-23T20:40:58-03:00 cd /
++ 2026-11-23T20:40:58-03:00 rm -rf -- /tmp/hmrn-tar-audit
++ 2026-11-23T20:40:58-03:00 printf 'FINAL_TAR_PASS commit 10\n'
++ tar -tf /mnt/c/Users/PICHAU/Desktop/concluido/entrega_classroom/hmrn.tar
+hmrn/
+hmrn/Makefile
+hmrn/vm.c
++ tar -tf /mnt/c/Users/PICHAU/Desktop/concluido/entrega_classroom/hmrn.tar
++ wc -l
++ grep -Fx 3
+3
++ sha256sum /mnt/c/Users/PICHAU/Desktop/concluido/entrega_classroom/hmrn.tar
+01778429750a5675ed675a97493f7964bd3399d3bb85eacca9d02533424d55d3  /mnt/c/Users/PICHAU/Desktop/concluido/entrega_classroom/hmrn.tar
++ printf 'FINAL_TAR_PASS commit 10\n'
+FINAL_TAR_PASS commit 10

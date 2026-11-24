@@ -55,12 +55,58 @@ typedef struct {
     int matched;
 } TlbSearchTask;
 
-static void print_usage(const char *program)
+static void show_usage(const char *program);
+static int policy_from_text(const char *text, Policy *policy);
+static int read_address_file(const char *path, AddressList *list);
+static int read_backing_store(Machine *machine);
+static void machine_init(Machine *machine);
+static int translate_addresses(
+    Machine *machine, const AddressList *addresses,
+    Policy page_policy, Policy tlb_policy);
+
+int main(int argc, char **argv)
+{
+    if (argc != 4) {
+        show_usage(argv[0]);
+        return EXIT_FAILURE;
+    }
+
+    Policy page_policy;
+    Policy tlb_policy;
+
+    if (policy_from_text(argv[2], &page_policy) != 0 ||
+        policy_from_text(argv[3], &tlb_policy) != 0) {
+        fprintf(stderr,
+                "Error: replacement policies must be 'fifo' or 'lru'\n");
+        return EXIT_FAILURE;
+    }
+
+    AddressList addresses = {0};
+    if (read_address_file(argv[1], &addresses) != 0) {
+        return EXIT_FAILURE;
+    }
+
+    Machine machine;
+    machine_init(&machine);
+
+    if (read_backing_store(&machine) != 0) {
+        free(addresses.items);
+        return EXIT_FAILURE;
+    }
+
+    int status = translate_addresses(
+        &machine, &addresses, page_policy, tlb_policy);
+    free(addresses.items);
+
+    return status == 0 ? EXIT_SUCCESS : EXIT_FAILURE;
+}
+
+static void show_usage(const char *program)
 {
     fprintf(stderr, "Usage: %s <addresses.txt> <fifo|lru> <fifo|lru>\n", program);
 }
 
-static int parse_policy(const char *text, Policy *policy)
+static int policy_from_text(const char *text, Policy *policy)
 {
     if (strcmp(text, "fifo") == 0) {
         *policy = POLICY_FIFO;
@@ -73,7 +119,9 @@ static int parse_policy(const char *text, Policy *policy)
     return -1;
 }
 
-static int append_address(AddressList *list, size_t *capacity, uint16_t address)
+static int address_list_push(AddressList *list,
+                             size_t *capacity,
+                             uint16_t address)
 {
     if (list->count == *capacity) {
         size_t new_capacity = *capacity == 0 ? 128 : *capacity * 2;
@@ -91,7 +139,7 @@ static int append_address(AddressList *list, size_t *capacity, uint16_t address)
     return 0;
 }
 
-static int parse_address_line(char *line, uint16_t *address)
+static int parse_logical_address(char *line, uint16_t *address)
 {
     char *cursor = line;
     while (isspace((unsigned char)*cursor)) {
@@ -118,7 +166,7 @@ static int parse_address_line(char *line, uint16_t *address)
     return 0;
 }
 
-static int load_addresses(const char *path, AddressList *list)
+static int read_address_file(const char *path, AddressList *list)
 {
     FILE *file = fopen(path, "r");
     if (file == NULL) {
@@ -140,12 +188,12 @@ static int load_addresses(const char *path, AddressList *list)
         }
 
         uint16_t address = 0;
-        if (parse_address_line(line, &address) != 0) {
+        if (parse_logical_address(line, &address) != 0) {
             fprintf(stderr, "Error: invalid logical address on line %zu\n", line_number);
             status = -1;
             break;
         }
-        if (append_address(list, &capacity, address) != 0) {
+        if (address_list_push(list, &capacity, address) != 0) {
             fprintf(stderr, "Error: unable to allocate address list\n");
             status = -1;
             break;
@@ -170,7 +218,7 @@ static int load_addresses(const char *path, AddressList *list)
     return status;
 }
 
-static int load_backing_store(Machine *machine)
+static int read_backing_store(Machine *machine)
 {
     FILE *file = fopen(BACKING_STORE_FILE, "rb");
     if (file == NULL) {
@@ -191,7 +239,7 @@ static int load_backing_store(Machine *machine)
     return 0;
 }
 
-static void initialize_machine(Machine *machine)
+static void machine_init(Machine *machine)
 {
     memset(machine, 0, sizeof(*machine));
     for (size_t page = 0; page < PAGE_COUNT; page++) {
@@ -202,7 +250,7 @@ static void initialize_machine(Machine *machine)
     }
 }
 
-static void invalidate_tlb_page(Machine *machine, int page)
+static void tlb_invalidate_page(Machine *machine, int page)
 {
     for (size_t slot = 0; slot < TLB_SIZE; slot++) {
         if (machine->tlb[slot].valid && machine->tlb[slot].page == page) {
@@ -211,10 +259,9 @@ static void invalidate_tlb_page(Machine *machine, int page)
     }
 }
 
-static int resolve_frame(Machine *machine,
-                         uint8_t page,
-                         Policy page_policy,
-                         uint64_t access_time)
+static int get_or_load_frame(
+    Machine *machine, uint8_t page,
+    Policy page_policy, uint64_t access_time)
 {
     int frame = machine->page_table[page];
     if (frame >= 0) {
@@ -228,7 +275,7 @@ static int resolve_frame(Machine *machine,
         frame = (int)machine->next_fifo_frame;
         machine->next_fifo_frame = (machine->next_fifo_frame + 1) % FRAME_COUNT;
         int evicted_page = machine->frame_to_page[frame];
-        invalidate_tlb_page(machine, evicted_page);
+        tlb_invalidate_page(machine, evicted_page);
         machine->page_table[evicted_page] = -1;
     } else {
         int evicted_page = machine->frame_to_page[0];
@@ -240,7 +287,7 @@ static int resolve_frame(Machine *machine,
             }
         }
         frame = machine->page_table[evicted_page];
-        invalidate_tlb_page(machine, evicted_page);
+        tlb_invalidate_page(machine, evicted_page);
         machine->page_table[evicted_page] = -1;
     }
 
@@ -254,14 +301,15 @@ static int resolve_frame(Machine *machine,
     return frame;
 }
 
-static void *search_tlb_entry(void *argument)
+static void *tlb_probe_worker(void *argument)
 {
     TlbSearchTask *task = argument;
     task->matched = task->entry->valid && task->entry->page == task->page;
     return NULL;
 }
 
-static int search_tlb(const Machine *machine, uint8_t page, int *frame)
+static int tlb_lookup_parallel(const Machine *machine,
+                               uint8_t page, int *frame)
 {
     pthread_t threads[TLB_SIZE];
     TlbSearchTask tasks[TLB_SIZE];
@@ -271,7 +319,8 @@ static int search_tlb(const Machine *machine, uint8_t page, int *frame)
         tasks[slot].entry = &machine->tlb[slot];
         tasks[slot].page = page;
         tasks[slot].matched = 0;
-        int error = pthread_create(&threads[slot], NULL, search_tlb_entry, &tasks[slot]);
+        int error = pthread_create(
+            &threads[slot], NULL, tlb_probe_worker, &tasks[slot]);
         if (error != 0) {
             fprintf(stderr, "Error: unable to create TLB search thread: %s\n",
                     strerror(error));
@@ -301,11 +350,9 @@ static int search_tlb(const Machine *machine, uint8_t page, int *frame)
     return -1;
 }
 
-static int insert_tlb(Machine *machine,
-                      uint8_t page,
-                      int frame,
-                      Policy tlb_policy,
-                      uint64_t access_time)
+static int tlb_store(Machine *machine, uint8_t page,
+                     int frame, Policy tlb_policy,
+                     uint64_t access_time)
 {
     size_t slot = 0;
     if (tlb_policy == POLICY_FIFO) {
@@ -331,7 +378,7 @@ static int insert_tlb(Machine *machine,
     return (int)slot;
 }
 
-static int discard_partial_output(FILE *output)
+static int discard_output(FILE *output)
 {
     int close_status = fclose(output);
     int remove_status = remove(OUTPUT_FILE);
@@ -344,10 +391,9 @@ static int discard_partial_output(FILE *output)
     return -1;
 }
 
-static int run_simulation(Machine *machine,
-                          const AddressList *addresses,
-                          Policy page_policy,
-                          Policy tlb_policy)
+static int translate_addresses(
+    Machine *machine, const AddressList *addresses,
+    Policy page_policy, Policy tlb_policy)
 {
     FILE *output = fopen(OUTPUT_FILE, "w");
     if (output == NULL) {
@@ -361,17 +407,19 @@ static int run_simulation(Machine *machine,
         uint8_t offset = (uint8_t)(logical & 0xffu);
         uint64_t access_time = ++machine->clock;
         int frame = -1;
-        int tlb_slot = search_tlb(machine, page, &frame);
+        int tlb_slot = tlb_lookup_parallel(machine, page, &frame);
         if (tlb_slot == -2) {
-            return discard_partial_output(output);
+            return discard_output(output);
         }
         if (tlb_slot >= 0) {
             machine->tlb_hits++;
             machine->tlb[tlb_slot].last_used = access_time;
             machine->page_last_used[page] = access_time;
         } else {
-            frame = resolve_frame(machine, page, page_policy, access_time);
-            tlb_slot = insert_tlb(machine, page, frame, tlb_policy, access_time);
+            frame = get_or_load_frame(
+                machine, page, page_policy, access_time);
+            tlb_slot = tlb_store(
+                machine, page, frame, tlb_policy, access_time);
         }
         size_t physical = (size_t)frame * PAGE_SIZE + offset;
         int value = machine->physical_memory[physical];
@@ -380,7 +428,7 @@ static int run_simulation(Machine *machine,
                     "Virtual address: %u TLB: %d Physical address: %zu Value: %d\n",
                     (unsigned)logical, tlb_slot, physical, value) < 0) {
             fprintf(stderr, "Error: unable to write %s\n", OUTPUT_FILE);
-            return discard_partial_output(output);
+            return discard_output(output);
         }
     }
 
@@ -392,7 +440,7 @@ static int run_simulation(Machine *machine,
         fprintf(output, "TLB Hits = %zu\n", machine->tlb_hits) < 0 ||
         fprintf(output, "TLB Hit Rate = %.3f\n", tlb_hit_rate) < 0) {
         fprintf(stderr, "Error: unable to write summary to %s\n", OUTPUT_FILE);
-        return discard_partial_output(output);
+        return discard_output(output);
     }
 
     if (fclose(output) != 0) {
@@ -403,38 +451,3 @@ static int run_simulation(Machine *machine,
     return 0;
 }
 
-int main(int argc, char **argv)
-{
-    if (argc != 4) {
-        print_usage(argv[0]);
-        return EXIT_FAILURE;
-    }
-
-    Policy page_policy;
-    Policy tlb_policy;
-    if (parse_policy(argv[2], &page_policy) != 0 ||
-        parse_policy(argv[3], &tlb_policy) != 0) {
-        fprintf(stderr, "Error: replacement policies must be 'fifo' or 'lru'\n");
-        return EXIT_FAILURE;
-    }
-
-    AddressList addresses = {0};
-    if (load_addresses(argv[1], &addresses) != 0) {
-        return EXIT_FAILURE;
-    }
-
-    Machine machine;
-    initialize_machine(&machine);
-    if (load_backing_store(&machine) != 0) {
-        free(addresses.items);
-        return EXIT_FAILURE;
-    }
-
-    if (run_simulation(&machine, &addresses, page_policy, tlb_policy) != 0) {
-        free(addresses.items);
-        return EXIT_FAILURE;
-    }
-
-    free(addresses.items);
-    return EXIT_SUCCESS;
-}
